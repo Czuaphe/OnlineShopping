@@ -15,8 +15,6 @@ import java.util.ServiceLoader;
 import org.apache.commons.dbutils.ColumnHandler;
 
 public class BeanHandler<T> implements ResultSetHandler<T> {
-
-	private static final ServiceLoader<ColumnHandler> columnHandlers = ServiceLoader.load(ColumnHandler.class);
 	
 	private Class<T> clazz;
 
