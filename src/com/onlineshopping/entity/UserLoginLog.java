@@ -14,7 +14,6 @@ public class UserLoginLog implements Serializable {
 	private String ip;
 	
 	
-	
 	public int getLogid() {
 		return logid;
 	}

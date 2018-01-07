@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbutils.QueryRunner;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.onlineshopping.db.handler.ResultSetHandler;
 /**
  * 静态工具类，提供数据库连接和查询接口
  * @author admin

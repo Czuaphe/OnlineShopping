@@ -32,5 +32,17 @@ public class UserDaoTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void saveUserTest() throws SQLException {
+		User user = new User();
+		user.setName("cuipp0101");
+		user.setPswd("123123");
+		user.setEmail("1462256657@qq.com");
+		user.setPhone("18434362302");
+		boolean flag = userDao.saveUser(user);
+		assertEquals(flag, true);
+	}
+	
 
 }
