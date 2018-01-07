@@ -1,5 +1,5 @@
 package com.onlineshopping.service;
 
-public class UserService {
+public class UserInfoService {
 
 }
