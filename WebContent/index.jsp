@@ -23,6 +23,12 @@
 </head>
 <body>
 
+<%
+	if(request.getAttribute("flag") == null) {
+		request.getRequestDispatcher("IndexServlet").forward(request, response);
+	}
+%>
+
 <div class="shop_header">
     <div class="container">
         <div class="col-xs-6 header_left">
