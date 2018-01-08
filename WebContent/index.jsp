@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,7 +149,21 @@
         </div>
         <div class="groom_cut swiper-container" >
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <c:if test="${ hotGoodsList }">
+                	<c:forEach items="hotGoodsList" var="goods">
+                		<div class="swiper-slide">
+                    		<div class="groom_item">
+                        		<a href="#">
+                            		<img src="./img/groom-1.jpg" alt="">
+                            		<b>${ goods.name }</b>
+                            		<i>${ goods.details }</i>
+                            		<p>￥${ goods.price }元</p>
+                        		</a>
+                    		</div>
+                		</div>
+                	</c:forEach>
+                </c:if>
+                <!-- <div class="swiper-slide">
                     <div class="groom_item">
                         <a href="#">
                             <img src="./img/groom-1.jpg" alt="">
@@ -188,7 +203,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide"> -->
                     <div class="groom_item">
                         <a href="#">
                             <img src="./img/groom-1.jpg" alt="">

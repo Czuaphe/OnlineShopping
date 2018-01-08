@@ -3,6 +3,7 @@ package com.onlineshopping.test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.junit.Before;
@@ -24,7 +25,10 @@ public class GoodsDaoTest {
 	public void saveGoodsTest() throws SQLException {
 		
 		GoodsDao.saveGoods(new Goods());
-		
+	}
+	
+	@Test
+	public void getAllGoodsTest() throws SQLException {
 		
 	}
 
