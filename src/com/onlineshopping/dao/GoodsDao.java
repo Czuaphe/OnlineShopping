@@ -16,7 +16,12 @@ import com.onlineshopping.entity.Goods;
 public class GoodsDao {
 	
 	private QueryRunner runner = DBUtils.getQueryRunner();
-	
+	/**
+	 * 保存商品
+	 * @param goods
+	 * @return boolean 
+	 * @throws SQLException
+	 */
 	public boolean saveGoods(Goods goods) throws SQLException {
 		
 		String IdSQL = "select SEQ_GID.nextval from dual";
