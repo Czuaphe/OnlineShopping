@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.db.DBUtils"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.onlineshopping.entity.Goods"%>
 <%@page import="java.util.List"%>
@@ -31,6 +32,10 @@
 
 	<%
 		List<Goods> searchGoodsList = (List<Goods>) request.getAttribute("searchGoodsList");
+		int count = (int) request.getAttribute("searchCount");
+		int page1 = (int) request.getAttribute("page");
+		int pageSize = (int) request.getAttribute("pageSize");
+		
 	%>
 
 	<div class="shop_header">
@@ -104,7 +109,7 @@
 			</div>
 			<div class="col-xs-3 search_box">
 				<form action="SearchServlet">
-					<input type="text" id="input_search" placeholder="请输入关键字" />
+					<input type="text" id="input_search" name="key" placeholder="请输入关键字" />
 					<button type="submit" class="fa fa-search" id="btn_search"></button>
 				</form>
 			</div>
@@ -149,20 +154,22 @@
 				<li style="float: left;"><a href="#" style="">其它</a></li>
 			</ul>
 		</div>
-
 	</div>
 
 	<div class="shop_result" style="background-color: #f5f5f5">
 		<div class="container" style="padding-top: 50px;">
 			<div class="result_item" style="height: 748px;">
-				<ul>
+				
 					<%
-						if (searchGoodsList != null) {
+						if (searchGoodsList != null && searchGoodsList.size() != 0 && count != 0) {
+					%>
+					<ul>
+					<%
 							for (Goods goods : searchGoodsList) {
 					%>
 					<li>
 						<div class="discount_pic">
-							<a href="#">
+							<a href="goods_details.jsp?gid=<%= goods.getGid() %>">
 								<div class="discount_item">
 									<%
 										String[] picList = goods.getPicpath().split(",");
@@ -184,119 +191,75 @@
 					</li>
 					<%
 							}
+					%>
+					</ul>
+					<%
 						} else {
 					%>
-					<div>没有商品</div>
+					<span style="text-align:center;display:block;font-size:70px;">没有商品</span>
 					<%
 						}
 					%>
-					<!-- 
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="discount_pic">
-							<a href="#">
-								<div class="discount_item">
-									<img src="./img/groom-1.jpg" alt=""> <b>商品名称</b> <i>商品描述</i>
-									<div class="item_price">
-										<del>￥12.00</del>
-										<span>￥9.00</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li> -->
-				</ul>
+				
 			</div>
-
+			<%
+			if( count != 0) {
+			%>
 			<div class="result_page" style="height: 100px;">
 				<div style="margin: 0 auto; width: 218px;">
 					<ul class="pagination pagination-lg">
-						<li><a href="#">&laquo;</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">&raquo;</a></li>
+						<%-- 显示前一页的箭头 --%>
+						<%
+						if(page1 != 1) {
+						%>
+						<li><a href="SearchServlet?page=<%= page1 - 1 %>">&laquo;</a></li>
+						<%
+						} else {
+						%>
+						<li><a>&laquo;</a></li>
+						<%
+						}
+						%>
+						<%-- 显示前一页的标签 --%>
+						<%
+						if(page1 != 1) {
+						%>
+						
+						<li><a href="SearchServlet?page=<%= page1 - 1 %>"><%=page1 - 1 %></a></li>
+						<% 
+						}
+						%>
+						<%-- 显示当前页的标签 --%>
+						<li><a style="color: black;"><%=page1 %></a></li>
+						<%-- 显示下一页的标签 --%>
+						<%
+						if(count - page1 * pageSize > 0) {
+						%>
+						<li><a href="SearchServlet?page=<%= page1 + 1 %>"><%=page1 + 1 %></a></li>
+						
+						<% 
+						}
+						%>
+						<%-- 显示下一页的箭头 --%>
+						<%
+						if(count - page1 * pageSize > 0) {
+						%>
+						<li><a href="SearchServlet?page=<%= page1 + 1 %>">&raquo;</a></li>
+						<%
+						} else {
+						%>
+						<li><a>&raquo;</a></li>
+						<%
+						}
+						%>
+						
 					</ul>
 				</div>
-
 			</div>
+			<%
+			}
+			%>
+			
 		</div>
 	</div>
 

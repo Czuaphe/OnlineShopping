@@ -65,5 +65,22 @@ public class GoodsDaoTest {
 		assertNotNull(list);
 	}
 	
+	@Test
+	public void getGoodsLikeName() {
+		List<Goods> list = goodsDao.getGoodsLikeName("BB", 1, 10);
+		System.out.println(list.size());
+		for (Goods goods : list) {
+			System.out.println(goods.toString());
+		}
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void getCountLikeName() {
+		int num = goodsDao.getCountLikeName("霜");
+		System.out.println(num);
+		assertNotNull(num);
+	}
+	
 
 }

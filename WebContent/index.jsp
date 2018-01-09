@@ -164,7 +164,7 @@
                 %>
                 		<div class="swiper-slide">
                     		<div class="groom_item">
-                        		<a href="#">
+                        		<a href="goods_details.jsp?gid=<%= goods.getGid() %>">
                         			<% String[] picList = goods.getPicpath().split(","); %>
                             		<img src="./img/400_400/<%=picList[0] %>" alt="">
                             		<b><%=goods.getName() %></b>
@@ -279,7 +279,7 @@
                     	%>
                     	<li>
                             <div class="discount_pic">
-                                <a href="#">
+                                <a href="goods_details.jsp?gid=<%= goods.getGid() %>">
                                     <div class="discount_item">
                                     	<% String[] picList = goods.getPicpath().split(","); 
                                     	DecimalFormat df = (DecimalFormat) DecimalFormat.getInstance();
@@ -458,7 +458,7 @@
                     	%>
                     	<li>
                             <div class="discount_pic">
-                                <a href="#">
+                                <a href="goods_details.jsp?gid=<%= goods.getGid() %>">
                                     <div class="discount_item">
                                     	<% String[] picList = goods.getPicpath().split(","); 
                                     	DecimalFormat df = (DecimalFormat) DecimalFormat.getInstance();

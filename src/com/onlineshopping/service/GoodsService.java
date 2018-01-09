@@ -24,7 +24,10 @@ public class GoodsService {
 	public List<Goods> getNewGoods() {
 		return goodsDao.getGoodsOrderByTime(8);
 	}
-	
+	/**
+	 * 得到打折商品数据
+	 * @return
+	 */
 	public List<Goods> getDiscountGoods() {
 		return goodsDao.getGoodsOrderByDiscount(8);
 	}
@@ -38,9 +41,21 @@ public class GoodsService {
 	public List<Goods> getSearchResult(String key, int page, int num) {
 		return goodsDao.getGoodsLikeName(key, page, num);
 	}
-	
+	/**
+	 * 得到关键字搜索的结果的数量
+	 * @param key 关键字
+	 * @return
+	 */
 	public int getSearchCount(String key) {
 		return goodsDao.getCountLikeName(key);
+	}
+	/**
+	 * 根据id找到商品的信息
+	 * @param gid 商品的ID
+	 * @return 返回商品的对象数据
+	 */
+	public Goods getGoodsByGid(int gid) {
+		return goodsDao.getGoodsByGid(gid);
 	}
 	
 }

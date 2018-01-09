@@ -91,15 +91,15 @@ public class GoodsDao extends BaseDao<Goods>{
 		String sql = "select * from t_goods order by discount asc";
 		return query(sql).toBeanList(num);
 	}
-	// TODO 得到某一页搜索结果
+	// 得到某一页搜索结果
 	public List<Goods> getGoodsLikeName(String key, int page, int num) {
-		String sql = "select rownum g.* from t_goods g like %?%";
-		return query(sql, key).toBeanList();
+		String sql = "select * from (select rownum rn, g.* from t_goods g where name like ? order by rn) t where t.rn > ? and t.rn <= ?";
+		return query(sql, "%" + key + "%", (page - 1) * num, page * num).toBeanList();
 	}
 	// 得到搜索结果的总数
 	public int getCountLikeName(String key) {
-		String sql = "select count(1) from t_goods like %?%";
-		return (int) query(sql, key).toObject();
+		String sql = "select count(1) from t_goods where name like ? order by gid";
+		return Integer.parseInt(String.valueOf(query(sql, "%" + key + "%").toObject()));
 	}
 	
 	@Override

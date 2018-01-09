@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.service.GoodsService;
@@ -34,24 +36,28 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pageSize = 20;
+		HttpSession session = request.getSession();
+		int pageSize = 10;
+		int page = 0;
 		
 		String key = request.getParameter("key");
 		if (key == null) {
-			// 如果key为null说明请求是从search页面来的
-			key = (String) request.getAttribute("key");
-			int page = Integer.parseInt(request.getParameter("page"));
-			request.setAttribute("searchGoodsList", goodsService.getSearchResult(key, page, pageSize));
-			
+			key = (String) session.getAttribute("key");
 		} else {
-			// 请求从index页面来的
-			request.setAttribute("searchGoodsList", goodsService.getSearchResult(key, 1, pageSize));
-			request.setAttribute("searchCount", goodsService.getSearchCount(key));
-			request.setAttribute("key", key);
+			session.setAttribute("key", key);
 		}
 		
+		if (request.getParameter("page") == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
 		
-		
+		request.setAttribute("searchGoodsList", goodsService.getSearchResult(key, page, pageSize));
+		request.setAttribute("searchCount", goodsService.getSearchCount(key));
+//		System.out.println(goodsService.getSearchCount(key));
+		request.setAttribute("page", page);
+		request.setAttribute("pageSize", pageSize);
 		
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 		
