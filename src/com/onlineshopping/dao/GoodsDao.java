@@ -13,10 +13,15 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
+import com.sun.swing.internal.plaf.metal.resources.metal;
+
+/**
+ * 商品类的Dao包，使用BaseDao类中的方法实现。
+ * @author admin
+ * 
+ */
 
 public class GoodsDao extends BaseDao<Goods>{
-	
-	
 	
 	/**
 	 * 保存商品
@@ -69,7 +74,7 @@ public class GoodsDao extends BaseDao<Goods>{
 	
 	public List<Goods> getAllGoods() {
 		String sql = "select * from t_goods";
-		return query(sql).toBeanList(5);
+		return query(sql).toBeanList();
 	}
 	
 	public Goods getGoodsByGid(int gid) {
@@ -85,6 +90,16 @@ public class GoodsDao extends BaseDao<Goods>{
 	public List<Goods> getGoodsOrderByDiscount(int num) {
 		String sql = "select * from t_goods order by discount asc";
 		return query(sql).toBeanList(num);
+	}
+	// TODO 得到某一页搜索结果
+	public List<Goods> getGoodsLikeName(String key, int page, int num) {
+		String sql = "select rownum g.* from t_goods g like %?%";
+		return query(sql, key).toBeanList();
+	}
+	// 得到搜索结果的总数
+	public int getCountLikeName(String key) {
+		String sql = "select count(1) from t_goods like %?%";
+		return (int) query(sql, key).toObject();
 	}
 	
 	@Override
@@ -165,6 +180,22 @@ public class GoodsDao extends BaseDao<Goods>{
 		}
 		
 		return goods;
+	}
+
+
+	@Override
+	protected Object toObject() {
+		Object object = null;
+		
+		try {
+			if (resultSet.next()) {
+				object = resultSet.getObject(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return object;
 	}
 	
 	

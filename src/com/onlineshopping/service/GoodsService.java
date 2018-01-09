@@ -28,5 +28,19 @@ public class GoodsService {
 	public List<Goods> getDiscountGoods() {
 		return goodsDao.getGoodsOrderByDiscount(8);
 	}
+	/**
+	 * 对关键字进行模糊搜索，返回搜索结果
+	 * @param key 要进行模糊搜索的关键字
+	 * @param page 页数
+	 * @param num 每一页的数量
+	 * @return 返回商品列表
+	 */
+	public List<Goods> getSearchResult(String key, int page, int num) {
+		return goodsDao.getGoodsLikeName(key, page, num);
+	}
+	
+	public int getSearchCount(String key) {
+		return goodsDao.getCountLikeName(key);
+	}
 	
 }

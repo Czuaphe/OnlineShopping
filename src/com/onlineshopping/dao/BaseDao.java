@@ -70,6 +70,8 @@ public abstract class BaseDao<T> {
 	
 	protected abstract List<T> toBeanList(int num);
 	
+	protected abstract Object toObject();
+	
 	public void closeAll(Connection connection, PreparedStatement pstmt, ResultSet resultSet) {
 		
 		try {

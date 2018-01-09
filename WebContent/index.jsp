@@ -114,8 +114,8 @@
             </ul>
         </div>
         <div class="col-xs-3 search_box">
-            <form>
-                <input type="text" id="input_search" placeholder="请输入关键字"/>
+            <form action="SearchServlet" >
+                <input type="text" id="input_search" name="key" placeholder="请输入关键字"/>
                 <button type="submit" class="fa fa-search" id="btn_search"></button>
             </form>
         </div>
@@ -300,6 +300,7 @@
                     		}
                     	}
                     	%>
+                    	
                     	<!-- 
                         <li>
                             <div class="discount_pic">
