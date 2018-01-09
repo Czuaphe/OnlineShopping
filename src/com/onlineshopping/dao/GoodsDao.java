@@ -3,6 +3,7 @@ package com.onlineshopping.dao;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +14,10 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
 
-public class GoodsDao {
+public class GoodsDao extends BaseDao<Goods>{
 	
-	private QueryRunner runner = DBUtils.getQueryRunner();
+	
+	
 	/**
 	 * 保存商品
 	 * @param goods
@@ -64,9 +66,106 @@ public class GoodsDao {
 //		System.out.println(nums);
 	}
 	
-	public List<Goods> getAllGoods() throws SQLException {
+	
+	public List<Goods> getAllGoods() {
 		String sql = "select * from t_goods";
-		return runner.query(sql, new BeanListHandler<>(Goods.class));
+		return query(sql).toBeanList(5);
 	}
+	
+	public Goods getGoodsByGid(int gid) {
+		String sql = "select * from t_goods where gid = ?";
+		return (Goods) query(sql, gid).toBean();
+	}
+
+	public List<Goods> getGoodsOrderByTime(int num) {
+		String sql = "select * from t_goods order by time desc";
+		return query(sql).toBeanList(num);
+	}
+	
+	public List<Goods> getGoodsOrderByDiscount(int num) {
+		String sql = "select * from t_goods order by discount asc";
+		return query(sql).toBeanList(num);
+	}
+	
+	@Override
+	protected Goods toBean() {
+		
+		Goods goods = null;
+		
+		try {
+			goods =  produceBean();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return goods;
+		
+	}
+
+	@Override
+	protected List<Goods> toBeanList() {
+		
+		List<Goods> list = new ArrayList<>();
+		
+		try {
+			while(true) {
+				Goods goods = produceBean();
+				if (goods == null) {
+					break;
+				}
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return list;
+	}
+	
+	@Override
+	protected List<Goods> toBeanList(int num) {
+		List<Goods> list = new ArrayList<>();
+		
+		try {
+			for(int i = 0; i < num; i ++) {
+				Goods goods = produceBean();
+				if (goods == null) {
+					break;
+				}
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return list;
+	}
+	
+	private Goods produceBean() throws SQLException {
+		
+		Goods goods = null;
+		
+		if (resultSet.next()) {
+			goods = new Goods();
+			goods.setGid(resultSet.getInt("gid"));
+			goods.setName(resultSet.getString("name"));
+			goods.setDetails(resultSet.getString("details"));
+			goods.setPrice(resultSet.getDouble("price"));
+			goods.setNumbers(resultSet.getInt("numbers"));
+			goods.setDiscount(resultSet.getDouble("discount"));
+			goods.setTime(resultSet.getTimestamp("time"));
+			goods.setType(resultSet.getInt("type"));
+			goods.setPicpath(resultSet.getString("picpath"));
+		}
+		
+		return goods;
+	}
+	
 	
 }

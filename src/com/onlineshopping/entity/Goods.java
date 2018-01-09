@@ -70,6 +70,12 @@ public class Goods implements Serializable {
 	public void setPicpath(String picpath) {
 		this.picpath = picpath;
 	}
+	@Override
+	public String toString() {
+		return "Goods [gid=" + gid + ", name=" + name + ", details=" + details + ", price=" + price + ", numbers="
+				+ numbers + ", discount=" + discount + ", time=" + time + ", type=" + type + ", picpath=" + picpath
+				+ "]";
+	}
 	
 	
 	

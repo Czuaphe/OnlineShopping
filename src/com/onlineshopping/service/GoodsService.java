@@ -1,6 +1,5 @@
 package com.onlineshopping.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.onlineshopping.dao.GoodsDao;
@@ -16,17 +15,18 @@ public class GoodsService {
 	 * @return
 	 */
 	public List<Goods> getHotGoods() {
-		
-		try {
-			return goodsDao.getAllGoods();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-		
+		return goodsDao.getAllGoods();	
+	}
+	/**
+	 * 通过对商品的上架时间进行排序得到最新的商品
+	 * @return 返回一列表包括了8个数据
+	 */
+	public List<Goods> getNewGoods() {
+		return goodsDao.getGoodsOrderByTime(8);
 	}
 	
+	public List<Goods> getDiscountGoods() {
+		return goodsDao.getGoodsOrderByDiscount(8);
+	}
 	
 }

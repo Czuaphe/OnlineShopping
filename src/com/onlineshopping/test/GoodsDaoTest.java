@@ -15,7 +15,7 @@ import com.onlineshopping.entity.Goods;
 
 public class GoodsDaoTest {
 	
-	private GoodsDao GoodsDao = new GoodsDao();
+	private GoodsDao goodsDao = new GoodsDao();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -24,12 +24,46 @@ public class GoodsDaoTest {
 	@Test
 	public void saveGoodsTest() throws SQLException {
 		
-		GoodsDao.saveGoods(new Goods());
+		goodsDao.saveGoods(new Goods());
 	}
 	
 	@Test
-	public void getAllGoodsTest() throws SQLException {
+	public void getGoodsByGidTest() throws SQLException {
 		
+		Goods goods = goodsDao.getGoodsByGid(5155);
+		System.out.println(goods.toString());
+		assertNotNull(goods);
 	}
+	
+	@Test
+	public void getAllGoodsTest() {
+		List<Goods> list = goodsDao.getAllGoods();
+		System.out.println(list.size());
+		for (Goods goods : list) {
+			System.out.println(goods.toString());
+		}
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void getGoodsOrderbyTime() {
+		List<Goods> list = goodsDao.getGoodsOrderByTime(10);
+		System.out.println(list.size());
+		for (Goods goods : list) {
+			System.out.println(goods.toString());
+		}
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void getGoodsOrderByDiscount() {
+		List<Goods> list = goodsDao.getGoodsOrderByDiscount(10);
+		System.out.println(list.size());
+		for (Goods goods : list) {
+			System.out.println(goods.getDiscount());
+		}
+		assertNotNull(list);
+	}
+	
 
 }

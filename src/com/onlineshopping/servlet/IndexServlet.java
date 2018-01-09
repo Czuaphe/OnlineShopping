@@ -35,12 +35,13 @@ public class IndexServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		request.setAttribute("flag", true);
 		
-		List<Goods> hotGoodsList = goodsService.getHotGoods();
+		request.setAttribute("hotGoodsList", goodsService.getHotGoods());
 		
-		request.setAttribute("hotGoodsList", hotGoodsList);
+		request.setAttribute("newGoodsList", goodsService.getNewGoods());
+		
+		request.setAttribute("discountGoodsList", goodsService.getDiscountGoods());
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

@@ -1,3 +1,6 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="com.onlineshopping.entity.Goods"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,6 +31,11 @@
 	if(request.getAttribute("flag") == null) {
 		request.getRequestDispatcher("IndexServlet").forward(request, response);
 	}
+	
+	List<Goods> hotGoodsList = (List<Goods>) request.getAttribute("hotGoodsList");
+	List<Goods> newGoodsList = (List<Goods>) request.getAttribute("newGoodsList");
+	List<Goods> discountGoodsList = (List<Goods>) request.getAttribute("discountGoodsList");
+	
 %>
 
 <div class="shop_header">
@@ -149,20 +157,40 @@
         </div>
         <div class="groom_cut swiper-container" >
             <div class="swiper-wrapper">
-                <c:if test="${ hotGoodsList }">
-                	<c:forEach items="hotGoodsList" var="goods">
+                
+                <%
+                if(hotGoodsList != null) {
+                	for(Goods goods : hotGoodsList) {
+                %>
+                		<div class="swiper-slide">
+                    		<div class="groom_item">
+                        		<a href="#">
+                        			<% String[] picList = goods.getPicpath().split(","); %>
+                            		<img src="./img/400_400/<%=picList[0] %>" alt="">
+                            		<b><%=goods.getName() %></b>
+                            		<i><%= goods.getDetails() %></i>
+                            		<p>￥<%= goods.getPrice() %>元</p>
+                        		</a>
+                    		</div>
+                		</div>
+                <% 
+                	}
+                }
+                %>
+                <%--<c:if test="${ hotGoodsList != null }">
+                	 <c:forEach items="hotGoodsList" var="goods">
                 		<div class="swiper-slide">
                     		<div class="groom_item">
                         		<a href="#">
                             		<img src="./img/groom-1.jpg" alt="">
-                            		<b>${ goods.name }</b>
-                            		<i>${ goods.details }</i>
-                            		<p>￥${ goods.price }元</p>
+                            		<b><%=goods.getName() %></b>
+                            		<i>${ goods.getDetails() }</i>
+                            		<p>￥${ goods.getPrice() }元</p>
                         		</a>
                     		</div>
                 		</div>
-                	</c:forEach>
-                </c:if>
+                	</c:forEach> 
+                </c:if> --%>
                 <!-- <div class="swiper-slide">
                     <div class="groom_item">
                         <a href="#">
@@ -203,7 +231,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide"> -->
+                <div class="swiper-slide">
                     <div class="groom_item">
                         <a href="#">
                             <img src="./img/groom-1.jpg" alt="">
@@ -212,7 +240,7 @@
                             <p>￥9.90元</p>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -244,6 +272,35 @@
                 </div>
                 <div class="discount_right">
                     <ul>
+                 
+                    	<%
+                    	if( discountGoodsList != null) {
+                    		for(Goods goods : discountGoodsList) {
+                    	%>
+                    	<li>
+                            <div class="discount_pic">
+                                <a href="#">
+                                    <div class="discount_item">
+                                    	<% String[] picList = goods.getPicpath().split(","); 
+                                    	DecimalFormat df = (DecimalFormat) DecimalFormat.getInstance();
+                                    	df.applyPattern("##.##");
+                                    	%>
+                                        <img src="./img/400_400/<%=picList[0] %>" alt="">
+                                        <b><%= goods.getName() %></b>
+                                        <i><%= goods.getDetails() %></i>
+                                        <div class="item_price">
+                                            <del>￥<%= goods.getPrice() %>元</del>
+                                            <span>￥<%= df.format(goods.getPrice() * goods.getDiscount()) %>元</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    	<% 
+                    		}
+                    	}
+                    	%>
+                    	<!-- 
                         <li>
                             <div class="discount_pic">
                                 <a href="#">
@@ -363,7 +420,8 @@
                                     </div>
                                 </a>
                             </div>
-                        </li>
+                        </li> 
+                        -->
                     </ul>
                 </div>
             </div>
@@ -392,6 +450,36 @@
                 </div>
                 <div class="discount_right">
                     <ul>
+                    	
+                    	<%
+                    	if( newGoodsList != null) {
+                    		for(Goods goods : newGoodsList) {
+                    	%>
+                    	<li>
+                            <div class="discount_pic">
+                                <a href="#">
+                                    <div class="discount_item">
+                                    	<% String[] picList = goods.getPicpath().split(","); 
+                                    	DecimalFormat df = (DecimalFormat) DecimalFormat.getInstance();
+                                    	df.applyPattern("##.##");
+                                    	%>
+                                        <img src="./img/400_400/<%=picList[0] %>" alt="">
+                                        <b><%= goods.getName() %></b>
+                                        <i><%= goods.getDetails() %></i>
+                                        <div class="item_price">
+                                            <del>￥<%= goods.getPrice() %>元</del>
+                                            <span>￥<%= df.format(goods.getPrice() * goods.getDiscount()) %>元</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    	<% 
+                    		}
+                    	}
+                    	%>
+                    
+                    	<!-- 
                         <li>
                             <div class="discount_pic">
                                 <a href="#">
@@ -512,6 +600,7 @@
                                 </a>
                             </div>
                         </li>
+                        -->
                     </ul>
                 </div>
             </div>
