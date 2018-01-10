@@ -25,7 +25,14 @@ $(document).ready(function(){
             prevEl: '.groom-prev'
         },
     });
-
+    
+    var path = new Array();
+    var array = document.getElementsByClassName("swiper-slide");
+    for(var i = 0; i < array.length; i ++) {
+        var img = array[i].getElementsByTagName("img");
+        path[i] = img[0].getAttribute("src");
+    }
+    
     var shop_goods_details = new Swiper('.goods_img', {
         loop: true,
         navigation: {
@@ -38,7 +45,7 @@ $(document).ready(function(){
             bulletClass: 'small_img',
             bulletActiveClass: 'small_img_active',
             renderBullet: function (index, className) {
-                return '<li class="' + className + '">' + '<img src="./img/groom-1.jpg" alt="" >' + '</li>';
+                return '<li class="' + className + '">' + '<img src="' + path[index] + '" alt="" >' + '</li>';
             }
         }
     });
