@@ -3,6 +3,7 @@ package com.onlineshopping.dao;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,11 +13,22 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
+import com.sun.swing.internal.plaf.metal.resources.metal;
 
-public class GoodsDao {
+/**
+ * 商品类的Dao包，使用BaseDao类中的方法实现。
+ * @author admin
+ * 
+ */
+
+public class GoodsDao extends BaseDao<Goods>{
 	
-	private QueryRunner runner = DBUtils.getQueryRunner();
-	
+	/**
+	 * 保存商品
+	 * @param goods
+	 * @return boolean 
+	 * @throws SQLException
+	 */
 	public boolean saveGoods(Goods goods) throws SQLException {
 		
 		String IdSQL = "select SEQ_GID.nextval from dual";
@@ -59,9 +71,132 @@ public class GoodsDao {
 //		System.out.println(nums);
 	}
 	
-	public List<Goods> getAllGoods() throws SQLException {
+	
+	public List<Goods> getAllGoods() {
 		String sql = "select * from t_goods";
-		return runner.query(sql, new BeanListHandler<>(Goods.class));
+		return query(sql).toBeanList();
 	}
+	
+	public Goods getGoodsByGid(int gid) {
+		String sql = "select * from t_goods where gid = ?";
+		return (Goods) query(sql, gid).toBean();
+	}
+
+	public List<Goods> getGoodsOrderByTime(int num) {
+		String sql = "select * from t_goods order by time desc";
+		return query(sql).toBeanList(num);
+	}
+	
+	public List<Goods> getGoodsOrderByDiscount(int num) {
+		String sql = "select * from t_goods order by discount asc";
+		return query(sql).toBeanList(num);
+	}
+	// 得到某一页搜索结果
+	public List<Goods> getGoodsLikeName(String key, int page, int num) {
+		String sql = "select * from (select rownum rn, g.* from t_goods g where name like ? order by rn) t where t.rn > ? and t.rn <= ?";
+		return query(sql, "%" + key + "%", (page - 1) * num, page * num).toBeanList();
+	}
+	// 得到搜索结果的总数
+	public int getCountLikeName(String key) {
+		String sql = "select count(1) from t_goods where name like ? order by gid";
+		return Integer.parseInt(String.valueOf(query(sql, "%" + key + "%").toObject()));
+	}
+	
+	@Override
+	protected Goods toBean() {
+		
+		Goods goods = null;
+		
+		try {
+			goods =  produceBean();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return goods;
+		
+	}
+
+	@Override
+	protected List<Goods> toBeanList() {
+		
+		List<Goods> list = new ArrayList<>();
+		
+		try {
+			while(true) {
+				Goods goods = produceBean();
+				if (goods == null) {
+					break;
+				}
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return list;
+	}
+	
+	@Override
+	protected List<Goods> toBeanList(int num) {
+		List<Goods> list = new ArrayList<>();
+		
+		try {
+			for(int i = 0; i < num; i ++) {
+				Goods goods = produceBean();
+				if (goods == null) {
+					break;
+				}
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(connection, preparedStatement, resultSet);
+		}
+		
+		return list;
+	}
+	
+	private Goods produceBean() throws SQLException {
+		
+		Goods goods = null;
+		
+		if (resultSet.next()) {
+			goods = new Goods();
+			goods.setGid(resultSet.getInt("gid"));
+			goods.setName(resultSet.getString("name"));
+			goods.setDetails(resultSet.getString("details"));
+			goods.setPrice(resultSet.getDouble("price"));
+			goods.setNumbers(resultSet.getInt("numbers"));
+			goods.setDiscount(resultSet.getDouble("discount"));
+			goods.setTime(resultSet.getTimestamp("time"));
+			goods.setType(resultSet.getInt("type"));
+			goods.setPicpath(resultSet.getString("picpath"));
+		}
+		
+		return goods;
+	}
+
+
+	@Override
+	protected Object toObject() {
+		Object object = null;
+		
+		try {
+			if (resultSet.next()) {
+				object = resultSet.getObject(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return object;
+	}
+	
 	
 }
