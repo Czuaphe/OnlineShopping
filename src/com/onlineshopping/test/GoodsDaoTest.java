@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,6 +81,17 @@ public class GoodsDaoTest {
 		int num = goodsDao.getCountLikeName("霜");
 		System.out.println(num);
 		assertNotNull(num);
+	}
+	
+	@Test
+	public void getGoodsByRunner() throws SQLException {
+		QueryRunner runner = DBUtils.getQueryRunner();
+		
+		String sql = "select * from t_goods";
+		List<Goods> list = runner.query(sql, new BeanListHandler<>(Goods.class));
+		System.out.println(list.size());
+		assertNotNull(list);
+		
 	}
 	
 
