@@ -106,7 +106,7 @@ public class ChinaDivisionDao {
 	 * @return 返回所在省的所在市的所有区或县的列表
 	 */
 	public Map<Integer, String> getAllBlock(int pid, int cid) {
-		String sql = "select bid, name from t_china_division where pid = ? and cid = ? and bid <> 0 order by bid";
+		String sql = "select bid, name from t_china_division where pid = ? and cid = ? and bid <> 0 and bid!=1 order by bid";
 		return query(sql, pid, cid).toMap("bid");
 	}
 	

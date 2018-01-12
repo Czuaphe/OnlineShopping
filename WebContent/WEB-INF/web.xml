@@ -9,4 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+	<servlet-name>division</servlet-name>
+	<servlet-class>com.onlineshopping.servlet.DivisionServlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>division</servlet-name>
+		<url-pattern>/DivisionServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
