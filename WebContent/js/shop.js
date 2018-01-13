@@ -49,10 +49,18 @@ $(document).ready(function(){
             }
         }
     });
+    
+    $("#minusNum").click(function () {
+        var num = $("#showNum").val();
+        if (num > 1) {
+            $("#showNum").val(num - 1);
+        }
+    });
 
-    // $(".small_img").click(function () {
-    //     var ele = document.getElementsByClassName(".")
-    // });
+    $("#addNum").click(function () {
+        var num = $("#showNum").val();
+        $("#showNum").val(parseInt(num) + 1);
+    });
 
 });
 

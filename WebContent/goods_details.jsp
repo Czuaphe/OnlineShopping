@@ -202,9 +202,9 @@
             <div style="margin-top: 10px;height:70px">
                 <span style="display: block;">数量</span>
                 <div style="margin-top: 5px;">
-                    <button style="width: 45px;height: 40px;border: none;float: left;">-</button>
-                    <input type="text" class="form-control" value="1" style="width: 60px;height: 40px;text-align: center;border-radius:0;float: left;">
-                    <button  style="width: 45px;height: 40px;border: none;float: left;">+</button>
+                    <button id="minusNum" style="width: 45px;height: 40px;border: none;float: left;">-</button>
+                    <input id="showNum" type="text" class="form-control" value="1" style="width: 60px;height: 40px;text-align: center;border-radius:0;float: left;">
+                    <button id="addNum" style="width: 45px;height: 40px;border: none;float: left;">+</button>
                 </div>
             </div>
             <div style="margin-top: 5px">
