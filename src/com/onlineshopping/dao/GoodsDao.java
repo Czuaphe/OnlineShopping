@@ -13,7 +13,6 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
-import com.sun.swing.internal.plaf.metal.resources.metal;
 
 /**
  * 商品类的Dao包，使用BaseDao类中的方法实现。
