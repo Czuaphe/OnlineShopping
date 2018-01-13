@@ -17,4 +17,5 @@
 		<servlet-name>division</servlet-name>
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
