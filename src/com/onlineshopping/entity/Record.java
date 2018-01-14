@@ -84,6 +84,12 @@ public class Record implements Serializable {
 	public void setUaid(int uaid) {
 		this.uaid = uaid;
 	}
+	@Override
+	public String toString() {
+		return "Record [rid=" + rid + ", recnum=" + recnum + ", time=" + time + ", userid=" + userid + ", total="
+				+ total + ", addscore=" + addscore + ", status=" + status + ", freight=" + freight + ", payway="
+				+ payway + ", express=" + express + ", uaid=" + uaid + "]";
+	}
 	
 	
 	

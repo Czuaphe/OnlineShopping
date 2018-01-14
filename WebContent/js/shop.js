@@ -49,10 +49,55 @@ $(document).ready(function(){
             }
         }
     });
+    
+    $("#minusNum").click(function () {
+        var num = $("#showNum").val();
+        if (num > 1) {
+            $("#showNum").val(num - 1);
+        }
+    });
 
-    // $(".small_img").click(function () {
-    //     var ele = document.getElementsByClassName(".")
-    // });
+    $("#addNum").click(function () {
+        var num = $("#showNum").val();
+        $("#showNum").val(parseInt(num) + 1);
+    });
+    
+    
+    // 对收藏事件进行处理
+    $("#addCollect").click(function () {
+    	// 得到要收藏的商品的gid
+        var gid = $("#gid").val();
+        // 得到此商品是否已经收藏过了
+        var isCollect = $("#isCollect").val();
+        
+    	if(isCollect == "true") {
+    		alert("商品已经收藏！");
+    	} else {
+    		$.ajax({
+                url:"/OnlineShopping/CollectGoodsServlet",
+                dataType:"html",
+                data:{
+                    "gid": gid
+                },
+                success: function (data,textStatus,jqXHR) {
+
+                    if (data == "NotLogin") {
+                        alert("没有登录，请登录后进行收藏！");
+                    }
+                    if (data == "Success") {
+                        alert("收藏成功");
+                        //window.location.reload();
+                        $("#isCollect").val("true");
+                        $("#addCollect").css("color", "#F32184");
+                    }
+                    if (data == "Failure") {
+                    	alert("收藏失败，请稍后重试！");
+                    }
+                }
+            });
+    	}
+        
+    });
 
 });
 
