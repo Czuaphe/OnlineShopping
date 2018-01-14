@@ -18,4 +18,15 @@
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
 	
+
+<!-- 我的订单sevlet -->
+  <servlet>
+	<servlet-name>MyorderServlet</servlet-name>
+	<servlet-class>com.onlineshopping.servlet.MyorderServlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>MyorderServlet</servlet-name>
+		<url-pattern>/MyorderServlet</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
