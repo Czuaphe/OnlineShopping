@@ -17,4 +17,13 @@
 		<servlet-name>division</servlet-name>
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>address</servlet-name>
+	<servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>address</servlet-name>
+		<url-pattern>/AddressServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
