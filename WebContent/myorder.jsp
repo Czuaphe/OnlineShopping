@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.entity.Record"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.onlineshopping.entity.Goods"%>
@@ -23,8 +24,11 @@
     <script src="./js/base/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 
+
 </head>
 <body>
+
+
 <div class="myorder">
     <div class="myorder_left">
         <div class="myorder_left_1"></div>
@@ -33,7 +37,7 @@
                 <h1 style="font-size: 20px;font-weight: normal;color: black">订单中心</h1>
             </li>
             <li><a href="#">个人中心</a></li>
-            <li><a href="myorder.jsp">我的订单</a></li>
+            <li><a href="#">我的订单</a></li>
             <li><a href="#">我的收藏</a></li>
             <li><a href="#">我的优惠券</a></li>
             <li><a href="#">收货地址</a></li>
@@ -41,7 +45,6 @@
             <li><a href="#">账户设置</a></li>
 
         </ul>
-
     </div>
     <div class="myorder_middle"></div>
     <div class="myorder_right">
@@ -51,7 +54,7 @@
                     <li><a href="#">全部有效订单</a></li>
                     <li id="tab1"  onmouseover="changeTab1()" class="selected"><a href="#">待支付(<span id="num"></span>0)</a></li>
                     <li id="tab2"  onmouseover="changeTab2()"><a href="#">待收货(<span id="num1"></span>0)</a></li>
-                    <li id="tab3"    onmouseover="changeTab3()">  <a href="#" >已关闭</a></li>
+                    <li id="tab3"  onmouseover="changeTab3()">  <a href="#" >已关闭</a></li>
                 </ul>
             </div>
         </div>
@@ -60,6 +63,7 @@
                 <input id="button" type="button" value="搜索"/>
         </div>
         <!--全部有效订单-->
+        
         <div class="tab-content">
             <div id="c1" class="myorder_right_down">
                 <div class="myorder_right_down1">
@@ -70,12 +74,20 @@
                         <div class="myorder_right_down1_left_bottom">
                             <table width="460">
                                 <tr>
-                                    <td width="60"><span>订单号:</span></td>
-                                    <td width="160"><span>18位数字以内</span></td>
-                                    <td width="160"><span>2017/1/10 11:18:38</span></td>
-                                    <td width="60"><span>在线支付</span></td>
+                                <td width="60"><span>订单号:</span></td>
+                                   <%
+									List<Record> list = (List<Record>)request.getAttribute("ulist");
+									for(Record re:list){
+									%>
+                                    <td width="160"><span> <%=re.getRecnum()%></span></td>
+                                    <td width="160"><span><%=re.getTime()%></span></td>
+                                    <td width="60"><span><%=re.getPayway() %></span></td>
                                 </tr>
+                                <% 
+								}//提取数据 for循环结束
+								%>
                             </table>
+                        
                         </div>
                     </div>
                     <div class="myorder_right_down1_right">
@@ -89,7 +101,7 @@
                                 <td rowspan="2"><img  style="width: 300px" src="../img/data.png" alt=""/></td>
                             </tr>
                             <tr>
-                                <td><span>傻样那个腹水</span><br>
+                                <td><span>海峰卡就萨芬哈佛路</span><br>
                                     <span>美白警服</span>
                                 </td>
                                 <td></td>
