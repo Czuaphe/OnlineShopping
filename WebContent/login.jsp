@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.onlineshopping.entity.User" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -181,7 +182,7 @@
             margin-top: 60px;
         }
     </style>
-    <script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="./js/base/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         function checkname(){
             var un=$("input[name=username]").val();
@@ -217,6 +218,15 @@
     </script>
 </head>
 <body>
+	<%
+	//获取用户名
+	String uname=request.getParameter("username");
+	//登录jdbc驱动程序
+	Class.forName("");
+	//获取密码
+	String pwd=request.getParameter("password");
+	
+	%>
 <!--导航logo部分-->
     <div class="met-head">
         <div class="row">

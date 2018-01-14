@@ -249,7 +249,7 @@
             font-size: 14px;
         }
     </style>
-    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../js/base/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
       $(function(){
     	  
