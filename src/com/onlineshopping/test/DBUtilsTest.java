@@ -141,61 +141,61 @@ public class DBUtilsTest {
 		System.out.println(nums);
 	}
 	
-	/**
-	 * 向商品表中添加数据
-	 * @throws SQLException
-	 */
-	@Test
-	public void GoodsDateInputTest() throws SQLException {
-		String path = "F:\\Documents\\Tencent Files\\1204908396\\FileRecv\\商品表.xlsx";
-		
-		List<Goods> goodsList = new ArrayList<>();
-		
-		// 
-		
-		try {
-            InputStream is = new FileInputStream(path);
-            XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-            Sheet sheet = xssfWorkbook.getSheet("sheet");
-            Random random = new Random(10);
-            for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum ++) {
-                Row row = sheet.getRow(rowNum);
-                Cell imgString = row.getCell(0);
-                Cell nameString = row.getCell(1);
-                Cell detailsString = row.getCell(2);
-                Cell priceString = row.getCell(3);
-
-                Goods goods = new Goods();
-                goods.setName(nameString.getStringCellValue());
-                goods.setDetails(detailsString.getStringCellValue());
-                goods.setPrice(Double.parseDouble(priceString.getStringCellValue()));
-                goods.setPicpath(imgString.getStringCellValue());
-                // 对商品的其它属性进行随机设置
-                goods.setDiscount(random.nextDouble());
-                goods.setType(random.nextInt(10));
-                goods.setNumbers(random.nextInt(1000));
-                goods.setTime(new Date());
-                goodsList.add(goods);
-
-                System.out.println( rowNum + "\t" + imgString.getStringCellValue()
-                        + "\t" + nameString.getStringCellValue()
-                        + "\t" + detailsString.getStringCellValue()
-                        + "\t" + priceString.getStringCellValue());
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
-		// 保存商品到表中
-		GoodsDao goodsDao = new GoodsDao();
-		for (Goods goods : goodsList) {
-			goodsDao.saveGoods(goods);
-		}
-		
-		
-		
-	}
+//	/**
+//	 * 向商品表中添加数据
+//	 * @throws SQLException
+//	 */
+//	@Test
+//	public void GoodsDateInputTest() throws SQLException {
+//		String path = "E:\\商品表.xlsx";
+//		
+//		List<Goods> goodsList = new ArrayList<>();
+//		
+//		// 
+//		
+//		try {
+//            InputStream is = new FileInputStream(path);
+//            XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
+//            Sheet sheet = xssfWorkbook.getSheet("sheet");
+//            Random random = new Random(10);
+//            for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum ++) {
+//                Row row = sheet.getRow(rowNum);
+//                Cell imgString = row.getCell(0);
+//                Cell nameString = row.getCell(1);
+//                Cell detailsString = row.getCell(2);
+//                Cell priceString = row.getCell(3);
+//
+//                Goods goods = new Goods();
+//                goods.setName(nameString.getStringCellValue());
+//                goods.setDetails(detailsString.getStringCellValue());
+//                goods.setPrice(Double.parseDouble(priceString.getStringCellValue()));
+//                goods.setPicpath(imgString.getStringCellValue());
+//                // 对商品的其它属性进行随机设置
+//                goods.setDiscount(random.nextDouble());
+//                goods.setType(random.nextInt(10));
+//                goods.setNumbers(random.nextInt(1000));
+//                goods.setTime(new Date());
+//                goodsList.add(goods);
+//
+//                System.out.println( rowNum + "\t" + imgString.getStringCellValue()
+//                        + "\t" + nameString.getStringCellValue()
+//                        + "\t" + detailsString.getStringCellValue()
+//                        + "\t" + priceString.getStringCellValue());
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//		
+//		// 保存商品到表中
+//		GoodsDao goodsDao = new GoodsDao();
+//		for (Goods goods : goodsList) {
+//			goodsDao.saveGoods(goods);
+//		}
+//		
+//		
+//		
+//	}
 	
 //	@Test
 //	public void timeTest() {
@@ -206,72 +206,72 @@ public class DBUtilsTest {
 //	}
 //	
 //	
-	/**
-	 * 向中国行政区划表中添加数据
-	 * @throws SQLException
-	 */
-	@Test
-	public void ChinaDivisionDataInputTest() throws SQLException{
-		
-		QueryRunner runner = new QueryRunner(DBUtils.getDataSource());
-		
-		String path = "F:\\Documents\\Tencent Files\\1204908396\\FileRecv\\全国行政区划表.xlsx";
-		
-		try {
-            InputStream is = new FileInputStream(path);
-            XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-            Sheet sheet = xssfWorkbook.getSheetAt(0);
-            
-//            System.out.println(sheet.getLastRowNum());
-//            String string = sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue();
-//            String[] strings = string.split(" ");
-//            System.out.println(sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue());
-//            System.out.println(strings.length);
-//            for (String string2 : strings) {
-//				System.out.println(string2);
-//			}
-//            System.out.println(sheet.getRow(0).getCell(0).getStringCellValue());
-            
-            for (int rowNum = 0; rowNum <= sheet.getLastRowNum(); rowNum ++) {
-                
-            	Row row = sheet.getRow(rowNum);
-                Cell string = row.getCell(0);
-                
-                if (string.getStringCellValue().trim().length() == 0) {
-					continue;
-				}
-                
-                String[] strings = string.getStringCellValue().split(" ");
-                
-                String code = strings[0].trim();
-                String name = strings[1];
-                
-                String pro = code.substring(0, 2);
-                String city = code.substring(2, 4);
-                String block = code.substring(4, 6);
-                
-                System.out.println(code);
-//                System.out.println(code.length());
-//                System.out.println(pro);
-//                System.out.println(city);
-//                System.out.println(block);
-//                System.out.println(name);
-//                System.out.println(name.length());
-                
-                // 保存到数据库中
-                
-                String sql = "insert into t_china_division values(seq_cdid.nextval, ?, ?, ?, ?)";
-                int num = runner.update(sql, Integer.parseInt(pro), city.equals("00") ? 0 : Integer.parseInt(city), block.equals("00") ? 0 : Integer.parseInt(block), name);
-          
-                System.out.println(num);
-//                System.out.println(string.getStringCellValue());
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
-	}
+//	/**
+//	 * 向中国行政区划表中添加数据
+//	 * @throws SQLException
+//	 */
+//	@Test
+//	public void ChinaDivisionDataInputTest() throws SQLException{
+//		
+//		QueryRunner runner = new QueryRunner(DBUtils.getDataSource());
+//		
+//		String path = "E:\\全国行政区划表.xlsx";
+//		
+//		try {
+//            InputStream is = new FileInputStream(path);
+//            XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
+//            Sheet sheet = xssfWorkbook.getSheetAt(0);
+//            
+////            System.out.println(sheet.getLastRowNum());
+////            String string = sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue();
+////            String[] strings = string.split(" ");
+////            System.out.println(sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue());
+////            System.out.println(strings.length);
+////            for (String string2 : strings) {
+////				System.out.println(string2);
+////			}
+////            System.out.println(sheet.getRow(0).getCell(0).getStringCellValue());
+//            
+//            for (int rowNum = 0; rowNum <= sheet.getLastRowNum(); rowNum ++) {
+//                
+//            	Row row = sheet.getRow(rowNum);
+//                Cell string = row.getCell(0);
+//                
+//                if (string.getStringCellValue().trim().length() == 0) {
+//					continue;
+//				}
+//                
+//                String[] strings = string.getStringCellValue().split(" ");
+//                
+//                String code = strings[0].trim();
+//                String name = strings[1];
+//                
+//                String pro = code.substring(0, 2);
+//                String city = code.substring(2, 4);
+//                String block = code.substring(4, 6);
+//                
+//                System.out.println(code);
+////                System.out.println(code.length());
+////                System.out.println(pro);
+////                System.out.println(city);
+////                System.out.println(block);
+////                System.out.println(name);
+////                System.out.println(name.length());
+//                
+//                // 保存到数据库中
+//                
+//                String sql = "insert into t_china_division values(seq_cdid.nextval, ?, ?, ?, ?)";
+//                int num = runner.update(sql, Integer.parseInt(pro), city.equals("00") ? 0 : Integer.parseInt(city), block.equals("00") ? 0 : Integer.parseInt(block), name);
+//          
+//                System.out.println(num);
+////                System.out.println(string.getStringCellValue());
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//		
+//	}
 	
 //	
 }

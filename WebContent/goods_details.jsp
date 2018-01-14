@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.entity.User"%>
 <%@page import="com.onlineshopping.service.GoodsService"%>
 <%@page import="com.onlineshopping.entity.Goods"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -54,9 +55,30 @@
 <body>
 
 <%
+	
 	GoodsService goodsService = new GoodsService();
-	Goods goods = goodsService.getGoodsByGid(Integer.parseInt(request.getParameter("gid")));
-	//Goods goods = goodsService.getGoodsByGid(5155);
+	Goods goods = null;
+	boolean isCollect = false;
+	
+	// 判断是否拥有GID
+	String gid = request.getParameter("gid");
+	//System.out.println(gid);
+	if(gid == null || gid.equals("")) {
+		response.sendRedirect("not_direct_see.jsp"); 
+	} else {
+		// 判断GID是否正确
+		goods = goodsService.getGoodsByGid(Integer.parseInt(gid));
+		if(goods == null) {
+			response.sendRedirect("not_data.jsp");
+		} else {
+			Object user = session.getAttribute("user");
+			// 判断用户是否已经收藏该商品
+			if(user != null) {
+				isCollect = goodsService.isCollectGoods(((User)user).getUserid(), goods.getGid());
+			}
+		}
+	}
+	
 %>
 
 <div class="shop_header">
@@ -159,15 +181,17 @@
                 <div class="swiper-container goods_img">
                     <div class="swiper-wrapper">
                         <%
-                        	String[] picpath = goods.getPicpath().split(",");
+                        	if(goods != null) {
+                        		String[] picpath = goods.getPicpath().split(",");
                         %>
                         <%
-                        	for(int i = 0; i < picpath.length; i ++) {
+                        		for(int i = 0; i < picpath.length; i ++) {
                         %>
                         <div class="swiper-slide" style="height: 400px;width: 400px;">
                             <img src="./img/400_400/<%=picpath[i] %>" alt="">
                         </div>
                         <%
+                        		}
                         	}
                         %>
                     </div>
@@ -183,12 +207,14 @@
             </div>
         </div>
         <div class="goods_right col-sm-5" style="height: 550px;">
+            <input id="gid" type="hidden" value="<%=goods != null ? goods.getGid() : 0 %>">
+            <input id="isCollect" type="hidden" value="<%=isCollect %>">
             <h1 style="font-size: 28px;font-weight: 300;margin-bottom: 10px">
-                <%=goods.getName() %>
+                <%=goods != null ? goods.getName() : "没有名字数据" %>
             </h1>
             <div style="padding: 30px 20px;background-color: #fafafa">
-                <span style="color: red;font-size: 32px">￥<%=goods.getPrice() * goods.getDiscount() %>元</span>
-                <span style="font-size: 20px;margin-left: 20px">原价：<del style="">￥ <%=goods.getPrice() %> 元</del></span>
+                <span style="color: red;font-size: 32px">￥<%=goods != null ? goods.getPrice() * goods.getDiscount() : 0 %>元</span>
+                <span style="font-size: 20px;margin-left: 20px">原价：<del style="">￥ <%=goods != null ? goods.getPrice() : 0 %> 元</del></span>
             </div>
             <div style="margin-top: 20px;height: 60px;">
                 <span style="display: block;">优惠</span>
@@ -202,20 +228,20 @@
             <div style="margin-top: 10px;height:70px">
                 <span style="display: block;">数量</span>
                 <div style="margin-top: 5px;">
-                    <button style="width: 45px;height: 40px;border: none;float: left;">-</button>
-                    <input type="text" class="form-control" value="1" style="width: 60px;height: 40px;text-align: center;border-radius:0;float: left;">
-                    <button  style="width: 45px;height: 40px;border: none;float: left;">+</button>
+                    <button id="minusNum" style="width: 45px;height: 40px;border: none;float: left;">-</button>
+                    <input id="showNum" type="text" class="form-control" value="1" style="width: 60px;height: 40px;text-align: center;border-radius:0;float: left;">
+                    <button id="addNum" style="width: 45px;height: 40px;border: none;float: left;">+</button>
                 </div>
             </div>
             <div style="margin-top: 5px">
-                <span>库存 <%=goods.getNumbers() %> 件</span>
+                <span>库存 <%=goods != null ? goods.getNumbers() : 0 %> 件</span>
             </div>
             <div style="margin-top: 50px">
-                <a href="#" class="btn btn-lg btn-primary" style="border-radius: 0;width: 180px;margin-left: 20px;background-color: #cccccc;border: 1px solid #cccccc;">
-                    <i class="fa fa-heart" style="margin-right: 5px"></i>
+                <a id="addCollect" class="btn btn-lg btn-primary" style="border-radius: 0;width: 180px;margin-left: 20px;background-color: #cccccc;border: 1px solid #cccccc;<% if(isCollect) { %> color:#f32184; <% } %>">
+                    <i class="fa fa-heart" style="margin-right: 5px;"></i>
                     加入收藏
                 </a>
-                <a href="#" class="btn btn-lg btn-primary pull-left" style="border-radius: 0;width: 180px;background-color: #f32196;border: 1px solid #f32196;">
+                <a id="addShoppingCart" class="btn btn-lg btn-primary pull-left" style="border-radius: 0;width: 180px;background-color: #f32196;border: 1px solid #f32196;">
                     <i class="fa fa-shopping-cart" style="margin-right: 5px"></i>
                     加入购物车
                 </a>
