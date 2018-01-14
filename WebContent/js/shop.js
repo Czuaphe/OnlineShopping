@@ -61,6 +61,31 @@ $(document).ready(function(){
         var num = $("#showNum").val();
         $("#showNum").val(parseInt(num) + 1);
     });
+    
+    // 得到要收藏的商品的gid
+    var gid = $("#gid").val();
+    // 得到此商品是否已经收藏过了
+
+    // 对收藏事件进行处理
+    $("#addCollect").click(function () {
+        $.ajax({
+            url:"/OnlineShopping/CollectGoodsServlet",
+            dataType:"html",
+            data:{
+                "gid": gid
+            },
+            success: function (data,textStatus,jqXHR) {
+
+                if (data == "NotLogin") {
+                    alert("没有登录，请登录后进行收藏！");
+                }
+                if (data == "Success") {
+                    alert("收藏成功");
+                    $("#addCollect i").css("color","#f32184");
+                }
+            }
+        });
+    });
 
 });
 

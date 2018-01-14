@@ -55,8 +55,8 @@
 
 <%
 	GoodsService goodsService = new GoodsService();
-	Goods goods = goodsService.getGoodsByGid(Integer.parseInt(request.getParameter("gid")));
-	//Goods goods = goodsService.getGoodsByGid(5155);
+	//Goods goods = goodsService.getGoodsByGid(Integer.parseInt(request.getParameter("gid")));
+	Goods goods = goodsService.getGoodsByGid(5155);
 %>
 
 <div class="shop_header">
@@ -183,6 +183,7 @@
             </div>
         </div>
         <div class="goods_right col-sm-5" style="height: 550px;">
+            <input id="gid" type="hidden" value="<%=goods.getGid() %>">
             <h1 style="font-size: 28px;font-weight: 300;margin-bottom: 10px">
                 <%=goods.getName() %>
             </h1>
@@ -211,11 +212,11 @@
                 <span>库存 <%=goods.getNumbers() %> 件</span>
             </div>
             <div style="margin-top: 50px">
-                <a href="#" class="btn btn-lg btn-primary" style="border-radius: 0;width: 180px;margin-left: 20px;background-color: #cccccc;border: 1px solid #cccccc;">
+                <a id="addCollect" class="btn btn-lg btn-primary" style="border-radius: 0;width: 180px;margin-left: 20px;background-color: #cccccc;border: 1px solid #cccccc;">
                     <i class="fa fa-heart" style="margin-right: 5px"></i>
                     加入收藏
                 </a>
-                <a href="#" class="btn btn-lg btn-primary pull-left" style="border-radius: 0;width: 180px;background-color: #f32196;border: 1px solid #f32196;">
+                <a id="addShoppingCart" class="btn btn-lg btn-primary pull-left" style="border-radius: 0;width: 180px;background-color: #f32196;border: 1px solid #f32196;">
                     <i class="fa fa-shopping-cart" style="margin-right: 5px"></i>
                     加入购物车
                 </a>
