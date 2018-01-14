@@ -110,6 +110,17 @@ public class ChinaDivisionDao {
 		return query(sql, pid, cid).toMap("bid");
 	}
 	
+	public int getPid(String province) throws SQLException{
+		int pid=0;
+		String sql="select pid from t_china_division where name=?";
+		query(sql, province);
+		if(resultSet.next()){
+			pid=resultSet.getInt(1);
+		}
+		closeAll(connection, preparedStatement, resultSet);
+		return pid;
+	}
+	
 	protected Map<Integer, String> toMap(String key) {
 		Map<Integer, String> map = new HashMap<>();
 		

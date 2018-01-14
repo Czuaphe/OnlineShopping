@@ -81,7 +81,6 @@ public class DivisionServlet extends HttpServlet {
 		}else if("3".equals(flag)){
 			String _pid=req.getParameter("pid");
 			String _cid=req.getParameter("cid");
-			System.out.println(_pid+" "+_cid);
 			int pid=Integer.parseInt(_pid);
 			int cid=Integer.parseInt(_cid);
 			Map<Integer, String> countys=dao.getAllBlock(pid, cid);

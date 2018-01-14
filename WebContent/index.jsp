@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.entity.User"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.onlineshopping.entity.Goods"%>
@@ -31,6 +32,7 @@
 	if(request.getAttribute("flag") == null) {
 		request.getRequestDispatcher("IndexServlet").forward(request, response);
 	}
+	Object userObject =  session.getAttribute("user");
 	
 	List<Goods> hotGoodsList = (List<Goods>) request.getAttribute("hotGoodsList");
 	List<Goods> newGoodsList = (List<Goods>) request.getAttribute("newGoodsList");
@@ -66,22 +68,19 @@
                     <div style="text-align: center;line-height: 100px;">没有商品</div>
                 </div>
             </div>
+            <%
+            	if(userObject != null) {
+            %>
             <!-- 登录之后的用户信息显示功能 -->
-            <!--<div class="user_info">-->
-                <!--<img class="icon_pic" src="img/pic_icon.png" alt="">-->
+            <div class="user_info">
+                <img class="icon_pic" src="img/pic_icon.png" alt="">
                 <!--&lt;!&ndash; 目前不进行下拉菜单的开发 class="dropdown-toggle" data-toggle="dropdown" &ndash;&gt;-->
-                <!--<a href="#">cui<b class="caret" style="margin-left: 10px;"></b></a>-->
-                <!--&lt;!&ndash; 用户信息下拉菜单（下拉菜单是个坑） &ndash;&gt;-->
-                <!--<div class="dropdown-menu pull-right"  style="width: 100px;color: #000; padding: 0;">-->
-                    <!--<ul style="list-style: none;padding: 0; text-align: left; line-height: 25px">-->
-                        <!--<li style="padding: 8px 15px; ">-->
-                            <!--<a href="#" style="color: #000;"><i class="fa fa-user" style="margin-right: 10px; font-size: 16px;"></i>个人中心</a>-->
-                        <!--</li>-->
-                        <!--<li style="padding: 8px 15px;"><i class="fa fa-qq" style="margin-right: 10px; font-size: 16px;"></i>订单中心</li>-->
-                        <!--<li style="padding: 8px 15px;"><i class="fa fa-weixin" style="margin-right: 10px; font-size: 16px;"></i>退出登录</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
+               	<a href="#">cui<b class="caret" style="margin-left: 10px;"></b></a>
+                
+            </div>
+            <%
+            	} else {
+            %>
             <!-- 登录之前的显示登录注册功能 -->
             <div class="list_func">
                 <ul>
@@ -94,7 +93,9 @@
                     </li>
                 </ul>
             </div>
-
+			<%
+            	}
+			%>
         </div>
     </div>
 </div>

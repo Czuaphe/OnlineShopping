@@ -9,7 +9,6 @@ li{list-style: none}
 /*  我的订单*/
 .myorder{
     width: 1200px;
-    height: 600px;
 
 }
 .myorder_left{
@@ -26,9 +25,7 @@ li{list-style: none}
 }
 .myorder_right{
     width: 800px;
-    height: 600px;
     float: left;
-    position: relative;
 }
 
 /*我的订单左边*/
@@ -134,15 +131,12 @@ li{list-style: none}
 /*右边下部开始*/
 .tab-content{
     width: 800px;
-    height: 320px;
 }
 /*待支付*/
 .myorder_right_down{
     width: 800px;
-    height: 320px;
     margin-top: 20px;
     border: 1px solid red;
-    position: absolute;
 }
 .myorder_right_down1{
     width: 780px;
@@ -190,7 +184,6 @@ li{list-style: none}
 
 .myorder_right_down2_right{
     width: 300px;
-    height: 200px;
     float: left;
 }
 .myorder_right_down2_right_1{
@@ -221,10 +214,8 @@ li{list-style: none}
 /*待收货开始*/
 .myorder_receive{
     width: 800px;
-    height: 320px;
     margin-top: 20px;
     border: 1px solid red;
-    position:absolute;
     display: none;
 }
 .myorder_receive_top{
@@ -253,13 +244,11 @@ li{list-style: none}
 }
 .myorder_receive_bottom_left{
     width: 560px;
-    height: 200px;
     float: left;
     text-align: left;
 }
 .myorder_receive_bottom_right{
     width: 240px;
-    height: 170px;
     float: left;
     text-align: left;
     padding-top: 30px;
@@ -289,4 +278,3 @@ li{list-style: none}
 .myorder_receive_bottom_right2 a:focus{
     font-weight: bold;
 }
-

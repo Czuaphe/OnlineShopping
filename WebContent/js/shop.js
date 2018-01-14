@@ -62,12 +62,14 @@ $(document).ready(function(){
         $("#showNum").val(parseInt(num) + 1);
     });
     
-    // 得到要收藏的商品的gid
-    var gid = $("#gid").val();
-    // 得到此商品是否已经收藏过了
-    var isCollect = $("#isCollect").val();
+    
     // 对收藏事件进行处理
     $("#addCollect").click(function () {
+    	// 得到要收藏的商品的gid
+        var gid = $("#gid").val();
+        // 得到此商品是否已经收藏过了
+        var isCollect = $("#isCollect").val();
+        
     	if(isCollect == "true") {
     		alert("商品已经收藏！");
     	} else {
@@ -84,7 +86,12 @@ $(document).ready(function(){
                     }
                     if (data == "Success") {
                         alert("收藏成功");
-                        $("#addCollect i").css("color","#f32184");
+                        //window.location.reload();
+                        $("#isCollect").val("true");
+                        $("#addCollect").css("color", "#F32184");
+                    }
+                    if (data == "Failure") {
+                    	alert("收藏失败，请稍后重试！");
                     }
                 }
             });

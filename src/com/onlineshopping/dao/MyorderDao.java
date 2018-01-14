@@ -17,8 +17,8 @@ public class MyorderDao {
 	
 
 	public List<Record> recodeAll() throws SQLException{
-		String sql = "SELECT * FROM T_RECORD;";
-		List<Record> list=new ArrayList<Record>();
+		String sql = "SELECT * FROM T_RECORD";
+		
 		return runner.query(sql, new BeanListHandler<>(Record.class));
 	} 
 	
