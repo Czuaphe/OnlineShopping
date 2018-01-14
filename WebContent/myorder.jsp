@@ -25,9 +25,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 
 
+
 </head>
 <body>
+<%
+List<Record> list = (List<Record>)request.getAttribute("ulist"); 
+List<Goods> list1 = (List<Goods>)request.getAttribute("glist"); 
 
+%>
 
 <div class="myorder">
     <div class="myorder_left">
@@ -76,7 +81,6 @@
                                 <tr>
                                 <td width="60"><span>订单号:</span></td>
                                    <%
-									List<Record> list = (List<Record>)request.getAttribute("ulist");
 									for(Record re:list){
 									%>
                                     <td width="160"><span> <%=re.getRecnum()%></span></td>
@@ -91,21 +95,39 @@
                         </div>
                     </div>
                     <div class="myorder_right_down1_right">
-                        <span>订单金额:</span>12345678
+                    <span>订单金额:</span>
+                    <%
+					for(Record re:list){
+					%>
+                      <%=re.getTotal()%>          
+                     <% 
+					}//提取数据 for循环结束
+					%>
+                        
                     </div>
                 </div>
                 <div class="myorder_right_down2">
                     <div class="myorder_right_down2_left">
                         <table width="440" valign="center" align="left">
+                        		<%
+                        		for(Goods good:list1){
+                        		%>
+                        		
                             <tr>
-                                <td rowspan="2"><img  style="width: 300px" src="../img/data.png" alt=""/></td>
+                                <td rowspan="2"><%=good.getPicpath() %></td>
                             </tr>
                             <tr>
-                                <td><span>海峰卡就萨芬哈佛路</span><br>
-                                    <span>美白警服</span>
+                                <td><span><%=good.getName() %></span><br>
+                                    <span><%=good.getDetails()%></span>
                                 </td>
                                 <td></td>
                             </tr>
+                            <tr>
+                            <td>价格和数量</td>
+                            </tr>
+                            <%
+                        		}//goods提取数据
+                        		%>
                         </table>
 
                     </div>

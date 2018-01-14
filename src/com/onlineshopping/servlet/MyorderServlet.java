@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
 import com.onlineshopping.service.UserRecordService;
 
@@ -28,8 +29,12 @@ public class MyorderServlet extends HttpServlet {
 			/*for (Record record : list) {
 				System.out.println(record.toString());
 			}*/
+			List<Goods> list1 = urs.goodsSelect();
 			req.setAttribute("ulist", list);
 			req.getRequestDispatcher("myorder.jsp").forward(req, resp);
+			
+			/*req.setAttribute("glist", list1);
+			req.getRequestDispatcher("myorder.jsp").forward(req, resp);*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -39,4 +44,5 @@ public class MyorderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
+	
 }

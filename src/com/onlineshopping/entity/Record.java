@@ -1,13 +1,14 @@
 package com.onlineshopping.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Record implements Serializable {
 	
 	private int rid;
 	private String recnum;
-	private Date time;
+	private Timestamp time;
 	private int userid;
 	private double total;
 	private int addscore;
@@ -30,10 +31,10 @@ public class Record implements Serializable {
 	public void setRecnum(String recnum) {
 		this.recnum = recnum;
 	}
-	public Date getTime() {
+	public Timestamp getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
 	public int getUserid() {
