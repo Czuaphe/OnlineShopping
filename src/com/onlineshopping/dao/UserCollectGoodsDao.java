@@ -1,5 +1,6 @@
 package com.onlineshopping.dao;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -35,9 +36,9 @@ public class UserCollectGoodsDao {
 	 */
 	public boolean collectGoods(int userid, int gid) throws SQLException {
 		String CIDsql = "select seq_cid.nextval from dual";
-		int cid = runner.query(CIDsql, new ScalarHandler<Integer>());
+		BigDecimal cid = runner.query(CIDsql, new ScalarHandler<BigDecimal>());
 		String sql = "insert into t_user_collect_goods(cid, userid, gid) values(?, ?, ?)";
-		return runner.update(sql, cid, userid, gid) > 0;
+		return runner.update(sql, Integer.parseInt(String.valueOf(cid)), userid, gid) > 0;
 	}
 
 }

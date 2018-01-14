@@ -134,10 +134,11 @@
 
 .header_right .user_info .icon_pic {
     margin-right: 5px;
-    width: 18px;
-    height:18px;
-    border-radius:18px;
+    width: 20px;
+    height:20px;
+    border-radius:20px;
 }
+
 
 .header_right .user_info .dropdown-menu {
     right: 115px;

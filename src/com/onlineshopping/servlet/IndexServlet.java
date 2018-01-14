@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.onlineshopping.entity.Goods;
+import com.onlineshopping.entity.User;
 import com.onlineshopping.service.GoodsService;
 
 /**
@@ -34,6 +36,14 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		// 测试时，假设其已经登录
+        User user1 = new User();
+        user1.setUserid(1);
+        user1.setName("Tom");
+        session.setAttribute("user", user1);
 		
 		request.setAttribute("flag", true);
 		

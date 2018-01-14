@@ -1,6 +1,7 @@
 package com.onlineshopping.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class UserLoginLog implements Serializable {
@@ -10,7 +11,7 @@ public class UserLoginLog implements Serializable {
 	private static final long serialVersionUID = -5509982442376166468L;
 	private int logid;
 	private int userid;
-	private Date time;
+	private Timestamp time;
 	private String ip;
 	
 	
@@ -26,10 +27,10 @@ public class UserLoginLog implements Serializable {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public Date getTime() {
+	public Timestamp getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
 	public String getIp() {

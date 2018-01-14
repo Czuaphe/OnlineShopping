@@ -18,8 +18,15 @@ public class UserCollectGoodsDaoTest {
 	}
 
 	@Test
-	public void test() throws SQLException {
+	public void isCollectGoodsTest() throws SQLException {
 		boolean b = userCollectGoodsDao.isCollectGoods(1, 1);
+		System.out.println(b);
+		assertNotNull(b);
+	}
+	
+	@Test
+	public void collectGoodsTest() throws SQLException {
+		boolean b = userCollectGoodsDao.collectGoods(1, 5155);
 		System.out.println(b);
 		assertNotNull(b);
 	}
