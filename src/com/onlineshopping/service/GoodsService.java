@@ -1,14 +1,16 @@
 package com.onlineshopping.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.onlineshopping.dao.GoodsDao;
+import com.onlineshopping.dao.UserCollectGoodsDao;
 import com.onlineshopping.entity.Goods;
 
 public class GoodsService {
 	
 	private GoodsDao goodsDao = new GoodsDao();
-	
+	private UserCollectGoodsDao userCollectGoodsDao = new UserCollectGoodsDao();
 	
 	/**
 	 * 通过个人提交的订单计算出的热卖商品
@@ -57,5 +59,20 @@ public class GoodsService {
 	public Goods getGoodsByGid(int gid) {
 		return goodsDao.getGoodsByGid(gid);
 	}
-	
+	/**
+	 * 判断某个用户是否收藏某个商品
+	 * @param userid 用户ID
+	 * @param gid 商品ID
+	 * @return 返回是否已经收藏
+	 */
+	public boolean isCollectGoods(int userid, int gid) {
+		
+		try {
+			return userCollectGoodsDao.isCollectGoods(userid, gid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
