@@ -29,10 +29,10 @@ public class MyorderServlet extends HttpServlet {
 			/*for (Record record : list) {
 				System.out.println(record.toString());
 			}*/
-			List<Goods> list1 = urs.goodsSelect();
+			
 			req.setAttribute("ulist", list);
 			req.getRequestDispatcher("myorder.jsp").forward(req, resp);
-			
+			List<Goods> list1 = urs.goodsSelect();
 			/*req.setAttribute("glist", list1);
 			req.getRequestDispatcher("myorder.jsp").forward(req, resp);*/
 		} catch (SQLException e) {

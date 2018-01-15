@@ -6,6 +6,7 @@ import java.util.List;
 import com.onlineshopping.dao.MyorderDao;
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
+import com.onlineshopping.entity.RecordDetails;
 
 public class UserRecordService {
 MyorderDao myorderdao = new MyorderDao();
@@ -18,7 +19,18 @@ MyorderDao myorderdao = new MyorderDao();
 	
 	public List<Goods> goodsSelect() throws SQLException{
 		return myorderdao.goodsAll();
-	}	
+	}
+	
+	public List<RecordDetails> reDtailsAll() throws SQLException{
+		return myorderdao.reDtailsAll();
+	}
+	
+	 
+
+
+	
+	
+	
 	
 
 }

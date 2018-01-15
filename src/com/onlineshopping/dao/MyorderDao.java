@@ -1,5 +1,6 @@
 package com.onlineshopping.dao;
 
+import java.awt.geom.FlatteningPathIterator;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
+import com.onlineshopping.entity.RecordDetails;
 
 public class MyorderDao {
 	
@@ -30,6 +32,27 @@ public class MyorderDao {
 				"WHERE T_RECORD_DETAILS.GID=T_GOODS.GID";
 		return runner.query(sql, new BeanListHandler<>(Goods.class));
 	}
+	
+	public List<RecordDetails> reDtailsAll() throws SQLException{
+		String sql = "SELECT PICPATH,NAME,T_RECORD_DETAILS.NUMBERS,PRICE*DISCOUNT \\r\\n\" + \r\n" + 
+				"				\"FROM T_RECORD_DETAILS ,T_GOODS\\r\\n\" + \r\n" + 
+				"				\"WHERE T_RECORD_DETAILS.GID=T_GOODS.GID\"";
+		return runner.query(sql, new BeanListHandler<>(RecordDetails.class));
+	}
+	public boolean selecctSome() throws SQLException {
+		goodsAll();
+		boolean flag = true;
+		if(flag) {
+			reDtailsAll();
+		}
+		return flag;
+	}
+	
+
+	
+
+	
+	
 	
 	
 
