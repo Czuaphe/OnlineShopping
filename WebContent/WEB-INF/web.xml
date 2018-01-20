@@ -18,6 +18,7 @@
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 收货地址 -->
 	<servlet>
 	<servlet-name>address</servlet-name>
 	<servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
@@ -25,6 +26,15 @@
 	<servlet-mapping>
 		<servlet-name>address</servlet-name>
 		<url-pattern>/AddressServlet</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+	    <servlet-name>collection</servlet-name>
+	    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>collection</servlet-name>
+		<url-pattern>/CollectionServlet</url-pattern>
 	</servlet-mapping>
 
 <!-- 我的订单sevlet -->
