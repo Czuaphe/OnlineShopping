@@ -42,6 +42,11 @@ public class RecordDetails implements Serializable {
 	public void setBuyprice(double buyprice) {
 		this.buyprice = buyprice;
 	}
+	@Override
+	public String toString() {
+		return "RecordDetails [rdid=" + rdid + ", rid=" + rid + ", gid=" + gid + ", numbers=" + numbers + ", buyprice="
+				+ buyprice + "]";
+	}
 	
 	
 	
