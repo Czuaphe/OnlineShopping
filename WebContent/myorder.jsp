@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.entity.RecordDetails"%>
 <%@page import="com.onlineshopping.entity.Record"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
@@ -28,7 +29,7 @@
 <%
 List<Record> list = (List<Record>)request.getAttribute("ulist"); 
 List<Goods> list1 = (List<Goods>)request.getAttribute("glist"); 
-
+List<RecordDetails> list2 = (List<RecordDetails>)request.getAttribute("dlist"); 
 %>
 
 </head>
@@ -41,7 +42,7 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                 <h1 style="font-size: 20px;font-weight: normal;color: black">订单中心</h1>
             </li>
             <li><a href="#">个人中心</a></li>
-            <li><a href="myorder.html">我的订单</a></li>
+            <li><a href="#<!-- myorder.html -->">我的订单</a></li>
             <li><a href="#">我的收藏</a></li>
             <li><a href="#">我的优惠券</a></li>
             <li><a href="#">收货地址</a></li>
@@ -119,21 +120,29 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                         <div class="myorder_right_down2">
                             <div class="myorder_right_down2_left">
                                 <table width="440" valign="center" align="left">
+                                <%
+                                for(Goods good: list1){
+                                	
+                                
+                                %>
                                     <tr>
-                                        <td rowspan="2"><img  style="width: 200px" src="../img/data.png" alt=""/></td>
+                                        <td rowspan="2"><%good.getPicpath() ;%></td>
                                     </tr>
                                     <tr>
-                                        <td><span>海峰卡就萨芬哈佛路</span><br>
-                                            <span>美白警服</span>
+                                        <td><span><%good.getName(); %></span><br>
+                                            <span><%good.getDetails(); %></span>
                                         </td>
                                         <td></td>
                                     </tr>
+                                    <%
+                                }//for循环结束
+                                    %>
                                 </table>
 
                             </div>
                             <div class="myorder_right_down2_right">
                                 <div class="myorder_right_down2_right_1">
-                                    <a href="myorderdetils.html">订单详情</a>
+                                    <a href="#<!-- MyorderListServlet -->">订单详情</a>
                                 </div>
                                 <div class="myorder_right_down2_right_2">
                                     <a id="pay" href="#" >立即付款</a>
@@ -226,7 +235,7 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                         </div>
                         <div class="myorder_receive_bottom_right">
                             <div class="myorder_receive_bottom_right1">
-                                <span>确认付款</span>
+                                <span><a href="#">确认付款</a></span>
                             </div>
                         </div>
                     </div>

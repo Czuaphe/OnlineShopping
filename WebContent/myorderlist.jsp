@@ -103,7 +103,7 @@
                 </div>
                 <div class="detils_right4_middle_2">
                     <div class="detils_right4_middle_2_left">
-                        <span>收货地址：</span>
+                        <span>收货信息：</span>
                     </div>
                     <div class="detils_right4_middle_2_right">
                         <span>iiiiiiiii</span>
@@ -135,15 +135,15 @@
                     <th><span>实付金额</span></th>
                 </tr>
                 <tr align="center">
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                 </tr>
             </table>
         </div>
