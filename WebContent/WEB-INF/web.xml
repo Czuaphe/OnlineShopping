@@ -13,28 +13,24 @@
     <servlet-name>division</servlet-name>
     <servlet-class>com.onlineshopping.servlet.DivisionServlet</servlet-class>
   </servlet>
-	<servlet-mapping>
-		<servlet-name>division</servlet-name>
-		<url-pattern>/DivisionServlet</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-	<servlet-name>address</servlet-name>
-	<servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
-  </servlet>
-	<servlet-mapping>
-		<servlet-name>address</servlet-name>
-		<url-pattern>/AddressServlet</url-pattern>
-	</servlet-mapping>
-
-<!-- 我的订单sevlet -->
+  <servlet-mapping>
+    <servlet-name>division</servlet-name>
+    <url-pattern>/DivisionServlet</url-pattern>
+  </servlet-mapping>
   <servlet>
-	<servlet-name>MyorderServlet</servlet-name>
-	<servlet-class>com.onlineshopping.servlet.MyorderServlet</servlet-class>
+    <servlet-name>address</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
   </servlet>
-	<servlet-mapping>
-		<servlet-name>MyorderServlet</servlet-name>
-		<url-pattern>/MyorderServlet</url-pattern>
-	</servlet-mapping>
-	
+  <servlet-mapping>
+    <servlet-name>address</servlet-name>
+    <url-pattern>/AddressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MyorderServlet</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.MyorderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyorderServlet</servlet-name>
+    <url-pattern>/MyorderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

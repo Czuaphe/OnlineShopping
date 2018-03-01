@@ -1,6 +1,5 @@
 package com.onlineshopping.dao;
 
-import java.awt.geom.FlatteningPathIterator;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,9 +20,8 @@ public class MyorderDao {
 
 	public List<Record> recodeAll() throws SQLException{
 		String sql = "SELECT * FROM T_RECORD";
-		
 		return runner.query(sql, new BeanListHandler<>(Record.class));
-	} 
+	}
 	
 	
 	public List<Goods> goodsAll() throws SQLException{
