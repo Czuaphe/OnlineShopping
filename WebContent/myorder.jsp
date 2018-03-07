@@ -159,7 +159,7 @@ Goods goods = (Goods)request.getAttribute("good");
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
                 </td>
                 </tr>
                 <tr>
@@ -220,7 +220,6 @@ Goods goods = (Goods)request.getAttribute("good");
                 <td>
                 </tr>
                 </table>
-                </div>
                 
             </div>
             <!--待收货-->
