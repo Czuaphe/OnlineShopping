@@ -26,6 +26,7 @@ $(document).ready(function(){
         },
     });
     
+    // 显示商品图片的轮播效果
     var path = new Array();
     var array = document.getElementsByClassName("swiper-slide");
     for(var i = 0; i < array.length; i ++) {
@@ -50,13 +51,14 @@ $(document).ready(function(){
         }
     });
     
+    // 商品数量减少
     $("#minusNum").click(function () {
         var num = $("#showNum").val();
         if (num > 1) {
             $("#showNum").val(num - 1);
         }
     });
-
+    // 商品数量增加
     $("#addNum").click(function () {
         var num = $("#showNum").val();
         $("#showNum").val(parseInt(num) + 1);
@@ -96,8 +98,31 @@ $(document).ready(function(){
                 }
             });
     	}
-        
     });
+    
+    // 对添加商品到购物车的事件进行处理
+    $("#addShoppingCart").click(function () {
+    	// 异步向服务发送数据，返回添加结果，并对页面进行更改
+    	var gid = $("#gid").val();
+//    	alert("在加入购物车的商品ID为：" + gid);
+    	
+    	$.ajax({
+            url:"/OnlineShopping/AddShoppingCartServlet",
+            dataType:"html",
+            data:{
+                "gid": gid
+            },
+            success: function (data,textStatus,jqXHR) {
+            	if(data == "true") {
+            		alert("加入购物车成功");
+            	} else {
+            		alert("加入失败！请重试。。。");
+            	}
+            }
+        });
+    	
+    });
+    
 
 });
 
