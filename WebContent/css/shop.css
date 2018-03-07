@@ -74,9 +74,9 @@
 
 .shop_header .shopping_cart a .badge-danger {
     background-color: #f32196;
-    top: -10px;
-    position: relative;
-    left: -5px;
+    top: 2px;
+    position: absolute;
+    right: 2px;
     padding: 3px 6px;
 }
 
