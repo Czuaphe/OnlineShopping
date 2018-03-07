@@ -13,36 +13,10 @@
     <servlet-name>division</servlet-name>
     <servlet-class>com.onlineshopping.servlet.DivisionServlet</servlet-class>
   </servlet>
-	<servlet-mapping>
-		<servlet-name>division</servlet-name>
-		<url-pattern>/DivisionServlet</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 收货地址 -->
-	<servlet>
-	<servlet-name>address</servlet-name>
-	<servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
-  </servlet>
-
   <servlet-mapping>
     <servlet-name>division</servlet-name>
     <url-pattern>/DivisionServlet</url-pattern>
   </servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>address</servlet-name>
-		<url-pattern>/AddressServlet</url-pattern>
-	</servlet-mapping>
-
-    <servlet>
-	    <servlet-name>collection</servlet-name>
-	    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
-    </servlet>
-	<servlet-mapping>
-		<servlet-name>collection</servlet-name>
-		<url-pattern>/CollectionServlet</url-pattern>
-	</servlet-mapping>
-
-<!-- 我的订单sevlet -->
   <servlet>
     <servlet-name>address</servlet-name>
     <servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
@@ -52,6 +26,14 @@
     <url-pattern>/AddressServlet</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>collection</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>collection</servlet-name>
+    <url-pattern>/CollectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>MyorderServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.MyorderServlet</servlet-class>
   </servlet>
@@ -59,12 +41,4 @@
     <servlet-name>MyorderServlet</servlet-name>
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
-<!--   <servlet>
-  <servlet-name>MyorderListServlet</servlet-name>
-  <servlet-class>com.onlineshopping.servlet.MyorderListServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  <servlet-name>MyorderListServlet</servlet-name>
-  <url-pattern>/MyorderListServlet</url-pattern>
-  </servlet-mapping> -->
 </web-app>

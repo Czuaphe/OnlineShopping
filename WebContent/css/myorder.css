@@ -24,7 +24,7 @@
             float: left;
         }
         .myorder_right{
-            width: 800px;
+            width: 804px;
             float: left;
         }
 
@@ -129,14 +129,14 @@
         /*右边下部开始*/
         /*待支付*/
         .myorder_right_down{
-            width: 800px;
-            margin-top: 20px;
-            border: 1px solid red;
+            width: 804px;
+            border-right:1px solid red
         }
         .myorder_right_down1{
             width: 780px;
             height: 120px;
             border-bottom: 1px solid red;
+            
         }
 
         .myorder_right_down1_left{
@@ -171,22 +171,24 @@
             height: 200px;
         }
         .myorder_right_down2_left{
-            width: 500px;
+            width: 480px;
             height: 200px;
             float: left;
             text-align: left;
+            
         }
 
         .myorder_right_down2_right{
             width: 300px;
             float: left;
+            margin-left:4px;
         }
         .myorder_right_down2_right_1{
             width: 130px;
             height: 35px;
             float: left;
             margin-top: 20px;
-            margin-left: 10px;
+            margin-left: 12px;
             text-align: center;
             line-height: 35px;
             color: #cccccc;
@@ -210,7 +212,6 @@
         .myorder_receive{
             width: 800px;
             margin-top: 20px;
-            border: 1px solid red;
         }
         .myorder_receive_top{
             width: 780px;
