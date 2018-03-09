@@ -181,7 +181,6 @@ public class GoodsDao extends BaseDao<Goods>{
 		return goods;
 	}
 
-
 	@Override
 	protected Object toObject() {
 		Object object = null;

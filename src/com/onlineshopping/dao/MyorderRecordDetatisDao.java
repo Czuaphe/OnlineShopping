@@ -40,6 +40,5 @@ public class MyorderRecordDetatisDao {
 		return runner.query(sql, new BeanHandler<>(RecordDetails.class),rdid);
 	}
 	
-	
 
 }

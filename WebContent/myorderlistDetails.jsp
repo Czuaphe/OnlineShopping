@@ -41,7 +41,7 @@
     <div class="detils_right">
         <div class="detils_right1">
             <div class="detils_right1_left">
-                <div class="detils_right1_left1"><img src="../img/1.png" alt=""/></div>
+                <div class="detils_right1_left1"><img src="img/1.png" alt=""/></div>
                 <div class="detils_right1_left2"><span>待支付</span></div>
             </div>
             <div class="detils_right1_right">
@@ -52,7 +52,6 @@
                     <span>立即付款</span>
                 </div>
             </div>
-
         </div>
 
         <div class="detils_right3">
