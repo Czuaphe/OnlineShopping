@@ -104,8 +104,7 @@ $(document).ready(function(){
     $("#addShoppingCart").click(function () {
     	// 异步向服务发送数据，返回添加结果，并对页面进行更改
     	var gid = $("#gid").val();
-//    	alert("在加入购物车的商品ID为：" + gid);
-    	
+    	// 添加到session中
     	$.ajax({
             url:"/OnlineShopping/AddShoppingCartServlet",
             dataType:"html",
@@ -114,6 +113,7 @@ $(document).ready(function(){
             },
             success: function (data,textStatus,jqXHR) {
             	if(data == "true") {
+            		changeShoppingCartCount();
             		alert("加入购物车成功");
             	} else {
             		alert("加入失败！请重试。。。");
@@ -121,7 +121,24 @@ $(document).ready(function(){
             }
         });
     	
+    	console.log("添加购物车成功！");
+    	
+    	
+    	
     });
+    
+    function changeShoppingCartCount() {
+    	// 修改网页中的数据
+    	$.ajax({
+    		url:"/OnlineShopping/GetShoppingCartCount",
+            dataType:"html",
+            success: function (data,textStatus,jqXHR) {
+            	console.log('data' + data);
+            	console.log($('#shoppingCartCount').html());
+            	$('#shoppingCartCount').html(data);
+            }
+    	});
+    }
     
 
 });
