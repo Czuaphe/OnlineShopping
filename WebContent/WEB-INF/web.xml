@@ -18,21 +18,21 @@
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 收货地址 -->
+	<!-- 
 	<servlet>
 	<servlet-name>address</servlet-name>
 	<servlet-class>com.onlineshopping.servlet.AddressServlet</servlet-class>
-  </servlet>
+  </servlet> -->
 
   <servlet-mapping>
     <servlet-name>division</servlet-name>
     <url-pattern>/DivisionServlet</url-pattern>
   </servlet-mapping>
-	<servlet-mapping>
+	<!-- <servlet-mapping>
 		<servlet-name>address</servlet-name>
 		<url-pattern>/AddressServlet</url-pattern>
 	</servlet-mapping>
-
+ -->
     <servlet>
 	    <servlet-name>collection</servlet-name>
 	    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
