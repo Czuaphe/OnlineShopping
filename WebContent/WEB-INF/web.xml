@@ -21,8 +21,6 @@
 		<servlet-name>division</servlet-name>
 		<url-pattern>/DivisionServlet</url-pattern>
 	</servlet-mapping>
-
-
 	<!-- 收货地址 -->
 	<servlet>
 		<servlet-name>address</servlet-name>
