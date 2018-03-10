@@ -27,12 +27,13 @@
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
-/* List<Record> list = (List<Record>)request.getAttribute("record"); 
+/* List<Record> list = (List<Record>)request.getAttribute("record"); */
 List<Goods> glist = (List<Goods>)request.getAttribute("good"); 
+/*
 List<RecordDetails> rlist = (List<RecordDetails>)request.getAttribute("recorddetails"); */
 Record record = (Record)request.getAttribute("record");
 RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails");
-Goods goods = (Goods)request.getAttribute("good");
+/* Goods goods = (Goods)request.getAttribute("good"); */
 %>
 
 </head>
@@ -132,14 +133,14 @@ Goods goods = (Goods)request.getAttribute("good");
                                 	
                                     <tr>
                                         <td rowspan="2">
-                                        <%String[] pics = goods.getPicpath().split(","); %>
+                                        <%-- <%String[] pics = goods.getPicpath().split(","); %>
                                         <img src="img/400_400/<%=pics[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
-                                        </td>
+                                         --%></td>
                                     </tr>
                                     <tr>
-                                        <td><span><!-- 今天天气比较冷，风力较小 --><%=goods.getName()%></span><br>
+                                        <td><span><!-- 今天天气比较冷，风力较小 --><%-- <%=goods.getName()%></span><br>
                                             <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
-                                        </td>
+                                         --%></td>
                                         <td></td>
                                     </tr>
                                <%-- <%
@@ -150,78 +151,7 @@ Goods goods = (Goods)request.getAttribute("good");
 
 
                             </div>
-                            <div class="myorder_right_down2_right">
-                                <div class="myorder_right_down2_right_1">
-                                    <a href="#<!-- MyorderListServlet -->">订单详情</a>
-                                </div>
-                                <div class="myorder_right_down2_right_2">
-                                    <a id="pay" href="#" >立即付款</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                <td>
-                <!-- 添加额外商品时 -->
-                <table width="440" valign="center" align="left" style="margin-left:20px">
-                                 <%-- <%
-                                for(Goods good: glist ){
-                                	
-                                	%> --%>
-                                	
-                                    <tr>
-                                        <td rowspan="2">
-                                        <%String[] pics1 = goods.getPicpath().split(","); %>
-                                        <img src="img/400_400/<%=pics1[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span><!-- 今天天气比较冷，风力较小 --><%=goods.getName()%></span><br>
-                                            <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                               <%-- <%
-                                }//for循环结束
-                                    %> --%>
-                                </table>
-                                
-                
-                <td>
-                </tr>
-                <tr>
-                <td>
-                <!-- 添加额外商品时 -->
-                <table width="400" valign="center" align="left" style="margin-left:20px">
-                                 <%-- <%
-                                for(Goods good: glist ){
-                                	
-                                	%> --%>
-                                	
-                                    <tr>
-                                        <td rowspan="2">
-                                        <%String[] pics2 = goods.getPicpath().split(","); %>
-                                        <img src="img/400_400/<%=pics2[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span><!-- 今天天气比较冷，风力较小 --><%=goods.getName()%></span><br>
-                                            <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                               <%-- <%
-                                }//for循环结束
-                                    %> --%>
-                                </table>
-                
-                <td>
-                </tr>
-                </table>
-                
-            </div>
+                            
             <!--待收货-->
             <div class="tab-pane fade" id="java">
         		 <table  style="border:1px solid red;margin-top: 10px;margin-left:20px;">

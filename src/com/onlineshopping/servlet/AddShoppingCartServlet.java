@@ -42,7 +42,7 @@ public class AddShoppingCartServlet extends HttpServlet {
 		// 得到session中的购物车
 		Map<Integer, Integer> shoppingCart = null;
 		Object object = session.getAttribute("ShoppingCart");
-		if (object == null && object instanceof Map) {
+		if (object != null && object instanceof Map) {
 			shoppingCart = (Map<Integer, Integer>) object;
 		} else {
 			shoppingCart = new HashMap<>();
@@ -63,7 +63,6 @@ public class AddShoppingCartServlet extends HttpServlet {
 		for (Integer integer : shoppingCart.keySet()) {
 			System.out.println(integer + " : " + shoppingCart.get(integer));
 		}
-		
 		response.getWriter().write("true");
 		
 	}
