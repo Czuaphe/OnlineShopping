@@ -23,16 +23,27 @@ public class CollectionServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session=req.getSession();
-		session.setAttribute("user", "zhang");
-		session.setAttribute("uid", "100");
-		dao=new CollectionDao();
-		try {
-			List<Collection> colls=dao.getUserCollectionByUid(100);
-			req.setAttribute("colls", colls);
-			req.getRequestDispatcher("collection.jsp").forward(req, resp);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		String flag=req.getParameter("flag");
+		//删除收藏商品
+		if("delete".equals(flag)) {
+			String _cid=req.getParameter("cid");
+			int cid=Integer.parseInt(_cid);
+			if(dao.deleteCollectGoods(cid)) {
+				resp.getWriter().write("true");
+			}else {
+				resp.getWriter().write("false");
+			}
+		}
+		//查看收藏商品
+		else {
+			dao=new CollectionDao();
+			try {
+				List<Collection> colls=dao.getUserCollectionByUid(100);
+				req.setAttribute("colls", colls);
+				req.getRequestDispatcher("collection.jsp").forward(req, resp);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
