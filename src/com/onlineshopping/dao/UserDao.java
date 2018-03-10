@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -46,7 +47,10 @@ public class UserDao {
 		return nums > 0;
 		
 	}
-	
+	public User getName(String name) throws SQLException{
+		String sql="select * from t_user where name=?";
+		return runner.query(sql,new BeanHandler<>(User.class),name);
+	}
 	
 	
 }

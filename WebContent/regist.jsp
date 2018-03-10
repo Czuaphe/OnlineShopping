@@ -121,6 +121,22 @@
             height:15px;
             display:none;
         }
+        .tan2{
+        	width:395px;
+            float: right;
+            font-size: 14px;
+            color:red;
+            height:15px;
+            display:none;
+        }
+        .tan3{
+        	width:395px;
+            float: right;
+            font-size: 14px;
+            color:red;
+            height:15px;
+            display:none;
+        }
         .blank3{
             width:440px;
             height:15px;
@@ -251,9 +267,55 @@
     </style>
     <script type="text/javascript" src="../js/base/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
+      function checkname(){
+    	  var un=$("input[name=username]").val();
+    	  var tan=$(".tan");
+    	  if(un!=null&&un!=""){
+    		  tan.css("display","block");
+    		  return false;
+    	  }
+      }
+      function checkpwd(){
+    	  var pwd=$("input[pswd=password]").val();
+    	  var tan2=$(".tan2");
+    	  if(pwd.read()<6||pwd.read()>16){
+    		  tan2.css("display","block");
+    		  return false;
+    	  }
+      }
+      function checkpwd2(){
+    	  var pwd=$("input[pswd=password]").val();
+    	  var pwd2=$("input[pswd=password2]").val();
+    	  var tan=$(".tan3");
+    	  if(pwd!=pwd2){
+    		  tan3.css("display","block");
+    		  return false;
+    	  }
+      }
       $(function(){
+    	  $("input[name=username]").blur(checkname);
+    	  $("input[pwd=password]").blur(checkpwd);
+    	  $("input[pswd=passwrd2]").blur(checkpwd2);
     	  
       });
+      //验证码编写
+      function changeImg() {        
+    	          var rename = $(".rename");    
+    	          var src = imgSrc.attr("src");        
+    	           rename.attr("src", chgUrl(src));
+    	       }  	  
+    	       // 时间戳
+    	       // 为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+    	       function chgUrl(url) {
+    	           var timestamp = (new Date()).valueOf();
+    	           url = url.substring(0, 20);
+    	           if ((url.indexOf("&") >= 0)) {
+    	               url = url + "×tamp=" + timestamp;
+    	           } else {
+    	               url = url + "?timestamp=" + timestamp;
+    	           }
+    	           return url;
+    	       }
     </script>
 </head>
 <body>
@@ -270,7 +332,7 @@
             </div>
         </div>
         <div class="daoh">
-            <a href="#">返回首页</a>
+            <a href="index.jsp">返回首页</a>
         </div>
     </div>
     </div>
@@ -278,7 +340,7 @@
     <div class="main">
         <div class="blank"></div>
         <!--form表单内容-->
-        <form class="form_regist" method="post" action="#" novalidate="novalidate">
+        <form class="form_regist" method="get" action="registServlet" novalidate="novalidate">
             <div class="blank2"></div>
             <!--用户名输入框-->
             <div class="form_group">
@@ -298,7 +360,7 @@
                 </div>
                 <div class="input_right">
                     <input type="password" name="password" placeholder="&nbsp;密码" class="form_control"/>
-                    <div class="tan">密码为6-16位字母数字组成</div>
+                    <div class="tan2">密码为6-16位字母数字组成</div>
                 </div>
             </div>
             <div class="blank3"></div>
@@ -308,8 +370,8 @@
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="input_right">
-                    <input type="password" name="password" placeholder="&nbsp;重复密码" class="form_control"/>
-                    <div class="tan">密码有误</div>
+                    <input type="password" name="password2" placeholder="&nbsp;重复密码" class="form_control"/>
+                    <div class="tan3">密码有误</div>
                 </div>
             </div>
             <div class="blank3"></div>
@@ -320,7 +382,7 @@
                         <i class="fa fa-user"></i>
                     </div>
                     <div class="input_right2">
-                        <input type="text" name="rename" placeholder="&nbsp;验证码" class="form_control2"/>
+                        <input type="text" name="rename" id="raname" placeholder="&nbsp;验证码" class="form_control2"/>
                     </div>
                 </div>
                 <div class="act"></div>
@@ -390,7 +452,7 @@
             </div>
             <div class="blank3"></div>
             <div class="already">
-                <a href="login.html">已有账号？</a>
+                <a href="login.jsp">已有账号？</a>
             </div>
         </form>
     </div>
