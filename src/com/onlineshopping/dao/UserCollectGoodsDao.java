@@ -8,7 +8,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
 /**
- * 提交商品收藏的基础功能，由于商品收藏只能增，删，查，所以不提供更改功能。
+ * 鎻愪氦鍟嗗搧鏀惰棌鐨勫熀纭�鍔熻兘锛岀敱浜庡晢鍝佹敹钘忓彧鑳藉锛屽垹锛屾煡锛屾墍浠ヤ笉鎻愪緵鏇存敼鍔熻兘銆�
  * @author admin
  *
  */
@@ -16,7 +16,7 @@ public class UserCollectGoodsDao {
 	
 	private QueryRunner runner = DBUtils.getQueryRunner();
 	/**
-	 * 查找某个用户是否收藏某个商品
+	 * 鏌ユ壘鏌愪釜鐢ㄦ埛鏄惁鏀惰棌鏌愪釜鍟嗗搧
 	 * @param userid
 	 * @param gid
 	 * @return
@@ -24,14 +24,14 @@ public class UserCollectGoodsDao {
 	 */
 	public boolean isCollectGoods(int userid, int gid) throws SQLException {
 		String sql = "select * from t_user_collect_goods where userid = ? and gid = ?";
-		// 使用Lambda表达式实现一个ResultSetHandler的匿名实现类
+		// 浣跨敤Lambda琛ㄨ揪寮忓疄鐜颁竴涓猂esultSetHandler鐨勫尶鍚嶅疄鐜扮被
 		return runner.query(sql, (rs) -> rs.next() ? true : false, userid, gid);
 	}
 	/**
-	 * 根据用户ID和商品ID收藏该商品
-	 * @param userid 用户ID
-	 * @param gid 商品ID
-	 * @return 返回收藏是否成功
+	 * 鏍规嵁鐢ㄦ埛ID鍜屽晢鍝両D鏀惰棌璇ュ晢鍝�
+	 * @param userid 鐢ㄦ埛ID
+	 * @param gid 鍟嗗搧ID
+	 * @return 杩斿洖鏀惰棌鏄惁鎴愬姛
 	 * @throws SQLException
 	 */
 	public boolean collectGoods(int userid, int gid) throws SQLException {
@@ -39,6 +39,17 @@ public class UserCollectGoodsDao {
 		BigDecimal cid = runner.query(CIDsql, new ScalarHandler<BigDecimal>());
 		String sql = "insert into t_user_collect_goods(cid, userid, gid) values(?, ?, ?)";
 		return runner.update(sql, Integer.parseInt(String.valueOf(cid)), userid, gid) > 0;
+	}
+	
+	public boolean deleteCollectGoods(int uid,int gid) {
+		int result=0;
+		String sql="delete from t_user_collect_goods where userid=? and gid=?";
+		try {
+			result = runner.update(sql, uid, gid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result>0;
 	}
 
 }

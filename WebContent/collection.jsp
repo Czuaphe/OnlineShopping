@@ -28,6 +28,10 @@ String uid=(String)session.getAttribute("uid");
     
 $(function(){
 	addframe();
+	$("#sel2").click(function(){
+		
+	});
+	
 });
 </script>
     <style type="text/css">
@@ -222,4 +226,11 @@ $(function(){
         </c:forEach>
     </div>
 </div>
+    <div class="delfrom">
+        <div class="deltip">
+            <div id="m1">确定要删除吗？</div>
+            <a id="can">取消</a>
+            <a id="con">确定</a>
+        </div>
+    </div>
 </body>
