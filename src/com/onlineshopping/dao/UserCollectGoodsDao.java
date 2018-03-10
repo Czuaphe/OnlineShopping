@@ -22,10 +22,14 @@ public class UserCollectGoodsDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean isCollectGoods(int userid, int gid) throws SQLException {
+	public boolean isCollectGoods(int userid, int gid) {
 		String sql = "select * from t_user_collect_goods where userid = ? and gid = ?";
-		// 浣跨敤Lambda琛ㄨ揪寮忓疄鐜颁竴涓猂esultSetHandler鐨勫尶鍚嶅疄鐜扮被
-		return runner.query(sql, (rs) -> rs.next() ? true : false, userid, gid);
+		try {
+			return runner.query(sql, (rs) -> rs.next(), userid, gid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	/**
 	 * 鏍规嵁鐢ㄦ埛ID鍜屽晢鍝両D鏀惰棌璇ュ晢鍝�
@@ -34,11 +38,16 @@ public class UserCollectGoodsDao {
 	 * @return 杩斿洖鏀惰棌鏄惁鎴愬姛
 	 * @throws SQLException
 	 */
-	public boolean collectGoods(int userid, int gid) throws SQLException {
+	public boolean collectGoods(int userid, int gid) {
 		String CIDsql = "select seq_cid.nextval from dual";
-		BigDecimal cid = runner.query(CIDsql, new ScalarHandler<BigDecimal>());
-		String sql = "insert into t_user_collect_goods(cid, userid, gid) values(?, ?, ?)";
-		return runner.update(sql, Integer.parseInt(String.valueOf(cid)), userid, gid) > 0;
+		try {
+			BigDecimal cid = runner.query(CIDsql, new ScalarHandler<BigDecimal>());
+			String sql = "insert into t_user_collect_goods(cid, userid, gid) values(?, ?, ?)";
+			return runner.update(sql, Integer.parseInt(String.valueOf(cid)), userid, gid) > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public boolean deleteCollectGoods(int uid,int gid) {

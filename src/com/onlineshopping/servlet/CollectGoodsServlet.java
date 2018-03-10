@@ -53,20 +53,22 @@ public class CollectGoodsServlet extends HttpServlet {
         } 
 	    
         else {
-            // 登录之后，判断商品的收藏状态
-        	try {
-				boolean b = new UserCollectGoodsDao().collectGoods(user.getUserid(), Integer.parseInt(gid));
-				if (b) {
-					// 收藏成功，返回成功标志
-		            responseStr = "Success";
-				}
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
+
+			UserCollectGoodsDao userCollectGoodsDao = new UserCollectGoodsDao();
+
+			// 切换商品的收藏状态
+			if (userCollectGoodsDao.isCollectGoods(user.getUserid(), Integer.parseInt(gid))) {
+				userCollectGoodsDao.deleteCollectGoods(user.getUserid(), Integer.parseInt(gid));
+				// 成功取消收藏
+				responseStr = "SuccessUnCollect";
+			} else {
+				userCollectGoodsDao.collectGoods(user.getUserid(), Integer.parseInt(gid));
+				// 成功收藏
+				responseStr = "Success";
 			}
             
         }
+		System.out.println("response String: " + responseStr);
 
 		response.getWriter().write(responseStr);
 		
