@@ -19,13 +19,13 @@ import com.onlineshopping.entity.RecordDetails;
  * Servlet implementation class MyorderRedatileRecoleServlet
  */
 @WebServlet("/MyorderRedatileRecoleServlet")
-public class MyorderRecoledatileServlet extends HttpServlet {
+public class MyorderRedatileRecoleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyorderRecoledatileServlet() {
+    public MyorderRedatileRecoleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

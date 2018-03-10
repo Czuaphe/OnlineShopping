@@ -32,12 +32,13 @@
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
-/* List<Record> list = (List<Record>)request.getAttribute("record"); 
+/* List<Record> list = (List<Record>)request.getAttribute("record"); */
 List<Goods> glist = (List<Goods>)request.getAttribute("good"); 
+/*
 List<RecordDetails> rlist = (List<RecordDetails>)request.getAttribute("recorddetails"); */
 Record record = (Record)request.getAttribute("record");
 RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails");
-Goods goods = (Goods)request.getAttribute("good");
+/* Goods goods = (Goods)request.getAttribute("good"); */
 %>
 
 </head>
@@ -133,6 +134,7 @@ Goods goods = (Goods)request.getAttribute("good");
                                 for(Goods good: glist){
                                 	
                                 	%> --%>
+<<<<<<< HEAD
 
 											<tr>
 												<td rowspan="2">
@@ -149,11 +151,28 @@ Goods goods = (Goods)request.getAttribute("good");
 												<td></td>
 											</tr>
 											<%-- <%
+=======
+                                	
+                                    <tr>
+                                        <td rowspan="2">
+                                        <%-- <%String[] pics = goods.getPicpath().split(","); %>
+                                        <img src="img/400_400/<%=pics[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
+                                         --%></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span><!-- 今天天气比较冷，风力较小 --><%-- <%=goods.getName()%></span><br>
+                                            <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
+                                         --%></td>
+                                        <td></td>
+                                    </tr>
+                               <%-- <%
+>>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
                                 }//for循环结束
                                     %> --%>
 										</table>
 
 
+<<<<<<< HEAD
 
 									</div>
 									<div class="myorder_right_down2_right">
@@ -198,6 +217,30 @@ Goods goods = (Goods)request.getAttribute("good");
 							</table>
 						<td>
 					</tr>
+=======
+                            </div>
+                            
+            <!--待收货-->
+            <div class="tab-pane fade" id="java">
+        		 <table  style="border:1px solid red;margin-top: 10px;margin-left:20px;">
+		        <tr>
+		            <td>
+                <div class="myorder_receive">
+                    <div class="myorder_receive_top">
+                        <div class="myorder_receive_top1">
+                            <span>待收货</span>
+                        </div>
+                        <div class="myorder_receive_top2">
+                            <table width="780" align="center">
+                                <tr>
+                                    <td width="80"><span>订单号：</span></td>
+                                    <td>123456789009876543</td>
+                                    <td>在线支付</td>
+                                    <td></td>
+                                    <td width="400"></td>
+                                </tr>
+                            </table>
+>>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
 
 				</table>
 
