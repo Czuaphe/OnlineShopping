@@ -69,8 +69,6 @@ $(document).ready(function(){
     $("#addCollect").click(function () {
     	// 得到要收藏的商品的gid
         var gid = $("#gid").val();
-        // 得到此商品是否已经收藏过了
-        var isCollect = $("#isCollect").val();
         
     	if(isCollect == "true") {
     		alert("商品已经收藏！");
@@ -89,8 +87,12 @@ $(document).ready(function(){
                     if (data == "Success") {
                         alert("收藏成功");
                         //window.location.reload();
-                        $("#isCollect").val("true");
+                        
                         $("#addCollect").css("color", "#F32184");
+                    }
+                    if (data == "SuccessUnCollect") {
+                    	alert("取消收藏成功");
+                    	$("#addCollect").css("color", "#ffffff");
                     }
                     if (data == "Failure") {
                     	alert("收藏失败，请稍后重试！");
