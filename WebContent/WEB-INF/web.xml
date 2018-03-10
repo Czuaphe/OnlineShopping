@@ -43,4 +43,13 @@
     <servlet-name>registServlet</servlet-name>
     <url-pattern>/registServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>collection</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>collection</servlet-name>
+    <url-pattern>/CollectionServlet</url-pattern>
+  </servlet-mapping>
+ 
 </web-app>

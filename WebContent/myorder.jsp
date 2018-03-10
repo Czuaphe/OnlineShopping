@@ -1,3 +1,4 @@
+<%@page import="com.onlineshopping.entity.RecordDetails"%>
 <%@page import="com.onlineshopping.entity.Record"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
@@ -26,9 +27,13 @@
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
-List<Record> list = (List<Record>)request.getAttribute("ulist"); 
-List<Goods> list1 = (List<Goods>)request.getAttribute("glist"); 
-
+/* List<Record> list = (List<Record>)request.getAttribute("record"); */
+List<Goods> glist = (List<Goods>)request.getAttribute("good"); 
+/*
+List<RecordDetails> rlist = (List<RecordDetails>)request.getAttribute("recorddetails"); */
+Record record = (Record)request.getAttribute("record");
+RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails");
+/* Goods goods = (Goods)request.getAttribute("good"); */
 %>
 
 </head>
@@ -41,7 +46,7 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                 <h1 style="font-size: 20px;font-weight: normal;color: black">订单中心</h1>
             </li>
             <li><a href="#">个人中心</a></li>
-            <li><a href="myorder.html">我的订单</a></li>
+            <li><a href="#<!-- myorder.html -->">我的订单</a></li>
             <li><a href="#">我的收藏</a></li>
             <li><a href="#">我的优惠券</a></li>
             <li><a href="#">收货地址</a></li>
@@ -80,8 +85,10 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
             </div>
             <!-- 待支付-->
             <div class="tab-pane fade" id="ios">
-                <div>
-                    <div class="myorder_right_down">
+                <table style="border:1px solid red;margin-top: 10px;margin-left:10px;">
+                <tr>
+                <td>
+                <div class="myorder_right_down">
                         <div class="myorder_right_down1">
                             <div  class="myorder_right_down1_left" >
                                 <div class="myorder_right_down1_left_top">
@@ -91,61 +98,65 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                                      <table width="460">
                                 <tr>
                                 <td width="60"><span>订单号:</span></td>
-                                   <%
+                                   <%-- <%
 									for(Record re:list){
-									%>
-                                    <td width="160"><span> <%=re.getRecnum()%></span></td>
-                                    <td width="160"><span><%=re.getTime()%></span></td>
-                                    <td width="60"><span><%=re.getPayway() %></span></td>
+									%>  --%>
+                                    <td width="160"><span> <%=record.getRecnum()%> </span></td>
+                                    <td width="160"><span><%=record.getTime()%></span></td>
+                                    <td width="60"><span><%=record.getPayway() %></span></td>
                                 </tr>
-                                <% 
+                               <%-- <% 
 								}//提取数据 for循环结束
-								%>
+								%> --%>
                             </table>
                                 </div>
                             </div>
                             <div class="myorder_right_down1_right">
-                                <span>订单金额:</span>
-			                                <%
+                                <span>订单金额:8787877</span>
+			                              <%-- <%
 								for(Record re:list){
-								%>
-			                      <%=re.getTotal()%>          
-			                     <% 
+								%> --%>
+			                      <%=record.getTotal()%>          
+			                     <%-- <% 
 								}//提取数据 for循环结束
-								%>
+								%> --%>
                                 
                             </div>
                         </div>
                         <div class="myorder_right_down2">
-                            <div class="myorder_right_down2_left">
+                            <div class="myorder_right_down2_left" style="margin-left:10px;">
                                 <table width="440" valign="center" align="left">
+                                 <%-- <%
+                                for(Goods good: glist){
+                                	
+                                	%> --%>
+                                	
                                     <tr>
-                                        <td rowspan="2"><img  style="width: 200px" src="../img/data.png" alt=""/></td>
+                                        <td rowspan="2">
+                                        <%-- <%String[] pics = goods.getPicpath().split(","); %>
+                                        <img src="img/400_400/<%=pics[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
+                                         --%></td>
                                     </tr>
                                     <tr>
-                                        <td><span>海峰卡就萨芬哈佛路</span><br>
-                                            <span>美白警服</span>
-                                        </td>
+                                        <td><span><!-- 今天天气比较冷，风力较小 --><%-- <%=goods.getName()%></span><br>
+                                            <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
+                                         --%></td>
                                         <td></td>
                                     </tr>
+                               <%-- <%
+                                }//for循环结束
+                                    %> --%>
                                 </table>
+                                
+
 
                             </div>
-                            <div class="myorder_right_down2_right">
-                                <div class="myorder_right_down2_right_1">
-                                    <a href="myorderdetils.html">订单详情</a>
-                                </div>
-                                <div class="myorder_right_down2_right_2">
-                                    <a id="pay" href="#" >立即付款</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+                            
             <!--待收货-->
             <div class="tab-pane fade" id="java">
+        		 <table  style="border:1px solid red;margin-top: 10px;margin-left:20px;">
+		        <tr>
+		            <td>
                 <div class="myorder_receive">
                     <div class="myorder_receive_top">
                         <div class="myorder_receive_top1">
@@ -189,9 +200,15 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                         </div>
                     </div>
                 </div>
+                </td>
+			        </tr>
+			    </table>
             </div>
             <!--已关闭-->
             <div class="tab-pane fade" id="java1">
+                <table  style="border:1px solid red;margin-top: 10px;margin-left:10px;">
+		        <tr>
+		            <td>
                 <div class="myorder_receive">
                     <div class="myorder_receive_top">
                         <div class="myorder_receive_top1">
@@ -226,7 +243,7 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
                         </div>
                         <div class="myorder_receive_bottom_right">
                             <div class="myorder_receive_bottom_right1">
-                                <span>确认付款</span>
+                                <span><a href="#">确认付款</a></span>
                             </div>
                         </div>
                     </div>
@@ -234,6 +251,9 @@ List<Goods> list1 = (List<Goods>)request.getAttribute("glist");
             </div>
         </div>
         </div>
+        </td>
+        </tr>
+    </table>
    </div>
 </body>
 </html>

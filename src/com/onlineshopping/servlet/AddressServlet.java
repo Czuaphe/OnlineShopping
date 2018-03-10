@@ -26,7 +26,7 @@ public class AddressServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();
 		session.setAttribute("user", "zhang");
-		session.setAttribute("uid", 100);
+		session.setAttribute("uid", "100");
 		String flag="init";
 		String g=req.getParameter("flag");
 		if(!("".equals(g)||null==g)){
@@ -148,9 +148,9 @@ public class AddressServlet extends HttpServlet {
 				resp.getWriter().write("false");
 			}
 		} catch (SQLException e) {
-			System.out.println("SQLException:异常出现在alter方法中");
+			System.out.println("SQLException:寮傚父鍑虹幇鍦╝lter鏂规硶涓�");
 		}catch (IOException e) {
-			System.out.println("IOException:异常出现在alter方法中");
+			System.out.println("IOException:寮傚父鍑虹幇鍦╝lter鏂规硶涓�");
 		}
 	}
 }

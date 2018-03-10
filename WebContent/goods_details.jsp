@@ -97,7 +97,7 @@
             <div class="shopping_cart" >
                 <!-- 目前不进行下拉菜单的开发  class="dropdown-toggle" data-toggle="dropdown" -->
                 <a href="#">
-                    <i class="fa fa-shopping-cart"></i>购物车<span class="badge badge-danger">0</span>
+                    <i class="fa fa-shopping-cart"></i>购物车<span id="shoppingCartCount" class="badge badge-danger">0</span>
                 </a>
                 <!-- 购物车下拉菜单（可选功能，尽力实现） -->
                 <div class="dropdown-menu pull-right">
@@ -324,6 +324,22 @@
 </div>
 
 <script src="./js/shop.js"></script>
+
+<script>
+	var test = 0;
+	$(document).ready(function () {	
+		console.log('data:' + test);
+		$.ajax({
+    		url:"/OnlineShopping/GetShoppingCartCount",
+            dataType:"html",
+            success: function (data,textStatus,jqXHR) {
+            	console.log('data' + data);
+            	console.log($('#shoppingCartCount').html());
+            	$('#shoppingCartCount').html(data);
+            }
+    	});
+	});
+</script>
 
 </body>
 </html>

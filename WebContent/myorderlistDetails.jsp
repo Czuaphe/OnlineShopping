@@ -41,7 +41,7 @@
     <div class="detils_right">
         <div class="detils_right1">
             <div class="detils_right1_left">
-                <div class="detils_right1_left1"><img src="../img/1.png" alt=""/></div>
+                <div class="detils_right1_left1"><img src="img/1.png" alt=""/></div>
                 <div class="detils_right1_left2"><span>待支付</span></div>
             </div>
             <div class="detils_right1_right">
@@ -52,7 +52,6 @@
                     <span>立即付款</span>
                 </div>
             </div>
-
         </div>
 
         <div class="detils_right3">
@@ -103,7 +102,7 @@
                 </div>
                 <div class="detils_right4_middle_2">
                     <div class="detils_right4_middle_2_left">
-                        <span>收货地址：</span>
+                        <span>收货信息：</span>
                     </div>
                     <div class="detils_right4_middle_2_right">
                         <span>iiiiiiiii</span>
@@ -135,15 +134,15 @@
                     <th><span>实付金额</span></th>
                 </tr>
                 <tr align="center">
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                     <td>+</td>
-                    <td><span>1</span></td>
+                    <td><span>￥</span></td>
                 </tr>
             </table>
         </div>
