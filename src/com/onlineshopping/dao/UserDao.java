@@ -62,6 +62,18 @@ public class UserDao {
 		return null;
 	}
 	
+	public boolean updateInfo(User user) {
+		
+		String sql = "update t_user set email = ?, phone = ?, icon = ? where userid = ? ";
+		
+		try {
+			return runner.update(sql, user.getEmail(), user.getPhone(), user.getIcon(), user.getUserid()) > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	
 	
 }

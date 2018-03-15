@@ -54,7 +54,7 @@
             <!-- 购物车功能 -->
             <div class="shopping_cart" >
                 <!-- 目前不进行下拉菜单的开发  class="dropdown-toggle" data-toggle="dropdown" -->
-                <a href="#">
+                <a href="shop_car.jsp">
                     <i class="fa fa-shopping-cart"></i>购物车<span class="badge badge-danger">0</span>
                 </a>
                 <!-- 购物车下拉菜单（可选功能，尽力实现） -->
@@ -70,12 +70,13 @@
             </div>
             <%
             	if(userObject != null) {
+            		User user = (User) userObject;
             %>
             <!-- 登录之后的用户信息显示功能 -->
             <div class="user_info">
                 <img class="icon_pic" src="img/pic_icon.png" alt="">
                 <!--&lt;!&ndash; 目前不进行下拉菜单的开发 class="dropdown-toggle" data-toggle="dropdown" &ndash;&gt;-->
-               	<a href="#">cui<b class="caret" style="margin-left: 10px;"></b></a>
+               	<a href="#"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
                 
             </div>
             <%
@@ -85,11 +86,11 @@
             <div class="list_func">
                 <ul>
                     <li>
-                        <a href="#">注册</a>
+                        <a href="regist.jsp">注册</a>
                     </li>
                     <hr>
                     <li>
-                        <a href="#">登录</a>
+                        <a href="login.jsp">登录</a>
                     </li>
                 </ul>
             </div>
@@ -273,7 +274,6 @@
                 </div>
                 <div class="discount_right">
                     <ul>
-                 
                     	<%
                     	if( discountGoodsList != null) {
                     		for(Goods goods : discountGoodsList) {
