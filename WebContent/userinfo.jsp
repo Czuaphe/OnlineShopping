@@ -8,6 +8,15 @@ String path = request.getContextPath();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+    <script type="text/javascript" src="<%=path%>/js/base/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript">
+        $(function(){
+        	$("#myicon").change(function(){
+        		alert($("#myicon").val());
+        		$("#icon").attr("src",$("#myicon").val());
+        	});
+        });
+    </script> -->
     <style type="text/css">
         body{
             background-color: #EFEFEF;
@@ -176,7 +185,7 @@ String path = request.getContextPath();
         <div class="top_left"><a href="#"><img src="<%=path%>/img/hzp.png"/></a></div>
         <div class="top_center">&nbsp;&nbsp;会员中心</div>
         <div class="top_right">
-            <span style="color:black;">${username}&nbsp;/</span>
+            <span style="color:black;">${requestScope.user.name}&nbsp;/</span>
             <a href="#">退出登录</a>&nbsp;/
             <a href="#">返回首页</a>
         </div>
@@ -189,7 +198,7 @@ String path = request.getContextPath();
             <div class="m">&nbsp;&nbsp;个人信息</div>
             <div class="info" id="info1">
                 <div class="m_left">会员名</div>
-                <div class="m_right">${username}</div>
+                <div class="m_right">${requestScope.user.name}</div>
             </div>
             <div class="info">
                 <div class="m_left">会员类型</div>
@@ -197,26 +206,26 @@ String path = request.getContextPath();
             </div>
             <div class="info">
                 <div class="m_left">登录次数</div>
-                <div class="m_right">${n}</div>
+                <div class="m_right">${requestScope.count}</div>
             </div>
             <div class="info_last">
                 <div class="m_left">最后登录IP</div>
-                <div class="m_right">${IP}</div>
+                <div class="m_right">${requestScope.userLoginLog.ip}</div>
             </div>
             <div style="height:50px;"></div>
             <div class="m">&nbsp;&nbsp;更多资料</div>
             <div class="img">
-                <br/><br/>拖拽文件到这里...
+                <img id="icon" width="219" height="275" src="<%=path%>/img/user/cs50006.png"/>
             </div>
-            <form action="#">
-                <input type="file"/>
+            <form action="<%=path%>/UploadServlet" enctype="multipart/form-data" method="post">
+                <input id="myicon" name="myicon" type="file"/>
                 <div class="list">
                     <div class="list_left">公司传真</div>
-                    <input type="text" placeholder="公司传真"/>
+                    <input type="text" name="cz" value="${requestScope.user.phone }" placeholder="公司传真"/>
                 </div>
                 <div class="list last_list">
                     <div class="list_left">公司网址</div>
-                    <input type="text" placeholder="公司网址"/>
+                    <input type="text" name="wz" value="${requestScope.user.email }" placeholder="公司网址"/>
                 </div>
                 <input type="submit" value="保存资料"/>
             </form>
