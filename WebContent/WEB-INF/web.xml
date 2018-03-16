@@ -41,5 +41,12 @@
     <servlet-name>MyorderServlet</servlet-name>
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+	<servlet-name>MyorderRedatileRecoleServlet</servlet-name>
+	<servlet-class>com.onlineshopping.servlet.MyorderRedatileRecoleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>MyorderRedatileRecoleServlet</servlet-name>
+	<url-pattern>/MyorderRedatileRecoleServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -32,13 +32,12 @@
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
-/* List<Record> list = (List<Record>)request.getAttribute("record"); */
-List<Goods> glist = (List<Goods>)request.getAttribute("good"); 
-/*
-List<RecordDetails> rlist = (List<RecordDetails>)request.getAttribute("recorddetails"); */
-Record record = (Record)request.getAttribute("record");
-RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails");
-/* Goods goods = (Goods)request.getAttribute("good"); */
+List<Record> list = (List<Record>)request.getAttribute("recordslist");
+
+List<RecordDetails> rdlist = (List<RecordDetails>)request.getAttribute("recorddetails");
+/* Record record = (Record)request.getAttribute("record"); */
+/* RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails"); */
+Goods goods = (Goods)request.getAttribute("good");
 %>
 
 </head>
@@ -83,271 +82,214 @@ RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails
 			<div id="myTabContent" class="tab-content">
 				<!--全部有效订单-->
 				<div class="tab-pane fade in active" id="home"></div>
-			</div>
-			<!-- 待支付-->
-			<div class="tab-pane fade" id="ios">
-				<table
-					style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
-					<tr>
-						<td>
-							<div class="myorder_right_down">
-								<div class="myorder_right_down1">
-									<div class="myorder_right_down1_left">
-										<div class="myorder_right_down1_left_top">
-											<span>待支付</span>
+				<!-- 待支付-->
+				<div class="tab-pane fade" id="ios">
+					<table
+						style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
+						<tr>
+							<td>
+								<div class="myorder_right_down">
+									<div class="myorder_right_down1">
+										<div class="myorder_right_down1_left">
+											<div class="myorder_right_down1_left_top">
+												<span>待支付</span>
+											</div>
+											<div class="myorder_right_down1_left_bottom">
+												<table width="460">
+													<tr>
+														<td width="60"><span>订单号:</span></td>
+														<%
+														for(Record record:list){
+														%>
+														<td width="160"><span> <%=record.getRecnum()%>
+														</span></td>
+														<td width="160"><span><%=record.getTime()%></span></td>
+														<td width="60"><span><%=record.getPayway() %></span></td>
+														<%} %>
+													</tr>
+										</table>
+											</div>
 										</div>
-										<div class="myorder_right_down1_left_bottom">
-											<table width="460">
-												<tr>
-													<td width="60"><span>订单号:</span></td>
-													<%-- <%
-									for(Record re:list){
-									%>  --%>
-													<td width="160"><span> <%=record.getRecnum()%>
-													</span></td>
-													<td width="160"><span><%=record.getTime()%></span></td>
-													<td width="60"><span><%=record.getPayway() %></span></td>
-												</tr>
-												<%-- <% 
-								}//提取数据 for循环结束
-								%> --%>
-											</table>
-										</div>
-									</div>
-									<div class="myorder_right_down1_right">
-										<span>订单金额:8787877</span>
-										<%-- <%
-								for(Record re:list){
-								%> --%>
-										<%=record.getTotal()%>
-										<%-- <% 
-								}//提取数据 for循环结束
-								%> --%>
-
-									</div>
-								</div>
-								<div class="myorder_right_down2">
-									<div class="myorder_right_down2_left"
-										style="margin-left: 10px;">
-										<table width="440" valign="center" align="left">
-											<%-- <%
-                                for(Goods good: glist){
-                                	
-                                	%> --%>
-<<<<<<< HEAD
-
-											<tr>
-												<td rowspan="2">
+											<div class="myorder_right_down1_right">
+													<span>订单金额:</span>
+													<%
+													for(Record record:list){
+													%>
+													<%=record.getTotal()%>
+													
+													<%} %>
+														</div>
+														</div>
+													<div class="myorder_right_down2">
+													<div class="myorder_right_down2_left"
+													style="margin-left: 10px;">
+													<table width="440" valign="center" align="left" cellpadding="5">
+																
+					
+													<tr>
+													<td rowspan="2">
 													<%String[] pics = goods.getPicpath().split(","); %> <img
-													src="img/400_400/<%=pics[0] %>"
-													style="width: 60px; height: 60px; margin-top: 15px;" />
+														src="img/400_400/<%=pics[0] %>"
+															style="width: 60px; height: 60px; margin-top: 15px;" />
+					
+																</td>
+																</tr>
+																<tr>
+																<%
+																for(RecordDetails recordDetails:rdlist){
+																%>
+																<td><span><%=goods.getName()%></span><br> <span>
+																￥<%=recordDetails.getBuyprice()%> 元 × <%=recordDetails.getNumbers()%></span></td>
+																<%} %>
+															<td></td>
+														</tr>
+																
+																</table>
+					
+					
+					
+															</div>
+															<div class="myorder_right_down2_right">
+																<div class="myorder_right_down2_right_1">
+																<%
+																for(RecordDetails recordDetails:rdlist){
+																%>
+																	<a
+																		href="MyorderRedatileRecoleServlet?rid=<%=recordDetails.getGid()%>">订单详情</a>
+																<%} %>
+																</div>
+																<div class="myorder_right_down2_right_2">
+																	<a id="pay" href="#">立即付款</a>
+																</div>
+															</div>
+														</div>
+													</div>
 												</td>
 											</tr>
 											<tr>
-												<td><span>
-														<!-- 今天天气比较冷，风力较小 --><%=goods.getName()%></span><br> <span>
-														<!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元
-														× <%=recordDetails.getNumbers() %></span></td>
-												<td></td>
-											</tr>
-											<%-- <%
-=======
-                                	
-                                    <tr>
-                                        <td rowspan="2">
-                                        <%-- <%String[] pics = goods.getPicpath().split(","); %>
-                                        <img src="img/400_400/<%=pics[0] %>" style="width:60px;height:60px;margin-top:15px;"/>
-                                         --%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span><!-- 今天天气比较冷，风力较小 --><%-- <%=goods.getName()%></span><br>
-                                            <span><!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×   <%=recordDetails.getNumbers() %></span>
-                                         --%></td>
-                                        <td></td>
-                                    </tr>
-                               <%-- <%
->>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
-                                }//for循环结束
-                                    %> --%>
-										</table>
-
-
-<<<<<<< HEAD
-
-									</div>
-									<div class="myorder_right_down2_right">
-										<div class="myorder_right_down2_right_1">
-											<a href="#<!-- MyorderListServlet -->">订单详情</a>
-										</div>
-										<div class="myorder_right_down2_right_2">
-											<a id="pay" href="#">立即付款</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<!-- 添加额外商品时 -->
-							<table width="440" valign="center" align="left"
-								style="margin-left: 20px">
-								<%-- <%
-                                for(Goods good: glist ){
-                                	
-                                	%> --%>
-
-								<tr>
-									<td rowspan="2">
-										<%String[] pics1 = goods.getPicpath().split(","); %> <img
-										src="img/400_400/<%=pics1[0] %>"
-										style="width: 60px; height: 60px; margin-top: 15px;" />
-									</td>
-								</tr>
-								<tr>
-									<td><span>
-											<!-- 今天天气比较冷，风力较小 --><%=goods.getName()%></span><br> <span>
-											<!-- 今天天气比较冷，风力较小 -->￥<%=  recordDetails.getBuyprice()%> 元 ×
-											<%=recordDetails.getNumbers() %></span></td>
-									<td></td>
-								</tr>
-								<%-- <%
-                                }//for循环结束
-                                    %> --%>
-							</table>
-						<td>
-					</tr>
-=======
-                            </div>
-                            
-            <!--待收货-->
-            <div class="tab-pane fade" id="java">
-        		 <table  style="border:1px solid red;margin-top: 10px;margin-left:20px;">
-		        <tr>
-		            <td>
-                <div class="myorder_receive">
-                    <div class="myorder_receive_top">
-                        <div class="myorder_receive_top1">
-                            <span>待收货</span>
-                        </div>
-                        <div class="myorder_receive_top2">
-                            <table width="780" align="center">
-                                <tr>
-                                    <td width="80"><span>订单号：</span></td>
-                                    <td>123456789009876543</td>
-                                    <td>在线支付</td>
-                                    <td></td>
-                                    <td width="400"></td>
-                                </tr>
-                            </table>
->>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
-
-				</table>
-
-			</div>
-			<!--待收货-->
-			<div class="tab-pane fade" id="java">
-				<table
-					style="border: 1px solid red; margin-top: 10px; margin-left: 20px;">
-					<tr>
-						<td>
-							<div class="myorder_receive">
-								<div class="myorder_receive_top">
-									<div class="myorder_receive_top1">
-										<span>待收货</span>
-									</div>
-									<div class="myorder_receive_top2">
-										<table width="780" align="center">
-											<tr>
-												<td width="80"><span>订单号：</span></td>
-												<td>123456789009876543</td>
-												<td>在线支付</td>
-												<td></td>
-												<td width="400"></td>
-											</tr>
-										</table>
-
-									</div>
-								</div>
-								<div class="myorder_receive_bottom">
-									<div class="myorder_receive_bottom_left">
-										<table valign="center" align="left">
-											<tr>
-												<td rowspan="2"><img style="width: 100px"
-													src="../img/data.png" alt="" /></td>
-											</tr>
-											<tr>
-												<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
+												<td>
+													<!-- 添加其他商品 -->
+					
+					
 												</td>
-												<td></td>
 											</tr>
+											
 										</table>
-
+										<!-- 添加其它订单  复制table表格 -->
+										
+										
 									</div>
-									<div class="myorder_receive_bottom_right">
-										<div class="myorder_receive_bottom_right1">
-											<span>确认收货</span>
-										</div>
-										<div class="myorder_receive_bottom_right2">
-											<a href="#"> <span>监督催单</span></a>
-										</div>
-									</div>
-								</div>
+							<!--待收货-->
+							<div class="tab-pane fade" id="java">
+								<table
+									style="border: 1px solid red; margin-top: 10px; margin-left: 20px;">
+									<tr>
+										<td>
+											<div class="myorder_receive">
+												<div class="myorder_receive_top">
+													<div class="myorder_receive_top1">
+														<span>待收货</span>
+													</div>
+													<div class="myorder_receive_top2">
+														<table width="780" align="center">
+															<tr>
+																<td width="80"><span>订单号：</span></td>
+																<td>123456789009876543</td>
+																<td>在线支付</td>
+																<td></td>
+																<td width="400"></td>
+															</tr>
+														</table>
+			
+													</div>
+												</div>
+												<div class="myorder_receive_bottom">
+													<div class="myorder_receive_bottom_left">
+														<table valign="center" align="left">
+															<tr>
+																<td rowspan="2"><img style="width: 100px"
+																	src="../img/data.png" alt="" /></td>
+															</tr>
+															<tr>
+																<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
+																</td>
+																<td></td>
+															</tr>
+														</table>
+			
+													</div>
+													<div class="myorder_receive_bottom_right">
+														<div class="myorder_receive_bottom_right1">
+															<span>确认收货</span>
+														</div>
+														<div class="myorder_receive_bottom_right2">
+															<a href="#"> <span>监督催单</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<!-- 添加收货其它订单 -->
+								
 							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<!--已关闭-->
-			<div class="tab-pane fade" id="java1">
-				<table
-					style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
-					<tr>
-						<td>
-							<div class="myorder_receive">
-								<div class="myorder_receive_top">
-									<div class="myorder_receive_top1">
-										<span>已关闭</span>
-									</div>
-									<div class="myorder_receive_top2">
-										<table width="780" align="center">
-											<tr>
-												<td width="80"><span>订单号：</span></td>
-												<td>123456789009876543</td>
-												<td>在线支付</td>
-												<td></td>
-												<td width="400"></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-								<div class="myorder_receive_bottom">
-									<div class="myorder_receive_bottom_left">
-										<table valign="center" align="left">
-											<tr>
-												<td rowspan="2"><img style="width: 100px"
-													src="../img/data.png" alt="" /></td>
-											</tr>
-											<tr>
-												<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
-												</td>
-												<td></td>
-											</tr>
-										</table>
-
-									</div>
-									<div class="myorder_receive_bottom_right">
-										<div class="myorder_receive_bottom_right1">
-											<span><a href="#">确认付款</a></span>
-										</div>
-									</div>
-								</div>
+							<!--已关闭-->
+							<div class="tab-pane fade" id="java1">
+								<table
+									style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
+									<tr>
+										<td>
+											<div class="myorder_receive">
+												<div class="myorder_receive_top">
+													<div class="myorder_receive_top1">
+														<span>已关闭</span>
+													</div>
+													<div class="myorder_receive_top2">
+														<table width="780" align="center">
+															<tr>
+																<td width="80"><span>订单号：</span></td>
+																<% 
+																for(Record record:list){
+																%>
+																<td><%=record.getRid() %></td>
+																<td><%=record.getPayway() %></td>
+																<%} %>
+																<td></td>
+																<td width="400"></td>
+															</tr>
+														</table>
+													</div>
+												</div>
+												<div class="myorder_receive_bottom">
+													<div class="myorder_receive_bottom_left">
+														<table valign="center" align="left">
+															<tr>
+																<td rowspan="2"><img style="width: 100px"
+																	src="../img/data.png" alt="" /></td>
+															</tr>
+															<tr>
+																<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
+																</td>
+																<td></td>
+															</tr>
+														</table>
+			
+													</div>
+													<div class="myorder_receive_bottom_right">
+														<div class="myorder_receive_bottom_right1">
+															<span><a href="#">确认付款</a></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+						</div>
+					</div>
+				</div>
+
 </body>
 </html>
