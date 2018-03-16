@@ -3,6 +3,12 @@
 <%@page import="com.onlineshopping.entity.Goods"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    System.out.println(basePath);
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,7 +220,8 @@
                 <%=goods != null ? goods.getName() : "没有名字数据" %>
             </h1>
             <div style="padding: 30px 20px;background-color: #fafafa">
-                <span style="color: red;font-size: 32px">￥<%=goods != null ? goods.getPrice() * goods.getDiscount() : 0 %>元</span>
+
+                <span style="color: red;font-size: 32px">￥<%=String.format("%.2f", goods != null ? goods.getPrice() * goods.getDiscount() : 0) %>元</span>
                 <span style="font-size: 20px;margin-left: 20px">原价：<del style="">￥ <%=goods != null ? goods.getPrice() : 0 %> 元</del></span>
             </div>
             <div style="margin-top: 20px;height: 60px;">

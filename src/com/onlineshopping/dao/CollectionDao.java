@@ -36,4 +36,15 @@ public class CollectionDao {
     		
 		}, uid);
     }
+	
+	public boolean deleteCollectGoods(int cid) {
+		int result=0;
+		String sql="delete from t_user_collect_goods where cid=?";
+		try {
+			result = runner.update(sql, cid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result>0;
+	}
 }

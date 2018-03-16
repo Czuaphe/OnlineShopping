@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -44,9 +45,35 @@ public class UserDao {
 				,user.getStatus()
 				);
 		return nums > 0;
-		
+	}
+
+	/**
+	 * 通过ID得到一个用户
+	 * @param userid
+	 * @return
+	 */
+	public User queryByUserID(int userid) {
+		String sql = "select * from t_user where userid = ?";
+		try {
+			return runner.query(sql, new BeanHandler<>(User.class), userid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
+	public boolean updateInfo(User user) {
+		
+		String sql = "update t_user set email = ?, phone = ?, icon = ? where userid = ? ";
+		
+		try {
+			return runner.update(sql, user.getEmail(), user.getPhone(), user.getIcon(), user.getUserid()) > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	
 	
 }

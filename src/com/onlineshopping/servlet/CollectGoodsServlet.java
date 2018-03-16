@@ -34,41 +34,41 @@ public class CollectGoodsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
 
-	    System.out.println("收到ajax请求");
+        String responseStr = "Failure";
+		
+	    System.out.println("收到收藏商品的ajax请求");
 
 	    String gid = request.getParameter("gid");
 
-	    if (gid == null) {
-	        System.out.print("没有得到参数gid的值！");
-        } else {
-	        System.out.println("得到的gid值为" + gid);
-        }
-
-
-
-        User user = (User) session.getAttribute("user");
-
-        String responseStr = "Failure";
-
-        if (user == null) {
+	    if (user == null){
             System.out.println("用户没有登录");
             responseStr = "NotLogin";
-        } else {
-            // 登录之后，收藏商品
-        	try {
-				boolean b = new UserCollectGoodsDao().collectGoods(user.getUserid(), Integer.parseInt(gid));
-				if (b) {
-					// 收藏成功，返回成功标志
-		            responseStr = "Success";
-				}
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
+        }
+	    
+	    else if (gid == null) {
+	        System.out.print("没有得到参数gid的值！收藏失败！");
+	        responseStr = "NotParameter";
+        } 
+	    
+        else {
+
+			UserCollectGoodsDao userCollectGoodsDao = new UserCollectGoodsDao();
+
+			// 切换商品的收藏状态
+			if (userCollectGoodsDao.isCollectGoods(user.getUserid(), Integer.parseInt(gid))) {
+				userCollectGoodsDao.deleteCollectGoods(user.getUserid(), Integer.parseInt(gid));
+				// 成功取消收藏
+				responseStr = "SuccessUnCollect";
+			} else {
+				userCollectGoodsDao.collectGoods(user.getUserid(), Integer.parseInt(gid));
+				// 成功收藏
+				responseStr = "Success";
 			}
             
         }
+		System.out.println("response String: " + responseStr);
 
 		response.getWriter().write(responseStr);
 		
