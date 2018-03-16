@@ -38,11 +38,11 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		
-		//接收参数 rid 
+		/*//接收参数 rid 
 		String srid = request.getParameter("rid");
 		Integer rid = Integer.parseInt(srid);
-		out.println(rid);
-		//int rid = 1;
+		out.println(rid);*/
+		int rid = 1;
 		try {
 			//订单记录详情
 			MyorderRecordDao myorderRecordDao = new MyorderRecordDao();

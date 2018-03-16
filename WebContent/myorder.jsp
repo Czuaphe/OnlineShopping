@@ -155,7 +155,7 @@ Goods goods = (Goods)request.getAttribute("good");
 																for(RecordDetails recordDetails:rdlist){
 																%>
 																	<a
-																		href="MyorderRedatileRecoleServlet?rid=<%=recordDetails.getGid()%>">订单详情</a>
+																		href="<!-- MyorderRedatileRecoleServlet?rid= --><%=recordDetails.getGid()%>">订单详情</a>
 																<%} %>
 																</div>
 																<div class="myorder_right_down2_right_2">
