@@ -2,6 +2,7 @@ package com.onlineshopping.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,9 @@ import java.io.File;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.onlineshopping.dao.UserDao;
+import com.onlineshopping.entity.User;
 
 public class UploadServlet extends HttpServlet {
 	/**
@@ -50,6 +54,14 @@ public class UploadServlet extends HttpServlet {
         				if(fileName!=null&&!"".equals(fileName)){
         					File fullFile=new File(fileName);
         					uploadFileName=fullFile.getName();
+        					
+        					int length=uploadFileName.length();
+        			        if(length>20) {
+        			        	int m=length-20;
+        			        	uploadFileName=uploadFileName.substring(m);
+        			        }
+        					
+        					
         					File saveFile=new File(uploadFilePath,uploadFileName);
         					item.write(saveFile);
         				}
@@ -59,5 +71,19 @@ public class UploadServlet extends HttpServlet {
         		e.printStackTrace();
         	}
         }
+        //int userid=Integer.parseInt((String)request.getSession().getAttribute("userid"));
+        User user=new User();
+        user.setUserid(100);
+        user.setPhone(cz);
+        user.setEmail(wz);
+        user.setIcon(uploadFileName);
+        UserDao dao=new UserDao();
+        dao.updateInfo(user);
+        AccountServlet servlet=new AccountServlet();
+        try {
+			servlet.doGet(request, resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 	}
 }

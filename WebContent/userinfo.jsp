@@ -151,6 +151,7 @@ String path = request.getContextPath();
             width:545px;
             height:42px;
             padding-left: 11px;
+            margin-top:25px;
             font-size: 14px;
         }
         .last_list{
@@ -215,16 +216,16 @@ String path = request.getContextPath();
             <div style="height:50px;"></div>
             <div class="m">&nbsp;&nbsp;更多资料</div>
             <div class="img">
-                <img id="icon" width="219" height="275" src="<%=path%>/img/user/cs50006.png"/>
+                <img id="icon" width="219" height="275" src="<%=path%>/img/user/${requestScope.user.icon }"/>
             </div>
             <form action="<%=path%>/UploadServlet" enctype="multipart/form-data" method="post">
                 <input id="myicon" name="myicon" type="file"/>
                 <div class="list">
-                    <div class="list_left">公司传真</div>
+                    <div class="list_left">电话</div>
                     <input type="text" name="cz" value="${requestScope.user.phone }" placeholder="公司传真"/>
                 </div>
                 <div class="list last_list">
-                    <div class="list_left">公司网址</div>
+                    <div class="list_left">邮箱</div>
                     <input type="text" name="wz" value="${requestScope.user.email }" placeholder="公司网址"/>
                 </div>
                 <input type="submit" value="保存资料"/>
