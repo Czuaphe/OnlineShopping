@@ -129,16 +129,16 @@
         <div class="swiper-container lunbo_container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-1.jpg" alt="">
+                    <img src="img/lunbo-1.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-2.jpg" alt="">
+                    <img src="img/lunbo-2.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-3.jpg" alt="">
+                    <img src="img/lunbo-3.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-4.jpg" alt="">
+                    <img src="img/lunbo-4.jpg" alt="">
                 </div>
             </div>
             <div class="swiper-pagination"></div>

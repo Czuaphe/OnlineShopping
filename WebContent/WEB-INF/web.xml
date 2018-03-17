@@ -42,15 +42,18 @@
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
 
- <!--  <servlet>
+
+<servlet>
 	<servlet-name>MyorderRedatileRecoleServlet</servlet-name>
 	<servlet-class>com.onlineshopping.servlet.MyorderRedatileRecoleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
 	<servlet-name>MyorderRedatileRecoleServlet</servlet-name>
 	<url-pattern>/MyorderRedatileRecoleServlet</url-pattern>
-</servlet-mapping> -->
+</servlet-mapping>
   
+
+
   <servlet>
     <servlet-name>AccountServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.AccountServlet</servlet-class>
@@ -59,7 +62,6 @@
     <servlet-name>AccountServlet</servlet-name>
     <url-pattern>/AccountServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.UploadServlet</servlet-class>
@@ -67,5 +69,9 @@
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/UploadServlet</url-pattern>
+<<<<<<< HEAD
   </servlet-mapping>
+=======
+  </servlet-mapping>
+>>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
 </web-app>
