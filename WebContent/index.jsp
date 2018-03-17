@@ -74,9 +74,9 @@
             %>
             <!-- 登录之后的用户信息显示功能 -->
             <div class="user_info">
-                <img class="icon_pic" src="img/pic_icon.png" alt="">
+                <img class="icon_pic" src="img/user/<%=user.getIcon() %>" alt="">
                 <!--&lt;!&ndash; 目前不进行下拉菜单的开发 class="dropdown-toggle" data-toggle="dropdown" &ndash;&gt;-->
-               	<a href="#"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
+               	<a href="AccountServlet"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
                 
             </div>
             <%

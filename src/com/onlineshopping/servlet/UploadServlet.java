@@ -45,7 +45,7 @@ public class UploadServlet extends HttpServlet {
         			FileItem item=(FileItem)iter.next();
         			if(item.isFormField()){
         				fieldName=item.getFieldName();
-        				System.out.println("fieldName��ֵΪ"+fieldName);
+        				System.out.println("fileName"+fieldName);
         				if("cz".equals(fieldName)){
         					cz=item.getString("utf-8");
         				}else if("wz".equals(fieldName)) {
@@ -53,7 +53,8 @@ public class UploadServlet extends HttpServlet {
         				}
         			}else{
         				String fileName=item.getName();
-        				System.out.println("fileName��ֵΪ"+fileName);
+        				System.out.println("fileName"+fileName);
+
         				if(fileName!=null&&!"".equals(fileName)){
         					File fullFile=new File(fileName);
         					uploadFileName=fullFile.getName();
@@ -66,6 +67,7 @@ public class UploadServlet extends HttpServlet {
         					
         					
         					File saveFile=new File(uploadFilePath,uploadFileName);
+        					System.out.println(saveFile.getAbsolutePath());
         					item.write(saveFile);
         				}
         			}
@@ -74,14 +76,16 @@ public class UploadServlet extends HttpServlet {
         		e.printStackTrace();
         	}
         }
-        //int userid=Integer.parseInt((String)request.getSession().getAttribute("userid"));
-        User user=new User();
-        user.setUserid(100);
+        User user = (User) request.getSession().getAttribute("user");
         user.setPhone(cz);
         user.setEmail(wz);
         user.setIcon(uploadFileName);
         UserDao dao=new UserDao();
-        dao.updateInfo(user);
+        if("".equals(uploadFileName)) {
+        	dao.updateInfoWithoutIcon(user);
+        }else {
+        	dao.updateInfo(user);
+        }
         AccountServlet servlet=new AccountServlet();
         try {
 			servlet.doGet(request, resp);

@@ -7,7 +7,7 @@ String path = request.getContextPath();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>会员中心-化妆品商城</title>
     <script type="text/javascript" src="<%=path%>/js/base/jquery-3.2.1.min.js"></script>
     <!-- <script type="text/javascript">
         $(function(){
@@ -18,168 +18,203 @@ String path = request.getContextPath();
         });
     </script> -->
     <style type="text/css">
-        body{
-            background-color: #EFEFEF;
-        }
-        *{
-            margin:0 auto;
-            padding:0;
-        }
-        .top{
-            width:100%;
-            height:100px;
-            background-color: white;
-        }
-        .top_left{
-            margin-left: 100px;
-            padding-top: 27px;
-            float: left;
-        }
-        .top_center{
-            height:24px;
-            margin-left: 15px;
-            margin-top: 40px;
-            border-left: 2px solid #DDDFE6;
-            float: left;
-            font-size: 22px;
-            font-family: "微软雅黑";
-            color:black;
-        }
-        .top_right{
-            width:225px;
-            padding-right: 110px;
-            height:100px;
-            line-height: 110px;
-            float: right;
-            font-size: 13px;
-            font-family: "微软雅黑";
-        }
-        .top_right a{
-            color:#337AB7;
-            text-decoration: none;
-        }
-        .top_right a:hover{
-            text-decoration:underline;
-        }
-        .middle{
-            width:100%;
-            height:1098px;
-        }
-        .litter{
-            width:222px;
-            height:41px;
-            padding:20px 15px;
-            margin-left: 125px;
-            margin-top:31px;
-            background-color: white;
-            float: left;
-        }
-        .litter a{
-            display: block;
-            text-decoration: none;
-            width:222px;
-            height:41px;
-            line-height: 41px;
-            color:white;
-            background-color: #337AB7;
-        }
-        .middle_main{
-            width: 819px;
-            height:1005px;
-            margin-top:31px;
-            margin-left: 15px;
-            padding:16px;
-            background-color: white;
-            float: left;
-        }
-        .m{
-            width:819px;
-            height:42px;
-            line-height: 42px;
-            background-color: #F5F5F5;
-            border-bottom: 1px solid #DDDDDD;
-        }
-        .info{
-            width:784px;
-            height:50px;
-            padding-left: 35px;
-            line-height: 50px;
-            border-bottom: 1px solid #DDDDDD;
-        }
-        #info1{
-            padding-top: 19px;
-        }
-        .info_last{
-            width:784px;
-            height:50px;
-            padding-left: 35px;
-            line-height: 50px;
-        }
-        .m_left{
-            float: left;
-            width:195px;
-        }
-        .m_right{
-            float:left;
-        }
-        .img{
-            width:219px;
-            height:275px;
-            border:1px solid #DDDDDD;
-            margin-top: 40px;
-            margin-left: 228px;
-            font-size: 32px;
-            line-height: 44px;
-            text-align: center;
-        }
-        input[type="file"]{
-            margin-left: 228px;
-            margin-top:5px;
-            margin-bottom: 15px;
-        }
-        .list{
-            height:94px;
-            border-top: 1px solid #DDDDDD;
-            line-height: 94px;
-        }
-        .list_left{
-            padding-left: 21px;
-            float:left;
-            width:206px;
-        }
-        input[type="text"]{
-            width:545px;
-            height:42px;
-            padding-left: 11px;
-            margin-top:25px;
-            font-size: 14px;
-        }
-        .last_list{
-            border-bottom: 1px solid #DDDDDD;
-        }
-        input[type="submit"]{
-            width:81px;
-            height:33px;
+body {
+	background-color: #EFEFEF;
+}
 
-            margin-left: 228px;
-            margin-top: 25px;
-            background-color: #337AB7;
-            border:1px solid #2E6DA4;
-            color:white;
-        }
-        input[type="submit"]:hover{
-            background-color: #2E6DA4;
-        }
-        .bottom{
-            width:100%;
-            height:91px;
-            background-color: white;
-            line-height: 91px;
-            text-align: center;
-            font-size: 14px;
-            color:#777777;
-        }
-    </style>
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+.top {
+	width: 100%;
+	height: 100px;
+	background-color: white;
+}
+
+.top_left {
+	margin-left: 100px;
+	padding-top: 27px;
+	float: left;
+}
+
+.top_center {
+	height: 24px;
+	margin-left: 15px;
+	margin-top: 40px;
+	border-left: 2px solid #DDDFE6;
+	float: left;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	color: black;
+}
+
+.top_right {
+	width: 225px;
+	padding-right: 110px;
+	height: 100px;
+	line-height: 110px;
+	float: right;
+	font-size: 13px;
+	font-family: "微软雅黑";
+}
+
+.top_right a {
+	color: #337AB7;
+	text-decoration: none;
+}
+
+.top_right a:hover {
+	text-decoration: underline;
+}
+
+.middle {
+	width: 100%;
+	height: 1098px;
+}
+
+.add_left {
+	width: 265px;
+	height: 402px;
+	margin-left: 91px;
+	margin-top: 30px;
+	background-color: white;
+	float: left;
+	border-radius: 4px;
+	line-height: 45px;
+}
+
+table {
+	padding-top: 13px;
+	padding-left: 60px;
+}
+
+table a {
+	text-decoration: none;
+	color: #76838F;
+	font-size: 14px;
+}
+
+table a:hover {
+	color: black;
+}
+
+#a {
+	color: #93A8EB;
+}
+
+.middle_main {
+	width: 819px;
+	height: 1005px;
+	margin-top: 31px;
+	margin-left: 15px;
+	padding: 16px;
+	background-color: white;
+	float: left;
+}
+
+.m {
+	width: 819px;
+	height: 42px;
+	line-height: 42px;
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.info {
+	width: 784px;
+	height: 50px;
+	padding-left: 35px;
+	line-height: 50px;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#info1 {
+	padding-top: 19px;
+}
+
+.info_last {
+	width: 784px;
+	height: 50px;
+	padding-left: 35px;
+	line-height: 50px;
+}
+
+.m_left {
+	float: left;
+	width: 195px;
+}
+
+.m_right {
+	float: left;
+}
+
+.img {
+	width: 219px;
+	height: 275px;
+	border: 1px solid #DDDDDD;
+	margin-top: 40px;
+	margin-left: 228px;
+	font-size: 32px;
+	line-height: 44px;
+	text-align: center;
+}
+
+input[type="file"] {
+	margin-left: 228px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.list {
+	height: 94px;
+	border-top: 1px solid #DDDDDD;
+	line-height: 94px;
+}
+
+.list_left {
+	padding-left: 21px;
+	float: left;
+	width: 206px;
+}
+
+input[type="text"] {
+	width: 545px;
+	height: 42px;
+	padding-left: 11px;
+	margin-top: 25px;
+	font-size: 14px;
+}
+
+.last_list {
+	border-bottom: 1px solid #DDDDDD;
+}
+
+input[type="submit"] {
+	width: 81px;
+	height: 33px;
+	margin-left: 228px;
+	margin-top: 25px;
+	background-color: #337AB7;
+	border: 1px solid #2E6DA4;
+	color: white;
+}
+
+input[type="submit"]:hover {
+	background-color: #2E6DA4;
+}
+
+.bottom {
+	width: 100%;
+	height: 91px;
+	background-color: white;
+	line-height: 91px;
+	text-align: center;
+	font-size: 14px;
+	color: #777777;
+}
+</style>
 </head>
 <body>
     <div class="top">
@@ -187,14 +222,45 @@ String path = request.getContextPath();
         <div class="top_center">&nbsp;&nbsp;会员中心</div>
         <div class="top_right">
             <span style="color:black;">${requestScope.user.name}&nbsp;/</span>
-            <a href="#">退出登录</a>&nbsp;/
+            <a href="<%=path%>/LogoutServlet">退出登录</a>&nbsp;/
             <a href="#">返回首页</a>
         </div>
     </div>
     <div class="middle">
-        <div class="litter">
-            <a href="#">&nbsp;&nbsp;个人信息</a>
-        </div>
+        
+        
+        <div style="height:1px;"></div>
+    <div class="add_left">
+        <table width="140" border="0" cellpadding="0" cellspacing="0" align="left">
+            <tr align="left">
+                <th>订单中心</th>
+            </tr>
+            <tr>
+                <td><a id="a" href="<%=path%>/AccountServlet">个人中心</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">我的订单</a></td>
+            </tr>
+            <tr>
+                <td><a href="<%=path%>/CollectionServlet">我的收藏</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">我的优惠券</a></td>
+            </tr>
+            <tr>
+                <td><a href="<%=path%>/AddressServlet">收货地址</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">消费明细</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">账户设置</a></td>
+            </tr>
+        </table>
+    </div>
+
+
+
         <div class="middle_main">
             <div class="m">&nbsp;&nbsp;个人信息</div>
             <div class="info" id="info1">
