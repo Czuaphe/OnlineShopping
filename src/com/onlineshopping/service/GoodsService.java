@@ -66,13 +66,8 @@ public class GoodsService {
 	 * @return 返回是否已经收藏
 	 */
 	public boolean isCollectGoods(int userid, int gid) {
-		
-		try {
-			return userCollectGoodsDao.isCollectGoods(userid, gid);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
+
+		return userCollectGoodsDao.isCollectGoods(userid, gid);
+
 	}
 }

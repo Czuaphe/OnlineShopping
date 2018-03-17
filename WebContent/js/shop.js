@@ -64,40 +64,39 @@ $(document).ready(function(){
         $("#showNum").val(parseInt(num) + 1);
     });
     
+    var basePath = $("#basePath").val();
     
     // 对收藏事件进行处理
     $("#addCollect").click(function () {
     	// 得到要收藏的商品的gid
         var gid = $("#gid").val();
-        // 得到此商品是否已经收藏过了
-        var isCollect = $("#isCollect").val();
-        
-    	if(isCollect == "true") {
-    		alert("商品已经收藏！");
-    	} else {
-    		$.ajax({
-                url:"/OnlineShopping/CollectGoodsServlet",
-                dataType:"html",
-                data:{
-                    "gid": gid
-                },
-                success: function (data,textStatus,jqXHR) {
+//        alert(gid);
+        $.ajax({
+            url:basePath + "CollectGoodsServlet",
+            dataType:"html",
+            data:{
+                "gid": gid
+            },
+            success: function (data,textStatus,jqXHR) {
 
-                    if (data == "NotLogin") {
-                        alert("没有登录，请登录后进行收藏！");
-                    }
-                    if (data == "Success") {
-                        alert("收藏成功");
-                        //window.location.reload();
-                        $("#isCollect").val("true");
-                        $("#addCollect").css("color", "#F32184");
-                    }
-                    if (data == "Failure") {
-                    	alert("收藏失败，请稍后重试！");
-                    }
+                if (data == "NotLogin") {
+                    alert("没有登录，请登录后进行收藏！");
                 }
-            });
-    	}
+                if (data == "Success") {
+                    alert("收藏成功");
+                    //window.location.reload();
+
+                    $("#addCollect").css("color", "#F32184");
+                }
+                if (data == "SuccessUnCollect") {
+                    alert("取消收藏成功");
+                    $("#addCollect").css("color", "#ffffff");
+                }
+                if (data == "Failure") {
+                    alert("收藏失败，请稍后重试！");
+                }
+            }
+        });
     });
     
     // 对添加商品到购物车的事件进行处理
@@ -106,7 +105,7 @@ $(document).ready(function(){
     	var gid = $("#gid").val();
     	// 添加到session中
     	$.ajax({
-            url:"/OnlineShopping/AddShoppingCartServlet",
+            url: basePath + "AddShoppingCartServlet",
             dataType:"html",
             data:{
                 "gid": gid
@@ -130,7 +129,7 @@ $(document).ready(function(){
     function changeShoppingCartCount() {
     	// 修改网页中的数据
     	$.ajax({
-    		url:"/OnlineShopping/GetShoppingCartCount",
+    		url: basePath + "GetShoppingCartCount",
             dataType:"html",
             success: function (data,textStatus,jqXHR) {
             	console.log('data' + data);
