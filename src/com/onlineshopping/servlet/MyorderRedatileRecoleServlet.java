@@ -30,45 +30,53 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
+		PrintWriter out = response.getWriter();
+
 		
-		/*//接收参数 rid 
-		String srid = request.getParameter("rid");
-		Integer rid = Integer.parseInt(srid);
-		out.println(rid);*/
-		int rid = 1;
+		 //接收参数 rid 
+		String srid = request.getParameter("drid"); 
+		if (srid != null) {
+		int rids;
 		try {
-			//订单记录详情
-			MyorderRecordDao myorderRecordDao = new MyorderRecordDao();
-			List<RecordDetails>  recordDetails = myorderRecordDao.reDtaislId(rid);
-			request.setAttribute("recordDetails", recordDetails);
-			List<Integer> gidlist = new ArrayList<>();
-			for (RecordDetails recordDetail : recordDetails) {
-				gidlist.add(recordDetail.getGid());
-				
-			}
-			System.out.println(recordDetails.size());
-			for (Integer integer : gidlist) {
-				int  gidAll = integer.intValue();
-				System.out.println(gidAll);
-				if(gidAll!=0) {
-				//通过商品号得到订单中商品的详细信息
-				GoodsDao goodsDao = new GoodsDao();
-				Goods goods = goodsDao.getGoodsByGid(gidAll);
-				request.setAttribute("good", goods);
-				System.out.println(goods.toString());
+			rids = Integer.parseInt(srid.trim()); 
+			 out.println(rids);
+		
+		//int rid = 1;
+		if (rids != 0) {
+			
+				// 订单记录详情
+				MyorderRecordDao myorderRecordDao = new MyorderRecordDao();
+				List<RecordDetails> recordDetails = myorderRecordDao.reDtaislId(rids);
+				request.setAttribute("recordDetails", recordDetails);
+				List<Integer> gidlist = new ArrayList<>();
+				for (RecordDetails recordDetail : recordDetails) {
+					gidlist.add(recordDetail.getGid());
+
+				}
+				System.out.println(recordDetails.size());
+				for (Integer integer : gidlist) {
+					int gidAll = integer.intValue();
+					System.out.println(gidAll);
+					if (gidAll != 0) {
+						// 通过商品号得到订单中商品的详细信息
+						GoodsDao goodsDao = new GoodsDao();
+						Goods goods = goodsDao.getGoodsByGid(gidAll);
+						request.setAttribute("good", goods);
+						System.out.println(goods.toString());
 					}
-			}
-				//订单记录
-				Record records = myorderRecordDao.recordsOne(rid);
+				}
+				// 订单记录
+				Record records = myorderRecordDao.recordsOne(rids);
 				request.setAttribute("records", records);
-				//获取  地址     id
+				// 获取 地址 id
 				int uaid = records.getAddscore();
 				System.out.println(uaid);
 				UserAddressDao userAddressDao = new UserAddressDao();
@@ -77,18 +85,24 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 				System.out.println(address);
 				request.getRequestDispatcher("myorderlistDetails.jsp").forward(request, response);
 				return;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
-	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}catch (NumberFormatException e1) {
+				e1.printStackTrace();
+			}
+		
+		}
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@SuppressWarnings("unchecked")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

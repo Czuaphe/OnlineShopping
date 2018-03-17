@@ -8,5 +8,6 @@
 </head>
 <body>
 <a href="MyorderServlet">我的订单中心</a>
+<!-- <a href="MyorderRedatileRecoleServlet">订单详情</a> -->
 </body>
 </html>

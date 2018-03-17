@@ -23,7 +23,8 @@
 <!-- 框架所需JS文件 -->
 <script src="./js/base/jquery-3.2.1.min.js"></script>
 <script src="./js/base/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 <%
 List<RecordDetails> recordDetails = (List<RecordDetails>)request.getAttribute("recordDetails");
 Goods goods = (Goods)request.getAttribute("good");
@@ -70,45 +71,51 @@ Record record = (Record)request.getAttribute("records");
 			</div>
 
 			<div class="detils_right3">
-				
-				
-				<table  style="text-align: center;margin-top: 20px" width="760" cellpadding="10" align="center" >
-				
-				 <tr>
-                    <th style="text-align: center;border-bottom: 1px solid #cecece;" width="120">商品名称</th>
-                    <th style="border-bottom: 1px solid #cecece;"></th>
-                    <th style="text-align: center;border-bottom: 1px solid #cecece;">单价</th>
-                    <th style="text-align: center;border-bottom: 1px solid #cecece;" width="80">数量</th>
-                    <th style="text-align: center;border-bottom: 1px solid #cecece;" width="80">运费</th>
-                    <th style="text-align: center;border-bottom: 1px solid #cecece;" width="150">小计</th>
-                </tr>
-                
-                 <tr>
-                    <td style="margin-top: 10px"><%String[] pics = goods.getPicpath().split(","); %> 
-                    <img
-					src="img/400_400/<%=pics[0] %>"
-					style="width: 60px; height: 60px; margin-top: 15px;" /></td>
-                    <td style="margin-top: 10px"><%=goods.getName() %></td>
-                    <%
+
+
+				<table style="text-align: center; margin-top: 20px" width="760"
+					cellpadding="10" align="center">
+
+					<tr>
+						<th style="text-align: center; border-bottom: 1px solid #cecece;"
+							width="120">商品名称</th>
+						<th style="border-bottom: 1px solid #cecece;"></th>
+						<th style="text-align: center; border-bottom: 1px solid #cecece;">单价</th>
+						<th style="text-align: center; border-bottom: 1px solid #cecece;"
+							width="80">数量</th>
+						<th style="text-align: center; border-bottom: 1px solid #cecece;"
+							width="80">运费</th>
+						<th style="text-align: center; border-bottom: 1px solid #cecece;"
+							width="150">小计</th>
+					</tr>
+
+					<tr>
+						<td style="margin-top: 10px">
+							<%String[] pics = goods.getPicpath().split(","); %> <img
+							src="img/400_400/<%=pics[0] %>"
+							style="width: 60px; height: 60px; margin-top: 15px;" />
+						</td>
+						<td style="margin-top: 10px"><%=goods.getName() %></td>
+						<%
                     double price = goods.getDiscount()*goods.getDiscount();
                     %>
-                    <td style="margin-top: 10px"><%=price%></td>
-                    <%
+						<td style="margin-top: 10px"><%=price%></td>
+						<%
                     for(RecordDetails re:recordDetails){
                     	double total = price*re.getNumbers()+record.getFreight();
                     %>
-                    <td style="margin-top: 10px"><%=re.getNumbers() %></td>
-                    <td style="margin-top: 10px"><%=record.getFreight() %></td>
-                    <td style="margin-top: 10px"><%=total %></td>
-                    <%} %>
-                </tr>
-                 
-                
-                
-                 
+						<td style="margin-top: 10px"><%=re.getNumbers() %></td>
+						<td style="margin-top: 10px"><%=record.getFreight() %></td>
+						<td style="margin-top: 10px"><%=total %></td>
+						<%} %>
+					</tr>
+
+
+
+
 				</table>
-				
-				
+
+
 			</div>
 			<div class="detils_right4">
 				<div class="detils_right4_top">
@@ -143,15 +150,15 @@ Record record = (Record)request.getAttribute("records");
 							<span>收货信息：</span>
 						</div>
 						<div class="detils_right4_middle_2_right">
-							<table width="560"  cellpadding="10">
-							    <tr>
-							        <td style="text-align: left"><%=addresses.getName() %></td>
-							        <td style="text-align: left"><%=addresses.getPhone() %></td>
-							        <td style="text-align: left"><%=addresses.getProvince() %></td>
-							        <td style="text-align: left"><%=addresses.getCity() %></td>
-							        <td style="text-align: left"><%=addresses.getDetails() %></td>
-							        <td style="text-align: left"></td>
-							    </tr>
+							<table width="560" cellpadding="10">
+								<tr>
+									<td style="text-align: left"><%=addresses.getName() %></td>
+									<td style="text-align: left"><%=addresses.getPhone() %></td>
+									<td style="text-align: left"><%=addresses.getProvince() %></td>
+									<td style="text-align: left"><%=addresses.getCity() %></td>
+									<td style="text-align: left"><%=addresses.getDetails() %></td>
+									<td style="text-align: left"></td>
+								</tr>
 							</table>
 						</div>
 					</div>

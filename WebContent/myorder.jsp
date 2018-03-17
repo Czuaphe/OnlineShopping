@@ -1,7 +1,7 @@
+<%@page import="java.util.List"%>
 <%@page import="com.onlineshopping.entity.RecordDetails"%>
 <%@page import="com.onlineshopping.entity.Record"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="java.util.List"%>
 <%@page import="com.onlineshopping.entity.Goods"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,12 +32,12 @@
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
-List<Record> list = (List<Record>)request.getAttribute("recordslist");
+	List<Record> list = (List<Record>) request.getAttribute("record");
 
-List<RecordDetails> rdlist = (List<RecordDetails>)request.getAttribute("recorddetails");
-/* Record record = (Record)request.getAttribute("record"); */
-/* RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails"); */
-Goods goods = (Goods)request.getAttribute("good");
+	List<RecordDetails> rdlist = (List<RecordDetails>) request.getAttribute("recorddetails");
+	/* Record record = (Record)request.getAttribute("record"); */
+	/* RecordDetails recordDetails = (RecordDetails)request.getAttribute("recorddetails"); */
+	Goods goods = (Goods) request.getAttribute("good");
 %>
 
 </head>
@@ -96,200 +96,203 @@ Goods goods = (Goods)request.getAttribute("good");
 											</div>
 											<div class="myorder_right_down1_left_bottom">
 												<table width="460">
+													<%
+														for (Record record : list) {
+													%>
 													<tr>
 														<td width="60"><span>订单号:</span></td>
-														<%
-														for(Record record:list){
-														%>
-														<td width="160"><span> <%=record.getRecnum()%>
+
+														<td width="160"><span><%=record.getRecnum()%>
 														</span></td>
 														<td width="160"><span><%=record.getTime()%></span></td>
-														<td width="60"><span><%=record.getPayway() %></span></td>
-														<%} %>
+														<td width="60"><span><%=record.getPayway()%></span></td>
 													</tr>
-										</table>
+
+												</table>
 											</div>
 										</div>
-											<div class="myorder_right_down1_right">
-													<span>订单金额:</span>
-													<%
-													for(Record record:list){
-													%>
-													<%=record.getTotal()%>
-													
-													<%} %>
-														</div>
-														</div>
-													<div class="myorder_right_down2">
-													<div class="myorder_right_down2_left"
-													style="margin-left: 10px;">
-													<table width="440" valign="center" align="left" cellpadding="5">
-																
-					
-													<tr>
-													<td rowspan="2">
-													<%String[] pics = goods.getPicpath().split(","); %> <img
-														src="img/400_400/<%=pics[0] %>"
-															style="width: 60px; height: 60px; margin-top: 15px;" />
-					
-																</td>
-																</tr>
-																<tr>
-																<%
-																for(RecordDetails recordDetails:rdlist){
-																%>
-																<td><span><%=goods.getName()%></span><br> <span>
-																￥<%=recordDetails.getBuyprice()%> 元 × <%=recordDetails.getNumbers()%></span></td>
-																<%} %>
-															<td></td>
-														</tr>
-																
-																</table>
-					
-					
-					
-															</div>
-															<div class="myorder_right_down2_right">
-																<div class="myorder_right_down2_right_1">
-																<%
-																for(RecordDetails recordDetails:rdlist){
-																%>
-																	<a
-																		href="<!-- MyorderRedatileRecoleServlet?rid= --><%=recordDetails.getGid()%>">订单详情</a>
-																<%} %>
-																</div>
-																<div class="myorder_right_down2_right_2">
-																	<a id="pay" href="#">立即付款</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<!-- 添加其他商品 -->
-					
-					
-												</td>
-											</tr>
-											
-										</table>
-										<!-- 添加其它订单  复制table表格 -->
-										
-										
+										<div class="myorder_right_down1_right">
+											<span>订单金额:</span>
+
+											<%=record.getTotal()%>
+
+											<%
+												}
+											%>
+										</div>
 									</div>
-							<!--待收货-->
-							<div class="tab-pane fade" id="java">
-								<table
-									style="border: 1px solid red; margin-top: 10px; margin-left: 20px;">
-									<tr>
-										<td>
-											<div class="myorder_receive">
-												<div class="myorder_receive_top">
-													<div class="myorder_receive_top1">
-														<span>待收货</span>
-													</div>
-													<div class="myorder_receive_top2">
-														<table width="780" align="center">
-															<tr>
-																<td width="80"><span>订单号：</span></td>
-																<td>123456789009876543</td>
-																<td>在线支付</td>
-																<td></td>
-																<td width="400"></td>
-															</tr>
-														</table>
-			
-													</div>
-												</div>
-												<div class="myorder_receive_bottom">
-													<div class="myorder_receive_bottom_left">
-														<table valign="center" align="left">
-															<tr>
-																<td rowspan="2"><img style="width: 100px"
-																	src="../img/data.png" alt="" /></td>
-															</tr>
-															<tr>
-																<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
-																</td>
-																<td></td>
-															</tr>
-														</table>
-			
-													</div>
-													<div class="myorder_receive_bottom_right">
-														<div class="myorder_receive_bottom_right1">
-															<span>确认收货</span>
-														</div>
-														<div class="myorder_receive_bottom_right2">
-															<a href="#"> <span>监督催单</span></a>
-														</div>
-													</div>
-												</div>
+									<div class="myorder_right_down2">
+										<div class="myorder_right_down2_left"
+											style="margin-left: 10px;">
+											<table width="440" valign="center" align="left"
+												cellpadding="5">
+												<tr>
+													<td rowspan="2">
+														<%
+															String[] pics = goods.getPicpath().split(",");
+														%> <img src="img/400_400/<%=pics[0]%>"
+														style="width: 60px; height: 60px; margin-top: 15px;" />
+													</td>
+												</tr>
+												<tr>
+													<%
+														for (RecordDetails rd : rdlist) {
+													%>
+													<td><span><%=goods.getName()%></span><br> <span>
+															￥<%=rd.getBuyprice()%> 元 × <%=rd.getNumbers()%></span></td>
+													<%
+														}
+													%>
+													<td></td>
+												</tr>
+
+											</table>
+
+
+
+										</div>
+										<div class="myorder_right_down2_right">
+											<div class="myorder_right_down2_right_1">
+												<%
+													for (RecordDetails rd : rdlist) {
+												%>
+												<a
+													href="MyorderRedatileRecoleServlet?drid= <%=rd.getRid()%>">订单详情</a>
+												<%
+													}
+												%>
 											</div>
-										</td>
-									</tr>
-								</table>
-								<!-- 添加收货其它订单 -->
-								
-							</div>
-							<!--已关闭-->
-							<div class="tab-pane fade" id="java1">
-								<table
-									style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
-									<tr>
-										<td>
-											<div class="myorder_receive">
-												<div class="myorder_receive_top">
-													<div class="myorder_receive_top1">
-														<span>已关闭</span>
-													</div>
-													<div class="myorder_receive_top2">
-														<table width="780" align="center">
-															<tr>
-																<td width="80"><span>订单号：</span></td>
-																<% 
-																for(Record record:list){
-																%>
-																<td><%=record.getRid() %></td>
-																<td><%=record.getPayway() %></td>
-																<%} %>
-																<td></td>
-																<td width="400"></td>
-															</tr>
-														</table>
-													</div>
-												</div>
-												<div class="myorder_receive_bottom">
-													<div class="myorder_receive_bottom_left">
-														<table valign="center" align="left">
-															<tr>
-																<td rowspan="2"><img style="width: 100px"
-																	src="../img/data.png" alt="" /></td>
-															</tr>
-															<tr>
-																<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
-																</td>
-																<td></td>
-															</tr>
-														</table>
-			
-													</div>
-													<div class="myorder_receive_bottom_right">
-														<div class="myorder_receive_bottom_right1">
-															<span><a href="#">确认付款</a></span>
-														</div>
-													</div>
-												</div>
+											<div class="myorder_right_down2_right_2">
+												<a id="pay" href="#">立即付款</a>
 											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- 添加其他商品 -->
+
+							</td>
+						</tr>
+
+					</table>
+					<!-- 添加其它订单  复制table表格 -->
+
+
 				</div>
+				<!--待收货-->
+				<div class="tab-pane fade" id="java">
+					<table
+						style="border: 1px solid red; margin-top: 10px; margin-left: 20px;">
+						<tr>
+							<td>
+								<div class="myorder_receive">
+									<div class="myorder_receive_top">
+										<div class="myorder_receive_top1">
+											<span>待收货</span>
+										</div>
+										<div class="myorder_receive_top2">
+											<table width="780" align="center">
+												<tr>
+													<td width="80"><span>订单号：</span></td>
+													<td>123456789009876543</td>
+													<td>在线支付</td>
+													<td></td>
+													<td width="400"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="myorder_receive_bottom">
+										<div class="myorder_receive_bottom_left">
+											<table valign="center" align="left">
+												<tr>
+													<td rowspan="2"><img style="width: 100px"
+														src="../img/data.png" alt="" /></td>
+												</tr>
+												<tr>
+													<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
+													</td>
+													<td></td>
+												</tr>
+											</table>
+										</div>
+										<div class="myorder_receive_bottom_right">
+											<div class="myorder_receive_bottom_right1">
+												<span>确认收货</span>
+											</div>
+											<div class="myorder_receive_bottom_right2">
+												<a href="#"> <span>监督催单</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<!-- 添加收货其它订单 -->
+
+				</div>
+				<!--已关闭-->
+				<div class="tab-pane fade" id="java1">
+					<table
+						style="border: 1px solid red; margin-top: 10px; margin-left: 10px;">
+						<tr>
+							<td>
+								<div class="myorder_receive">
+									<div class="myorder_receive_top">
+										<div class="myorder_receive_top1">
+											<span>已关闭</span>
+										</div>
+										<div class="myorder_receive_top2">
+											<table width="780" align="center">
+												<tr>
+													<td width="80"><span>订单号：</span></td>
+													<%-- <%
+													for (Record record : list) {
+												%>
+												<td><%=record.getRid()%></td>
+												<td><%=record.getPayway()%></td>
+												<%
+													}
+												%> --%>
+													<td></td>
+													<td width="400"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="myorder_receive_bottom">
+										<div class="myorder_receive_bottom_left">
+											<table valign="center" align="left">
+												<tr>
+													<td rowspan="2"><img style="width: 100px"
+														src="../img/data.png" alt="" /></td>
+												</tr>
+												<tr>
+													<td><span>dsifsuonfal</span><br> <span>osiaojaof</span>
+													</td>
+													<td></td>
+												</tr>
+											</table>
+
+										</div>
+										<div class="myorder_receive_bottom_right">
+											<div class="myorder_receive_bottom_right1">
+												<span><a href="#">确认付款</a></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

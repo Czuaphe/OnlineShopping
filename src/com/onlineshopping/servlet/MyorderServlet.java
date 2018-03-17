@@ -36,8 +36,8 @@ public class MyorderServlet extends HttpServlet {
 			MyorderRecordDao myorderRecordDao = new MyorderRecordDao();
 			// 从订单记录表中查询，得到所有订单号
 			List<Record> recordslist = myorderRecordDao.recodeAll();
-			// 第一条订单
-			System.out.println(recordslist.get(0).toString());
+			/*// 第一条订单
+			System.out.println(recordslist.get(0).toString());*/
 			// req.setAttribute("record", recordslist.get(0));
 			req.setAttribute("record", recordslist);
 			// 提取所有的订单号
@@ -79,10 +79,9 @@ public class MyorderServlet extends HttpServlet {
 							Goods goods = goodsDao.getGoodsByGid(gid);
 							req.setAttribute("good", goods);
 							System.out.println(goods.toString());
-							resp.sendRedirect("myorder.jsp");
 							req.getRequestDispatcher("myorder.jsp").forward(req, resp);
 							return;
-
+							
 						}
 					}
 
