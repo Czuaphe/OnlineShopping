@@ -26,14 +26,6 @@
     <url-pattern>/AddressServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>collection</servlet-name>
-    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>collection</servlet-name>
-    <url-pattern>/CollectionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>MyorderServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.MyorderServlet</servlet-class>
   </servlet>
@@ -41,7 +33,15 @@
     <servlet-name>MyorderServlet</servlet-name>
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>collection</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>collection</servlet-name>
+    <url-pattern>/CollectionServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>AccountServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.AccountServlet</servlet-class>
@@ -50,7 +50,6 @@
     <servlet-name>AccountServlet</servlet-name>
     <url-pattern>/AccountServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.UploadServlet</servlet-class>
@@ -69,5 +68,4 @@
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   
-
 </web-app>

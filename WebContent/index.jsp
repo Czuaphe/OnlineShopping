@@ -74,9 +74,9 @@
             %>
             <!-- 登录之后的用户信息显示功能 -->
             <div class="user_info">
-                <img class="icon_pic" src="img/pic_icon.png" alt="">
+                <img class="icon_pic" src="img/user/<%=user.getIcon() %>" alt="">
                 <!--&lt;!&ndash; 目前不进行下拉菜单的开发 class="dropdown-toggle" data-toggle="dropdown" &ndash;&gt;-->
-               	<a href="#"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
+               	<a href="AccountServlet"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
                 
             </div>
             <%
@@ -129,16 +129,16 @@
         <div class="swiper-container lunbo_container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-1.jpg" alt="">
+                    <img src="img/lunbo-1.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-2.jpg" alt="">
+                    <img src="img/lunbo-2.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-3.jpg" alt="">
+                    <img src="img/lunbo-3.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-4.jpg" alt="">
+                    <img src="img/lunbo-4.jpg" alt="">
                 </div>
             </div>
             <div class="swiper-pagination"></div>

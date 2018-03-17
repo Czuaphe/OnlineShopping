@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlineshopping.dao.CollectionDao;
 import com.onlineshopping.entity.Collection;
+import com.onlineshopping.entity.User;
 
 public class CollectionServlet extends HttpServlet {
 
@@ -23,8 +24,11 @@ public class CollectionServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		User user = (User) session.getAttribute("user");
+		
 		String flag=req.getParameter("flag");
-		//É¾³ýÊÕ²ØÉÌÆ·
+		//É¾ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½Æ·
 		if("delete".equals(flag)) {
 			String _cid=req.getParameter("cid");
 			int cid=Integer.parseInt(_cid);
@@ -34,11 +38,11 @@ public class CollectionServlet extends HttpServlet {
 				resp.getWriter().write("false");
 			}
 		}
-		//²é¿´ÊÕ²ØÉÌÆ·
+		//ï¿½é¿´ï¿½Õ²ï¿½ï¿½ï¿½Æ·
 		else {
 			dao=new CollectionDao();
 			try {
-				List<Collection> colls=dao.getUserCollectionByUid(100);
+				List<Collection> colls=dao.getUserCollectionByUid(user.getUserid());
 				req.setAttribute("colls", colls);
 				req.getRequestDispatcher("collection.jsp").forward(req, resp);
 			} catch (SQLException e) {
