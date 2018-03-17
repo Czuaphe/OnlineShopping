@@ -78,7 +78,11 @@ public class UploadServlet extends HttpServlet {
         user.setEmail(wz);
         user.setIcon(uploadFileName);
         UserDao dao=new UserDao();
-        dao.updateInfo(user);
+        if("".equals(uploadFileName)) {
+        	dao.updateInfoWithoutIcon(user);
+        }else {
+        	dao.updateInfo(user);
+        }
         AccountServlet servlet=new AccountServlet();
         try {
 			servlet.doGet(request, resp);

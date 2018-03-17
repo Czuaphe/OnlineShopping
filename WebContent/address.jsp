@@ -24,19 +24,19 @@ String uid=(String)session.getAttribute("uid");
                     <th>订单中心</th>
                 </tr>
                 <tr>
-                    <td><a href="#">个人中心</a></td>
+                    <td><a href="<%=path%>/AccountServlet">个人中心</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">我的订单</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#">我的收藏</a></td>
+                    <td><a href="<%=path%>/CollectionServlet">我的收藏</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">我的优惠券</a></td>
                 </tr>
                 <tr>
-                    <td><a id="a" href="#">收货地址</a></td>
+                    <td><a id="a" href="<%=path%>/AddressServlet">收货地址</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">消费明细</a></td>
