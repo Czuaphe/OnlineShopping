@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlineshopping.dao.ChinaDivisionDao;
 import com.onlineshopping.dao.UserAddressDao;
+import com.onlineshopping.entity.User;
 import com.onlineshopping.entity.UserAddress;
 
 public class AddressServlet extends HttpServlet {
@@ -25,6 +26,7 @@ public class AddressServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();
+		User user = (User) session.getAttribute("user");
 //		session.setAttribute("user", "zhang");
 //		session.setAttribute("uid", "100");
 		String flag="init";
@@ -35,7 +37,7 @@ public class AddressServlet extends HttpServlet {
 		dao=new UserAddressDao();
 		if("init".equals(flag)){
 			try {
-				List<UserAddress> adds=dao.getUserAddressByUid(100);
+				List<UserAddress> adds=dao.getUserAddressByUid(user.getUserid());
 				req.setAttribute("adds", adds);
 				req.getRequestDispatcher("address.jsp").forward(req, resp);
 			} catch (SQLException e) {
@@ -53,7 +55,7 @@ public class AddressServlet extends HttpServlet {
 			}
 		}else if("add".equals(flag)){
 			UserAddress a=new UserAddress();
-			a.setUserid(Integer.parseInt(req.getParameter("userid")));
+			a.setUserid(user.getUserid());
 			a.setName(req.getParameter("name"));
 			a.setPhone(req.getParameter("phone"));
 			a.setProvince(req.getParameter("province"));
