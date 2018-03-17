@@ -41,9 +41,9 @@ public class IndexServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// 测试时，假设其已经登录
-        User user1 = new User();
-        user1 = new UserDao().queryByUserID(1014);
-        session.setAttribute("user", user1);
+//        User user1 = new User();
+//        user1 = new UserDao().queryByUserID(1014);
+//        session.setAttribute("user", user1);
 		
 		request.setAttribute("flag", true);
 		
