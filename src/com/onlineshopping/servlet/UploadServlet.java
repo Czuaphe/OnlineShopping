@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
-import java.util.Iterator;
-import java.util.List;
-import java.io.File;
 
 import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.entity.User;
+
+import java.util.Iterator;
+import org.apache.commons.fileupload.FileItem;
+import java.util.List;
+import java.io.File;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+
 
 public class UploadServlet extends HttpServlet {
 	/**
@@ -41,7 +41,8 @@ public class UploadServlet extends HttpServlet {
         	FileItemFactory factory=new DiskFileItemFactory();
         	ServletFileUpload upload=new ServletFileUpload(factory);
         	try{
-        		List<FileItem> items=upload.parseRequest((RequestContext) new ServletRequestContext(request));
+
+        		List<FileItem> items=upload.parseRequest(request);
         		Iterator<FileItem> iter=items.iterator();
         		while(iter.hasNext()){
         			FileItem item=(FileItem)iter.next();
@@ -83,7 +84,9 @@ public class UploadServlet extends HttpServlet {
         user.setEmail(wz);
         user.setIcon(uploadFileName);
         UserDao dao=new UserDao();
-        if("".equals(uploadFileName)) {
+        System.out.println("uploadFileName:"+uploadFileName);
+        if("".equals(uploadFileName.trim())) {
+        	System.out.println("true");
         	dao.updateInfoWithoutIcon(user);
         }else {
         	dao.updateInfo(user);
