@@ -61,7 +61,11 @@ public class UserDao {
 		}
 		return null;
 	}
-	
+	/**
+	 * 更新用户的邮箱，电话和头像路径
+	 * @param user 要更新的用户
+	 * @return 返回更新的结果
+	 */
 	public boolean updateInfo(User user) {
 		
 		String sql = "update t_user set email = ?, phone = ?, icon = ? where userid = ? ";
