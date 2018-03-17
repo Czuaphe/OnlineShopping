@@ -6,7 +6,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    System.out.println(basePath);
+//    System.out.println(basePath);
 %>
 
 <!DOCTYPE html>
@@ -215,6 +215,7 @@
         </div>
         <div class="goods_right col-sm-5" style="height: 550px;">
             <input id="gid" type="hidden" value="<%=goods != null ? goods.getGid() : 0 %>">
+            <input id="basePath" type="hidden" value="<%=basePath %>" />
             <input id="isCollect" type="hidden" value="<%=isCollect %>">
             <h1 style="font-size: 28px;font-weight: 300;margin-bottom: 10px">
                 <%=goods != null ? goods.getName() : "没有名字数据" %>
