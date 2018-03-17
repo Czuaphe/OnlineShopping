@@ -39,6 +39,9 @@ public class MyorderServlet extends HttpServlet {
 			/*// 第一条订单
 			System.out.println(recordslist.get(0).toString());*/
 			// req.setAttribute("record", recordslist.get(0));
+			for (Record record : recordslist) {
+				System.out.println(recordslist.toString());
+			}
 			req.setAttribute("record", recordslist);
 			// 提取所有的订单号
 			List<Integer> ridList = new ArrayList<>();
@@ -51,6 +54,7 @@ public class MyorderServlet extends HttpServlet {
 			for (Integer integerrids : ridList) {
 				int rids = integerrids.intValue();
 				System.out.println(rids);
+				
 
 				if (rids != 0) {
 					// 通过订单号得到关于订单详情表，得到订单中商品号

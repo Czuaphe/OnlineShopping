@@ -30,7 +30,7 @@ public class MyorderRecordDao {
 	 * @throws SQLException
 	 */
 	public List<Record> recodeAll() throws SQLException{
-		String sql = "SELECT * FROM T_RECORD_DETAILS";
+		String sql = "SELECT * FROM T_RECORD";
 		return runner.query(sql, new BeanListHandler<>(Record.class));
 	}
 
