@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
@@ -28,10 +29,11 @@ public class UploadServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws IOException {
-		String cz="";
-		String wz="";
+		User user = (User) request.getSession().getAttribute("user");
+		String cz=user.getPhone();
+		String wz=user.getEmail();
 		request.setCharacterEncoding("utf-8");
-        String uploadFileName="";
+        String uploadFileName="default.png";
         String fieldName="";
         boolean isMultipart=ServletFileUpload.isMultipartContent(request);
         String uploadFilePath=request.getSession().getServletContext().getRealPath("img/user/");
@@ -39,7 +41,7 @@ public class UploadServlet extends HttpServlet {
         	FileItemFactory factory=new DiskFileItemFactory();
         	ServletFileUpload upload=new ServletFileUpload(factory);
         	try{
-        		List<FileItem> items=upload.parseRequest((RequestContext) request);
+        		List<FileItem> items=upload.parseRequest((RequestContext) new ServletRequestContext(request));
         		Iterator<FileItem> iter=items.iterator();
         		while(iter.hasNext()){
         			FileItem item=(FileItem)iter.next();
@@ -76,7 +78,7 @@ public class UploadServlet extends HttpServlet {
         		e.printStackTrace();
         	}
         }
-        User user = (User) request.getSession().getAttribute("user");
+        
         user.setPhone(cz);
         user.setEmail(wz);
         user.setIcon(uploadFileName);
