@@ -41,7 +41,6 @@
     <servlet-name>MyorderServlet</servlet-name>
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AccountServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.AccountServlet</servlet-class>
@@ -50,7 +49,6 @@
     <servlet-name>AccountServlet</servlet-name>
     <url-pattern>/AccountServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.onlineshopping.servlet.UploadServlet</servlet-class>
@@ -59,5 +57,4 @@
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/UploadServlet</url-pattern>
   </servlet-mapping>
-
 </web-app>
