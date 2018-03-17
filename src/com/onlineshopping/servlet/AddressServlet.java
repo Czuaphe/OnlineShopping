@@ -25,8 +25,8 @@ public class AddressServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();
-		session.setAttribute("user", "zhang");
-		session.setAttribute("uid", "100");
+//		session.setAttribute("user", "zhang");
+//		session.setAttribute("uid", "100");
 		String flag="init";
 		String g=req.getParameter("flag");
 		if(!("".equals(g)||null==g)){
