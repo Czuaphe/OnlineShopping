@@ -71,7 +71,7 @@ public class MyorderServlet extends HttpServlet {
 						Goods goods = goodsDao.getGoodsByGid(gid);
 						req.setAttribute("good", goods);
 						System.out.println(goods.toString());
-						//req.getRequestDispatcher("myorder.jsp").forward(req, resp);
+						req.getRequestDispatcher("myorder.jsp").forward(req, resp);
 					}
 				}
 				
