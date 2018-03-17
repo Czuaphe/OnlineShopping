@@ -69,9 +69,8 @@
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/UploadServlet</url-pattern>
-<<<<<<< HEAD
+
   </servlet-mapping>
-=======
-  </servlet-mapping>
->>>>>>> branch 'master' of https://github.com/Czuaphe/OnlineShopping.git
+
+
 </web-app>
