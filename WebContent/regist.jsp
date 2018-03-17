@@ -113,20 +113,13 @@
             display: block;
             font-size: 15px;
         }
-        .tan{
-            width:395px;
-            float: right;
-            font-size: 14px;
-            color:red;
-            height:15px;
-            display:none;
-        }
         .tan2{
         	width:395px;
             float: right;
             font-size: 14px;
-            color:red;
-            height:15px;
+            color:black;
+            height:30px;
+            line-height:30px;
             display:none;
         }
         .tan3{
@@ -134,12 +127,19 @@
             float: right;
             font-size: 14px;
             color:red;
-            height:15px;
+            height:30px;
+            line-height:30px;
             display:none;
         }
         .blank3{
             width:440px;
-            height:15px;
+            height:30px;
+        }
+        .blank30{
+        	width:395px;
+        	height:30px;
+        	float:right;
+        	color:red;
         }
         .form_group2{
             width: 440px;
@@ -224,12 +224,21 @@
             float: right;
             line-height: 36px;
             border:0px;
-            display: block;
-            font-size: 15px;
+            display:block;
+            font-size:15px;
         }
         .blank4{
             width:440px;
             height:33px;
+        }
+        .blank40{
+        	width:326px;
+        	height:33px;
+        	line-height:33px;
+        	font-size:14px;
+        	float:right;
+        	display:none;
+        	color:red;
         }
         /*添加注册按钮*/
         .bt1{
@@ -267,28 +276,32 @@
     </style>
     <script type="text/javascript" src="../js/base/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-      function checkname(){
-    	  var un=$("input[name=username]").val();
-    	  var tan=$(".tan");
-    	  if(un!=null&&un!=""){
-    		  tan.css("display","block");
-    		  return false;
-    	  }
-      }
+    	function validate(){
+    		var uname=$("username").val();
+    		if(uname==null||uname==""){
+    			$(".blank30").html("用户名不能为空");
+    		}
+    	}
       function checkpwd(){
     	  var pwd=$("input[pswd=password]").val();
     	  var tan2=$(".tan2");
+    	  var tan3=$(".tan3");
+    	  tan2.focus(function(){
+    		  $(this).addclass("display","block");
+    	  })
     	  if(pwd.read()<6||pwd.read()>16){
-    		  tan2.css("display","block");
+    		  password2.click(function(){
+    			  tan2.css("color","red");
+    		  })
     		  return false;
     	  }
       }
       function checkpwd2(){
     	  var pwd=$("input[pswd=password]").val();
     	  var pwd2=$("input[pswd=password2]").val();
-    	  var tan=$(".tan3");
+    	  var tan3=$(".tan3");
     	  if(pwd!=pwd2){
-    		  tan3.css("display","block");
+    		  alert('两次密码输入不一样，请重新输入');
     		  return false;
     	  }
       }
@@ -316,9 +329,30 @@
     	           }
     	           return url;
     	       }
+    	//手机验证
+    	function checkphone(){
+    		var phone=$("input[name=phone]").val();
+    		var blank40=$(".blank40");
+    		if(phone=""){
+    			$("blank40").css("手机号不能为空");
+    			return false;
+    		}else if(phone.read()!=11){
+    			$("blank40").css("display","block");
+    			return false;
+    		}
+    	}
+    	//邮箱验证
+    	function checkmail(){
+    		var email=$("input[name]=emailt").val();
+    		var blank40=$(".blank40");
+    		if(emil==""){
+    			$("blank40").css("display","block");
+    			return false;
+    		}
+    	}
     </script>
 </head>
-<body>
+<body>	
 <!--导航与logo部分-->
     <div class="met-head">
     <div class="row">
@@ -340,7 +374,7 @@
     <div class="main">
         <div class="blank"></div>
         <!--form表单内容-->
-        <form class="form_regist" method="get" action="registServlet" novalidate="novalidate">
+        <form class="form_regist" method="post" action="<%=request.getContextPath() %>/registServlet" novalidate="novalidate">
             <div class="blank2"></div>
             <!--用户名输入框-->
             <div class="form_group">
@@ -348,33 +382,36 @@
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="input_right">
-                    <input type="text" name="username" placeholder="&nbsp;会员名" class="form_control"/>
-                    <div class="tan">用户名已存在</div>
+                    <input type="text" name="username" value="" placeholder="&nbsp;会员名" class="form_control"/>
                 </div>
             </div>
-            <div class="blank3"></div>
+            <div class="blank3">
+            	<div class="blank30"></div>
+            </div>
             <!--密码框输入-->
             <div class="form_group">
                 <div class="input_left">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="input_right">
-                    <input type="password" name="password" placeholder="&nbsp;密码" class="form_control"/>
-                    <div class="tan2">密码为6-16位字母数字组成</div>
+                    <input type="password" name="password" value="" placeholder="&nbsp;密码" class="form_control"/>
                 </div>
             </div>
-            <div class="blank3"></div>
+            <div class="blank3">
+            	<div class="tan2">密码为6-16位字母数字组成</div>
+            </div>
             <!--重复密码-->
             <div class="form_group">
                 <div class="input_left">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="input_right">
-                    <input type="password" name="password2" placeholder="&nbsp;重复密码" class="form_control"/>
-                    <div class="tan3">密码有误</div>
+                    <input type="password" name="password2"id="password2" value="" placeholder="&nbsp;重复密码" class="form_control"/>      
                 </div>
             </div>
-            <div class="blank3"></div>
+            <div class="blank3">
+            	<div class="tan3">密码有误</div>
+            </div>
             <!--验证码-->
             <div class="form_group2">
                 <div class="form_group3">
@@ -382,7 +419,7 @@
                         <i class="fa fa-user"></i>
                     </div>
                     <div class="input_right2">
-                        <input type="text" name="rename" id="raname" placeholder="&nbsp;验证码" class="form_control2"/>
+                        <input type="text" name="rename" id="raname" value="" placeholder="&nbsp;验证码" class="form_control2"/>
                     </div>
                 </div>
                 <div class="act"></div>
@@ -404,47 +441,25 @@
             <div class="blank3"></div>
             <div class="form_group2">
                 <div class="contain_left">
-                    <span class="span2">公司名称</span>
+                    <span class="span2">手机号</span>
                 </div>
                 <div class="contain_right">
-                    <input type="text" name="game" class="form_control3" placeholder="&nbsp;公司名称"/>
+                    <input type="text" name="phone" value="" class="form_control3" placeholder="&nbsp;手机号"/>
                 </div>
             </div>
-            <div class="blank4"></div>
+            <div class="blank4">
+            	<div class="blank40">手机号必须为11位</div>
+            </div>
             <div class="form_group2">
                 <div class="contain_left">
-                    <span class="span2">公司传真</span>
+                    <span class="span2">邮箱地址</span>
                 </div>
                 <div class="contain_right">
-                    <input type="text" name="gamemax" class="form_control3" placeholder="&nbsp;公司传真"/>
+                    <input type="text" name="emailt" value="" class="form_control3" placeholder="&nbsp;邮箱地址"/>
                 </div>
             </div>
-            <div class="blank4"></div>
-            <div class="form_group2">
-                <div class="contain_left">
-                    <span class="span2">公司联系地址</span>
-                </div>
-                <div class="contain_right">
-                    <input type="text" name="gamephone" class="form_control3" placeholder="&nbsp;公司联系地址"/>
-                </div>
-            </div>
-            <div class="blank4"></div>
-            <div class="form_group2">
-                <div class="contain_left">
-                    <span class="span2">公司邮政编码</span>
-                </div>
-                <div class="contain_right">
-                    <input type="text" name="gamemail" class="form_control3" placeholder="&nbsp;公司邮政编码"/>
-                </div>
-            </div>
-            <div class="blank4"></div>
-            <div class="form_group2">
-                <div class="contain_left">
-                    <span class="span2">公司网址</span>
-                </div>
-                <div class="contain_right">
-                    <input type="text" name="gamedr" class="form_control3" placeholder="&nbsp;公司网址"/>
-                </div>
+            <div class="blank4">
+            	<div class="blank40">邮箱不可为空</div>
             </div>
             <div class="blank4"></div>
             <div class="form_group2">

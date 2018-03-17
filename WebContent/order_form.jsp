@@ -740,10 +740,10 @@
                         <div class="ways_blank"></div>
                         <div class="ways_pic">
                             <div class="picture">
-
+                            	<img alt="" src="">
                             </div>
                             <div class="picture_up">
-
+                            	<img alt="" src="">
                             </div>
                             <div class="picture_down">
                                 &nbsp;&nbsp;支持7天无理由退换货
@@ -758,7 +758,7 @@
                         <div class="ways_p">
                             <div class="p_goods">有货</div>
                         </div>
-                        <div class="ways_bot_lef">退还无忧</div>
+                        <div class="ways_bot_lef">退换无忧</div>
                         <div class="ways_bot_rig">
                         </div>
                     </div>
@@ -793,7 +793,7 @@
                         <div class="ways_p">
                             <div class="p_goods">有货</div>
                         </div>
-                        <div class="ways_bot_lef">退还无忧</div>
+                        <div class="ways_bot_lef">退换       无忧</div>
                         <div class="ways_bot_rig">
                         </div>
                     </div>

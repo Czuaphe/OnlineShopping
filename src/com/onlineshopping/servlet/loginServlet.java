@@ -30,22 +30,17 @@ public class loginServlet extends HttpServlet{
 			//获取密码
 			String pwd=req.getParameter("password");
 			User user;
-			try {
-				user = ud.getName(uname);
-				if(user!=null) {
-					if(pwd.equals(user.getPswd())) {
-						resp.sendRedirect("index.jsp");
-					}else {
-						System.out.print("<script language='javascript'>setTimeout(go, 3000);alert('密码错误');</script>");
-						resp.setHeader("refresh","3;url=login.jsp");
-					}
-				}else{
-					System.out.println("<script language='javascript'>setTimeout(go, 3000);alert('用户名不存在');</script>");
+			user = ud.getName(uname);
+			if(user!=null) {
+				if(pwd.equals(user.getPswd())) {
+					resp.sendRedirect("index.jsp");
+				}else {
+					System.out.print("<script language='javascript'>setTimeout(go, 3000);alert('密码错误');</script>");
 					resp.setHeader("refresh","3;url=login.jsp");
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}else{
+				System.out.println("<script language='javascript'>setTimeout(go, 3000);alert('用户名不存在');</script>");
+				resp.setHeader("refresh","3;url=login.jsp");
 			}
 			
 		}

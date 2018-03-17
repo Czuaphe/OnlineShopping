@@ -34,16 +34,6 @@
     <url-pattern>/MyorderServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>registServlet</display-name>
-    <servlet-name>registServlet</servlet-name>
-    <servlet-class>com.onlineshopping.servlet.loginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>registServlet</servlet-name>
-    <url-pattern>/registServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>collection</servlet-name>
     <servlet-class>com.onlineshopping.servlet.CollectionServlet</servlet-class>
   </servlet>
