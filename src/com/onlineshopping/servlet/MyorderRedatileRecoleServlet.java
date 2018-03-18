@@ -25,7 +25,7 @@ import com.onlineshopping.entity.UserAddress;
 /**
  * Servlet implementation class MyorderRedatileRecoleServlet
  */
-@WebServlet("/MyorderRedatileRecoleServlet")
+
 public class MyorderRedatileRecoleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

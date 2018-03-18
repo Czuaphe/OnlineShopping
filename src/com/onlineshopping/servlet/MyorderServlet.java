@@ -72,10 +72,10 @@ public class MyorderServlet extends HttpServlet {
 					List<Integer> gidlist = new ArrayList<>();
 					for (RecordDetails recordDetails : list1) {
 						gidlist.add(recordDetails.getGid());
-
 					}
 
 					// 一个订单中的所有商品号
+					List<Goods> goodlist = new ArrayList<Goods>();
 					for (Integer integer : gidlist) {
 						int gid = integer.intValue();
 						System.out.println(gid);
@@ -83,17 +83,20 @@ public class MyorderServlet extends HttpServlet {
 							// 通过商品号得到订单中商品的详细信息
 							GoodsDao goodsDao = new GoodsDao();
 							Goods goods = goodsDao.getGoodsByGid(gid);
-							req.setAttribute("good", goods);
 							System.out.println(goods.toString());
-							req.getRequestDispatcher("myorder.jsp").forward(req, resp);
-							return;
+							goodlist.add(goods);
 							
+							//return;
 						}
 					}
-
+					req.setAttribute("good", goodlist);
+				
 				}
 			}
 
+			req.getRequestDispatcher("myorder.jsp").forward(req, resp);
+			return;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

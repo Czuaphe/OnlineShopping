@@ -68,4 +68,13 @@
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>MyorderRedatileRecole</servlet-name>
+    <servlet-class>com.onlineshopping.servlet.MyorderRedatileRecoleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyorderRedatileRecole</servlet-name>
+    <url-pattern>/MyorderRedatileRecoleServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

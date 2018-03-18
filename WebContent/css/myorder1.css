@@ -1,0 +1,189 @@
+*{
+            padding: 0  auto;
+            margin: 0 auto;
+        }
+        a{
+            text-decoration: none;
+        }
+        li{list-style: none}
+        /*  我的订单*/
+        .myorder{
+            width: 1200px;
+
+        }
+        .myorder_left{
+            width: 250px;
+            height: 600px;
+            background: rgba(233, 226, 190, 0.15);
+            float: left;
+            color: #54ffda;
+        }
+        .myorder_middle{
+            width: 50px;
+            height: 600px;
+            float: left;
+        }
+        .myorder_right{
+            width: 804px;
+            float: left;
+        }
+
+        /*我的订单左边*/
+        .myorder_left_1{
+            width: 80px;
+            height: 600px;
+            float: left;
+        }
+
+        .myorder_left li{
+            list-style:none;
+            padding-top: 18px;
+            font-size: 15px;
+            color: #7a7a7a;
+        }
+
+        .myorder_left a:hover{
+            display: block;
+            color: rgba(40, 10, 70, 1);
+            font-weight: bold;
+        }
+        .myorder_left a:focus{
+            display: block;
+            color: rgba(74, 183, 221, 0.46);
+            text-decoration: solid;
+            font-weight: normal;
+        }
+        .myorder_left a:visited{
+            color:rgba(101,161,220,0);
+        }
+        /*左边结束*/
+
+        /*我的订单右边*/
+        .myorder_right_top{
+            width: 830px;
+            height: 80px;
+        }
+        .myorder_right_top1{
+            width: 820px;
+            height: 70px;
+            border-bottom: 1px solid #9f9f9f;
+            padding-left: 10px;
+            border-radius: 1px;
+        }
+
+        .myorder_right_top1 li{
+            float: left;
+            width: 140px;
+            height: 30px;
+            font-size: 18px;
+            text-align: center;
+            padding-top: 30px;
+            cursor: pointer;
+        }
+        .myorder_right_top1 a{
+            width: 80px;
+            height: 40px;
+            color: #65A1DC;
+            display: block;
+        }
+
+        .myorder_right_top1 a:nth-child(1){
+            width: 140px;
+        }
+
+        .myorder_right_top1 a:hover{
+            border-bottom: 2px solid #9f9f9f;
+            display: block;
+        }
+        .myorder_right_top1 a:focus{
+            display: block;
+            border-bottom: 4px solid #40E0D0;
+            color: #454545;
+        }
+        .myorder_right_top1 a:visited{
+            display: block;
+            color:#65A1DC;
+
+        }
+        /* 上边结束*/
+        /*中间搜索框*/
+        .myorder_right_middle{
+            width: 800px;
+            height: 42px;
+            margin-top: 10px;
+
+        }
+        .myorder_right_middle #search{
+            width: 736px;
+            height: 35px;
+            float: left;
+        }
+        .myorder_right_middle #button {
+            width: 42px;
+            height: 35px;
+            float: left;
+        }
+
+
+        /*右边中部结束*/
+        /*右边下部开始*/
+        /*待支付*/
+       .wpay_top{
+           width: 740px;
+           height: 80px;
+       }
+       .wpay_bottom{
+           width: 740px;
+       }
+
+      .wpay_bottom #color:hover{
+           background: #ff0000;
+       }
+       .wpay_bottom_left{
+           width: 420px;
+           height: 100px;
+           float: left;
+       }
+       .wpay_bottom_left img{
+           width: 60px;
+           height: 60px;
+           margin-left: 20px;
+           padding-top: 10px;
+           float: left;
+       }
+        .wpay_bottom_right{
+            width: 300px;
+            height: 50px;
+            float: right;
+            padding-top: 10px;
+        }
+       .wpay_bottom_right li{
+           float: right;
+           width: 100px;
+           height: 38px;
+           text-align: center;
+           margin-right: 20px;
+       }
+       /* 待支付结束*/
+        /*待收货开始*/
+        .wpayment_top{
+            width: 740px;
+            height: 80px;
+        }
+      .wpayment_bottom_left{
+          width: 260px;
+          float: left;
+      }
+      .wpayment_bottom_right{
+          width: 300px;
+          height: 50px;
+          float: right;
+          padding-top: 10px;
+      }
+      .wpayment_bottom_right li{
+          float: right;
+          width: 100px;
+          height: 38px;
+          text-align: center;
+          margin-right: 20px;
+      }
