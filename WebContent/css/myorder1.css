@@ -141,15 +141,24 @@
        }
        .wpay_bottom_left{
            width: 420px;
-           height: 100px;
            float: left;
        }
+     .wpay_bottom_left1{
+           width: 100px;
+           height: 90px;
+           float: left;
+       }
+       .wpay_bottom_left2{
+           width: 280px;
+           height: 90px;
+           float: right;
+           padding-top: 30px;
+       } 
        .wpay_bottom_left img{
            width: 60px;
            height: 60px;
-           margin-left: 20px;
-           padding-top: 10px;
-           float: left;
+           padding-left: 10px;
+           padding-top: 15px;
        }
         .wpay_bottom_right{
             width: 300px;

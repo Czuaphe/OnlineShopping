@@ -1,3 +1,4 @@
+<%@page import="java.security.interfaces.RSAKey"%>
 <%@page import="java.util.List"%>
 <%@page import="com.onlineshopping.entity.RecordDetails"%>
 <%@page import="com.onlineshopping.entity.Record"%>
@@ -119,46 +120,63 @@
 									</table>
 								</div>
 								<div class="wpay_bottom">
-								<%
-									for(int i=1;i<=1;i++){
-									%>
 									<div class="wpay_bottom_left">
+									<%
+									for(int i=0;i<rdlist.size();i++){
+									%>
+									<div style="width: 420px;height: 90px">
 										<div class="wpay_bottom_left1">
 											<%
 												for(Goods goods:goodlist){
-												%>
+											%>
 											<a href="#">&nbsp;&nbsp;&nbsp; <%
-															String[] pics = goods.getPicpath().split(",");
+															String[] pics = goodlist.get(i).getPicpath().split(",");
 												%> <img src="img/400_400/<%=pics[0]%>" alt=""
 												style="width: 60px; height: 60px; margin-top: 15px;" />
 											</a>
-
+											<%
+											if(!"".equals(null))
+												break;
+											%>
+											
 											<%} %>
 										</div>
-
+										<%
+										
+										%>
 										<div class="wpay_bottom_left2"
 											style="text-align: center; padding-top: 15px">
 
-
 											<%
 												for(Goods goods:goodlist){
-												%>
-											<span><%=goods.getName() %></span>
-											<%} %>
+											%>
+											<span><%=goodlist.get(i).getName() %></span>
+											<%
+											if(!"".equals(null))
+												break;
+											%>
+											<%
+												} 
+											%>
 											<br />
 
 
 											<%
-														for (RecordDetails rd : rdlist) {
+											for (RecordDetails rd : rdlist) {
 											%>
 
 											<p style="margin-top: 10px">
-												￥<%=rd.getBuyprice() %>
-												&nbsp;×&nbsp;<%=rd.getNumbers() %></p>
+												￥<%=rdlist.get(i).getBuyprice() %>
+												&nbsp;×&nbsp;<%=rdlist.get(i).getNumbers()%></p>
+												<%
+												if(!"".equals(null)||!"".equals(null))
+													break;
+												%>
 											<%} %>
 										</div>
-										<%} %>
 										
+										</div>
+										<%} %>
 									</div>
 
 									<div class="wpay_bottom_right">
@@ -179,7 +197,6 @@
 												} 
 												%>>订单详情</a>
 											</li>
-
 										</ul>
 									</div>
 								</div>
