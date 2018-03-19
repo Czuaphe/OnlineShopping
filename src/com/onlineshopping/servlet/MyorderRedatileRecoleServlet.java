@@ -42,7 +42,8 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 
 		
 		 //接收参数 rid 
-		String srid = request.getParameter("drid"); 
+		//String srid = request.getParameter("drid"); 
+		String srid = "1";
 		if (srid != null) {
 		int rids;
 		try {
@@ -62,6 +63,7 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 
 				}
 				System.out.println(recordDetails.size());
+				List<Goods> goodlist = new ArrayList<Goods>();
 				for (Integer integer : gidlist) {
 					int gidAll = integer.intValue();
 					System.out.println(gidAll);
@@ -69,7 +71,8 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 						// 通过商品号得到订单中商品的详细信息
 						GoodsDao goodsDao = new GoodsDao();
 						Goods goods = goodsDao.getGoodsByGid(gidAll);
-						request.setAttribute("good", goods);
+						goodlist.add(goods);
+						request.setAttribute("good", goodlist);
 						System.out.println(goods.toString());
 					}
 				}
@@ -77,7 +80,7 @@ public class MyorderRedatileRecoleServlet extends HttpServlet {
 				Record records = myorderRecordDao.recordsOne(rids);
 				request.setAttribute("records", records);
 				// 获取 地址 id
-				int uaid = records.getAddscore();
+				int uaid = records.getUaid();
 				System.out.println(uaid);
 				UserAddressDao userAddressDao = new UserAddressDao();
 				UserAddress address = userAddressDao.getAddress(uaid);

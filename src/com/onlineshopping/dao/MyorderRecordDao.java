@@ -16,6 +16,7 @@ import com.onlineshopping.db.DBUtils;
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
 import com.onlineshopping.entity.RecordDetails;
+import com.onlineshopping.entity.User;
 
 
 public class MyorderRecordDao {
@@ -33,6 +34,8 @@ public class MyorderRecordDao {
 		String sql = "SELECT * FROM T_RECORD";
 		return runner.query(sql, new BeanListHandler<>(Record.class));
 	}
+
+	
 
 	/**
 	 * 

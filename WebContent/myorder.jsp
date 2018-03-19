@@ -85,7 +85,10 @@
 				<!-- 待支付-->
 				<div class="tab-pane fade" id="ios">
 					<!--增加其他订单；就是增加table-->
+						<%
 						
+						for(int k=0;k<list.size();k++){
+						%>
 					<table
 						style="border: 1px solid red; margin-top: 10px; margin-left: 10px;"
 						cellspacing="20" width="640">
@@ -103,26 +106,32 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td align="center"><span>订单金额：</span> <%=record.getTotal() %>
+											<td align="center"><span>订单金额：</span> <%=list.get(k).getTotal()%>
 											</td>
 										<tr>
 											<td style="padding-bottom: 5px; padding-left: 10px"
-												width="180"><span>订单号：</span> <span><%=record.getRecnum() %></span>
+												width="180"><span>订单号：</span> <span><%=list.get(k).getRecnum() %></span>
 											</td>
-											<td style="padding-bottom: 5px"><span><%=record.getTime() %></span>&nbsp;
-												&nbsp; &nbsp; <span><%=record.getPayway() %></span></td>
+											<td style="padding-bottom: 5px"><span><%=list.get(k).getTime() %></span>&nbsp;
+												&nbsp; &nbsp; <span><%=list.get(k).getPayway() %></span></td>
 										</tr>
 										<tr>
 											<td colspan="2"><div
 													style="border: 1px solid red; width: 720px;"></div></td>
 										</tr>
-										<%} %>
+										<%
+											break;
+										} %>
 									</table>
 								</div>
 								<div class="wpay_bottom">
 									<div class="wpay_bottom_left">
 									<%
+								
+									int flag = 0;
 									for(int i=0;i<rdlist.size();i++){
+										flag = i;
+										
 									%>
 									<div style="width: 420px;height: 90px">
 										<div class="wpay_bottom_left1">
@@ -135,11 +144,8 @@
 												style="width: 60px; height: 60px; margin-top: 15px;" />
 											</a>
 											<%
-											if(!"".equals(null))
 												break;
-											%>
-											
-											<%} %>
+											} %>
 										</div>
 										<%
 										
@@ -152,10 +158,7 @@
 											%>
 											<span><%=goodlist.get(i).getName() %></span>
 											<%
-											if(!"".equals(null))
 												break;
-											%>
-											<%
 												} 
 											%>
 											<br />
@@ -169,14 +172,14 @@
 												￥<%=rdlist.get(i).getBuyprice() %>
 												&nbsp;×&nbsp;<%=rdlist.get(i).getNumbers()%></p>
 												<%
-												if(!"".equals(null)||!"".equals(null))
 													break;
-												%>
-											<%} %>
+											} %>
 										</div>
 										
 										</div>
-										<%} %>
+										<%
+									break;	
+									} %>
 									</div>
 
 									<div class="wpay_bottom_right">
@@ -192,7 +195,7 @@
 												<%
 													for (RecordDetails rd : rdlist) {
 												%>
-												href="MyorderRedatileRecoleServlet?drid= <%=rd.getRid()%>"
+												href="MyorderRedatileRecoleServlet?drid= <%=rdlist.get(flag).getRid()%>"
 												<%
 												} 
 												%>>订单详情</a>
@@ -203,6 +206,10 @@
 							</td>
 						</tr>
 					</table>
+					
+					<%
+									
+									} %>
 				</div>
 
 				<!--待收货-->

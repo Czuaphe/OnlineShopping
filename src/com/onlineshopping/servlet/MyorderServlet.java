@@ -39,9 +39,6 @@ public class MyorderServlet extends HttpServlet {
 			/*// 第一条订单
 			System.out.println(recordslist.get(0).toString());*/
 			// req.setAttribute("record", recordslist.get(0));
-			for (Record record : recordslist) {
-				System.out.println(recordslist.toString());
-			}
 			req.setAttribute("record", recordslist);
 			// 提取所有的订单号
 			List<Integer> ridList = new ArrayList<>();
@@ -51,7 +48,7 @@ public class MyorderServlet extends HttpServlet {
 
 			// 得到第一条订单
 			// int rid = ridList.get(0);
-			// 所有订单 rid
+			// 所有订单 rids
 			for (Integer integerrids : ridList) {
 				int rids = integerrids.intValue();
 				System.out.println(rids);
@@ -68,7 +65,7 @@ public class MyorderServlet extends HttpServlet {
 					// 通过订单号保存保存商品号
 					// req.setAttribute("recorddetails", list1.get(0));
 					req.setAttribute("recorddetails", list1);
-					// 提取所有订单号
+					// 提取所有商品号
 					List<Integer> gidlist = new ArrayList<>();
 					for (RecordDetails recordDetails : list1) {
 						gidlist.add(recordDetails.getGid());
