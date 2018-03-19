@@ -33,7 +33,7 @@ public class UploadServlet extends HttpServlet {
 		String cz=user.getPhone();
 		String wz=user.getEmail();
 		request.setCharacterEncoding("utf-8");
-        String uploadFileName="default.png";
+        String uploadFileName=user.getIcon();
         String fieldName="";
         boolean isMultipart=ServletFileUpload.isMultipartContent(request);
         String uploadFilePath=request.getSession().getServletContext().getRealPath("img/user/");
