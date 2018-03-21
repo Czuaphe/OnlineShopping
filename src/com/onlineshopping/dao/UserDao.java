@@ -20,35 +20,45 @@ public class UserDao {
 		return runner.query(sql, new BeanListHandler<>(User.class));
 	}
 	
-	public boolean saveUser(User user) throws SQLException {
+	public boolean saveUser(User user) {
 		
 		String IdSQL = "select SEQ_USERID.nextval from dual";
 		String sql = "insert into t_user values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		// 得到下一个用户的ID的序列值
-		Object idString = runner.query(IdSQL, new ScalarHandler<>());
+
+		// 寰楀埌涓嬩竴涓敤鎴风殑ID鐨勫簭鍒楀��
+		try {
+			Object idString = runner.query(IdSQL, new ScalarHandler<>());
+			
+			// 璁剧疆鐢ㄦ埛鐨刄SERID
+			int userid = Integer.parseInt(String.valueOf(idString));
+			user.setUserid(userid);
+			// 淇濆瓨浜涚敤鎴风殑淇℃伅鍒版暟鎹簱涓�
+			int nums = runner.update(sql
+					,user.getUserid()
+					,user.getName()
+					,user.getPswd()
+					,user.getEmail() 
+					,user.getPhone() 
+					,user.getIcon() 
+					,user.getMoney() 
+					,user.getVipscore() 
+					,user.getViplevel() 
+					,user.getStatus()
+					);
+			return nums > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		System.out.println(Integer.parseInt(String.valueOf(idString)));
 		
-		// 设置用户的USERID
-		int userid = Integer.parseInt(String.valueOf(idString));
-		user.setUserid(userid);
-		// 保存些用户的信息到数据库中
-		int nums = runner.update(sql
-				,user.getUserid()
-				,user.getName()
-				,user.getPswd()
-				,user.getEmail() 
-				,user.getPhone() 
-				,user.getIcon() 
-				,user.getMoney() 
-				,user.getVipscore() 
-				,user.getViplevel() 
-				,user.getStatus()
-				);
-		return nums > 0;
+		return false;
+		
 	}
 
 	/**
-	 * 通过ID得到一个用户
+	 * 閫氳繃ID寰楀埌涓�涓敤鎴�
 	 * @param userid
 	 * @return
 	 */
@@ -61,7 +71,46 @@ public class UserDao {
 		}
 		return null;
 	}
+	/**
+	 * 更新用户的邮箱，电话和头像路径
+	 * @param user 要更新的用户
+	 * @return 返回更新的结果
+	 */
+	public boolean updateInfo(User user) {
+		
+		String sql = "update t_user set email = ?, phone = ?, icon = ? where userid = ? ";
+		
+		try {
+			return runner.update(sql, user.getEmail(), user.getPhone(), user.getIcon(), user.getUserid()) > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public User getName(String name){
+		String sql="select * from t_user where name=?";
+		try {
+			return runner.query(sql,new BeanHandler<>(User.class),name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
-	
+    public boolean updateInfoWithoutIcon(User user) {
+		
+		String sql = "update t_user set email = ?, phone = ? where userid = ? ";
+		
+		try {
+			return runner.update(sql, user.getEmail(), user.getPhone(), user.getUserid()) > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
 }

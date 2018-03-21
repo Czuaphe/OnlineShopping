@@ -54,7 +54,7 @@
             <!-- 购物车功能 -->
             <div class="shopping_cart" >
                 <!-- 目前不进行下拉菜单的开发  class="dropdown-toggle" data-toggle="dropdown" -->
-                <a href="#">
+                <a href="shopping_cart.html">
                     <i class="fa fa-shopping-cart"></i>购物车<span class="badge badge-danger">0</span>
                 </a>
                 <!-- 购物车下拉菜单（可选功能，尽力实现） -->
@@ -70,12 +70,13 @@
             </div>
             <%
             	if(userObject != null) {
+            		User user = (User) userObject;
             %>
             <!-- 登录之后的用户信息显示功能 -->
             <div class="user_info">
-                <img class="icon_pic" src="img/pic_icon.png" alt="">
+                <img class="icon_pic" src="img/user/<%=user.getIcon() %>" alt="">
                 <!--&lt;!&ndash; 目前不进行下拉菜单的开发 class="dropdown-toggle" data-toggle="dropdown" &ndash;&gt;-->
-               	<a href="#">cui<b class="caret" style="margin-left: 10px;"></b></a>
+               	<a href="AccountServlet"><%= user.getName() %><b class="caret" style="margin-left: 10px;"></b></a>
                 
             </div>
             <%
@@ -85,11 +86,11 @@
             <div class="list_func">
                 <ul>
                     <li>
-                        <a href="#">注册</a>
+                        <a href="regist.jsp">注册</a>
                     </li>
                     <hr>
                     <li>
-                        <a href="#">登录</a>
+                        <a href="login.jsp">登录</a>
                     </li>
                 </ul>
             </div>
@@ -128,16 +129,16 @@
         <div class="swiper-container lunbo_container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-1.jpg" alt="">
+                    <img src="img/lunbo-1.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-2.jpg" alt="">
+                    <img src="img/lunbo-2.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-3.jpg" alt="">
+                    <img src="img/lunbo-3.jpg" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="./img/lunbo-4.jpg" alt="">
+                    <img src="img/lunbo-4.jpg" alt="">
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -273,7 +274,6 @@
                 </div>
                 <div class="discount_right">
                     <ul>
-                 
                     	<%
                     	if( discountGoodsList != null) {
                     		for(Goods goods : discountGoodsList) {

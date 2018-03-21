@@ -69,7 +69,7 @@ public class CollectGoodsServlet extends HttpServlet {
             
         }
 		System.out.println("response String: " + responseStr);
-
+		
 		response.getWriter().write(responseStr);
 		
 	}

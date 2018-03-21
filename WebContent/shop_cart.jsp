@@ -569,10 +569,10 @@
                 <div class="wares_blank"></div>
                 <div class="wares_pic">
                     <div class="picture">
-
+                    	<img src="" />
                     </div>
                     <div class="picture_up">
-
+                    	<img src="" />
                     </div>
                     <div class="picture_down">
                         &nbsp;&nbsp;支持7天无理由退换货

@@ -33,7 +33,7 @@ public class UserLoginLogDao {
     }
 
     /**
-     * 查询最新的一条登录记录
+     * 鏌ヨ鏈�鏂扮殑涓�鏉＄櫥褰曡褰�
      * @param userid
      * @return
      */
@@ -48,14 +48,14 @@ public class UserLoginLogDao {
     }
 
     /**
-     * 查询用户的登录次数
+     * 鏌ヨ鐢ㄦ埛鐨勭櫥褰曟鏁�
      * @param userid
      * @return
      */
     public int queryCountByUserID(int userid) {
         String sql = "select count(1) from t_user_login_log where userid = ?";
         try {
-            Object numberObject = runner.query(sql, new ScalarHandler<>());
+            Object numberObject = runner.query(sql, new ScalarHandler<>(), userid);
             return Integer.parseInt(String.valueOf(numberObject));
         } catch (SQLException e) {
             e.printStackTrace();

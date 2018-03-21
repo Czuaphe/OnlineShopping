@@ -1,9 +1,11 @@
+<%@page import="com.onlineshopping.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
-String uid=(String)session.getAttribute("uid");
+User user = (User) session.getAttribute("user");
+String uid= String.valueOf(user.getUserid());
 %>
 <!DOCTYPE html>
 <html>
@@ -24,19 +26,19 @@ String uid=(String)session.getAttribute("uid");
                     <th>订单中心</th>
                 </tr>
                 <tr>
-                    <td><a href="#">个人中心</a></td>
+                    <td><a href="<%=path%>/AccountServlet">个人中心</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">我的订单</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#">我的收藏</a></td>
+                    <td><a href="<%=path%>/CollectionServlet">我的收藏</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">我的优惠券</a></td>
                 </tr>
                 <tr>
-                    <td><a id="a" href="#">收货地址</a></td>
+                    <td><a id="a" href="<%=path%>/AddressServlet">收货地址</a></td>
                 </tr>
                 <tr>
                     <td><a href="#">消费明细</a></td>

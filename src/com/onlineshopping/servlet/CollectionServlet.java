@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlineshopping.dao.CollectionDao;
 import com.onlineshopping.entity.Collection;
+import com.onlineshopping.entity.User;
 
 public class CollectionServlet extends HttpServlet {
 
@@ -23,16 +24,30 @@ public class CollectionServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session=req.getSession();
-		session.setAttribute("user", "zhang");
-		session.setAttribute("uid", "100");
-		dao=new CollectionDao();
-		try {
-			List<Collection> colls=dao.getUserCollectionByUid(100);
-			req.setAttribute("colls", colls);
-			req.getRequestDispatcher("collection.jsp").forward(req, resp);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		HttpSession session = req.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		String flag=req.getParameter("flag");
+		//ɾ���ղ���Ʒ
+		if("delete".equals(flag)) {
+			String _cid=req.getParameter("cid");
+			int cid=Integer.parseInt(_cid);
+			if(dao.deleteCollectGoods(cid)) {
+				resp.getWriter().write("true");
+			}else {
+				resp.getWriter().write("false");
+			}
+		}
+		//�鿴�ղ���Ʒ
+		else {
+			dao=new CollectionDao();
+			try {
+				List<Collection> colls=dao.getUserCollectionByUid(user.getUserid());
+				req.setAttribute("colls", colls);
+				req.getRequestDispatcher("collection.jsp").forward(req, resp);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

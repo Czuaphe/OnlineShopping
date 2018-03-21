@@ -63,16 +63,16 @@ $(document).ready(function(){
         var num = $("#showNum").val();
         $("#showNum").val(parseInt(num) + 1);
     });
-    
-    var basePath = $('#basePath').val();
+
+    var basePath = $("#basePath").val();
 
     // 对收藏事件进行处理
     $("#addCollect").click(function () {
     	// 得到要收藏的商品的gid
         var gid = $("#gid").val();
-        alert(basePath);
+//        alert(gid);
         $.ajax({
-            url: basePath + "/CollectGoodsServlet",
+            url:basePath + "CollectGoodsServlet",
             dataType:"html",
             data:{
                 "gid": gid
@@ -105,7 +105,8 @@ $(document).ready(function(){
     	var gid = $("#gid").val();
     	// 添加到session中
     	$.ajax({
-            url: basePath + "/AddShoppingCartServlet",
+
+            url: basePath + "AddShoppingCartServlet",
             dataType:"html",
             data:{
                 "gid": gid
@@ -129,7 +130,7 @@ $(document).ready(function(){
     function changeShoppingCartCount() {
     	// 修改网页中的数据
     	$.ajax({
-    		url:"/GetShoppingCartCount",
+    		url: basePath + "GetShoppingCartCount",
             dataType:"html",
             success: function (data,textStatus,jqXHR) {
             	console.log('data' + data);

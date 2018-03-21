@@ -6,12 +6,16 @@ import java.sql.SQLException;
 
 import java.util.List;
 
+import org.apache.bcel.generic.NEW;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 
 import com.onlineshopping.db.DBUtils;
+import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
+import com.onlineshopping.entity.RecordDetails;
 
 
 public class MyorderRecordDao {
@@ -30,44 +34,39 @@ public class MyorderRecordDao {
 		return runner.query(sql, new BeanListHandler<>(Record.class));
 	}
 
-		/*public List<Goods> goodsAll() throws SQLException{
-			String sql = "SELECT PICPATH,NAME,T_RECORD_DETAILS.NUMBERS,PRICE*DISCOUNT \r\n" + 
-					"FROM T_RECORD_DETAILS ,T_GOODS\r\n" + 
-					"WHERE T_RECORD_DETAILS.GID=T_GOODS.GID";
-			return runner.query(sql, new BeanListHandler<>(Goods.class));
-		}
-	*//**
-	 * 查询商品部分详情
-	 * @return 
-	 * @throws SQLException
-	 *//*
-	public List<RecordDetails> reDtailsAll() throws SQLException{
-		String sql = "SELECT PICPATH,NAME,T_RECORD_DETAILS.NUMBERS,PRICE*DISCOUNT \\r\\n\" + \r\n" + 
-				"				\"FROM T_RECORD_DETAILS ,T_GOODS\\r\\n\" + \r\n" + 
-				"				\"WHERE T_RECORD_DETAILS.GID=T_GOODS.GID\"";
-		return runner.query(sql, new BeanListHandler<>(RecordDetails.class));
-	}*/
-	
-	
+	/**
+	 * 
+	 * @param rid  订单ID   
+	 * @return   订单记录表的所有信息
+	 * @throws SQLException   抛出异常
+	 */
+	public List<Record> recod(int rid) throws SQLException {
+		String sql = "SELECT * FROM T_RECORD WHERE RID = ?";
+		return runner.query(sql, new BeanListHandler<>(Record.class),rid);
+	}
 	
 	/**
-	 * 查询单一订单的数据
-	 * @param rdid  订单号
-	 * @return   根据订单号返回一次订单数据
+	 *  通过订单rid 查询商品 gid 
+	 * @return
 	 * @throws SQLException
-	 *//*
-	public Record recodeone(int rdid) throws SQLException{
-		String sql = "SELECT RECNUM,PAYWAY,EXPRESS,UID,FREIGHT,TOTAL,\r\n" + 
-				"E3.NAME,PRICE*DISCOUNT FIAPRICE,E3.GID,\r\n" + 
-				"E4.NAME,PHONE,PROVINCE,CITY,BLOCK,E4.DETAILS\r\n" + 
-				"FROM T_RECORD_DETAILS E1,T_RECORD E2,T_GOODS E3,T_USER_ADDRESS E4\r\n" + 
-				"WHERE E1.RID=E2.RID\r\n" + 
-				"AND  E3.GID=E1.GID\r\n" + 
-				"AND E2.UAID=E4.UAID\r\n" + 
-				"AND RDID = ? ";
-		return runner.query(sql, new BeanHandler<>(Record.class),rdid);
-	} 
-	*/
+	 */
+	public List<RecordDetails> reDtaislId (int rid) throws SQLException {
+		String sql = "SELECT * FROM T_RECORD_DETAILS WHERE RID = ?";
+		return runner.query(sql, new BeanListHandler<>(RecordDetails.class),rid );
+	}
 	
-
+	/**
+	 * 
+	 * 订单记录
+	 * @param rid
+	 * @return
+	 * @throws SQLException
+	 */
+	public Record recordsOne(int rid) throws SQLException{
+		String sql = "select * from t_record where rid = ?";
+		return runner.query(sql, new BeanHandler<>(Record.class),rid);
+	}
+	
+	
+	
 }

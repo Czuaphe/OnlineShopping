@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.onlineshopping.entity.User" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -146,7 +145,19 @@
             height:46px;
             width: 340px;
             background-color: #337ab7;
-            border-color: #2e6da4;
+          
+            text-align: center;
+            color: white;
+        }
+        #login{
+        	text-decoration: none;
+            font-size: 20px;
+            line-height: 46px;
+            display: block;
+            height:46px;
+            width: 340px;
+            background-color: #337ab7;
+            border:0px solid  #337ab7;
             text-align: center;
             color: white;
         }
@@ -218,15 +229,6 @@
     </script>
 </head>
 <body>
-	<%
-	//获取用户名
-	String uname=request.getParameter("username");
-	//登录jdbc驱动程序
-	Class.forName("");
-	//获取密码
-	String pwd=request.getParameter("password");
-	
-	%>
 <!--导航logo部分-->
     <div class="met-head">
         <div class="row">
@@ -240,7 +242,7 @@
                 </div>
             </div>
             <div class="daoh">
-                <a href="#">返回首页</a>
+                <a href="index.jsp">返回首页</a>
             </div>
         </div>
     </div>
@@ -250,15 +252,15 @@
         <div class="box">
             <div class="blank2"></div>
             <!--form表单内容-->
-            <form method="post" action="#" >
+            <form method="get" action="loginServlet">
                 <div class="uname">
-                    <input type="text" name="username" class="form_u" placeholder="&nbsp;用户名/邮箱/手机"/>
+                    <input type="text" name="username" id="username" class="form_u" placeholder="&nbsp;用户名/邮箱/手机"/>
                 </div>
                 <div class="blank2">
                     <div class="blank3">&nbsp;&nbsp;此项不能为空</div>
                 </div>
                 <div class="pwd">
-                    <input type="password" name="password" class="form_p" placeholder="&nbsp;密码"/>
+                    <input type="password" name="password" id="username" class="form_p" placeholder="&nbsp;密码"/>
                 </div>
                 <div class="blank2">
                     <div class="blank4">&nbsp;&nbsp;此项不能为空</div>
@@ -266,9 +268,13 @@
                 <div class="forget">
                     <a href="#">忘记密码？</a>
                 </div>
-                <a class="bt1" href="#">登录</a>
+                <div class="bt1">
+                	<input type="submit" id="login" value="登录"/>
+                </div>
+                
+               <!--  <a class="bt1" href="index.jsp">登录</a> -->
                 <div class="blank2"></div>
-                <a class="link" href="register.html">注册账号</a>
+                <a class="link" href="regist.jsp">注册账号</a>
             </form>
         </div>
     </div>

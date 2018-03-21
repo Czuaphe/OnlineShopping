@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlineshopping.entity.Goods;
+import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.entity.User;
 import com.onlineshopping.service.GoodsService;
 
@@ -41,10 +41,9 @@ public class IndexServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// 测试时，假设其已经登录
-        User user1 = new User();
-        user1.setUserid(1);
-        user1.setName("Tom");
-        session.setAttribute("user", user1);
+//        User user1 = new User();
+//        user1 = new UserDao().queryByUserID(1014);
+//        session.setAttribute("user", user1);
 		
 		request.setAttribute("flag", true);
 		
