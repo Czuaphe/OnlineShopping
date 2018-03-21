@@ -69,13 +69,13 @@ public class ShoppingCartServlet extends HttpServlet {
 		if (shoppingCart != null) {
 			for (Integer gid : shoppingCart.keySet()) {
 				JsonObject item = new JsonObject();
-				
+
 				Goods goods = new GoodsDao().getGoodsByGid(gid);
 //				System.out.println(new Gson().toJson(goods));
 				item.add("goods", new JsonParser().parse(new Gson().toJson(goods)).getAsJsonObject());
-				
+
 				item.addProperty("number", shoppingCart.get(gid));
-				
+
 				items.add(item);
 			}
 		}
@@ -91,7 +91,7 @@ public class ShoppingCartServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

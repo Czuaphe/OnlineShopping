@@ -3,6 +3,7 @@ package com.onlineshopping.dao;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
@@ -38,6 +39,19 @@ public class RecordDao {
 		}
 		
 		return false;
+	}
+
+	public Record queryByRecNum(String recnum) {
+
+		String sql = "select * from t_record where recnum = ?";
+
+		try {
+			return runner.query(sql, new BeanHandler<>(Record.class), recnum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
