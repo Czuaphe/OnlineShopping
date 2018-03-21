@@ -9,15 +9,16 @@ String path = request.getContextPath();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>会员中心-化妆品商城</title>
     <script type="text/javascript" src="<%=path%>/js/base/jquery-3.2.1.min.js"></script>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         $(function(){
-        	$("#myicon").change(function(){
-        		alert($("#myicon").val());
-        		$("#icon").attr("src",$("#myicon").val());
-        	});
+        	$("#myicon").bind("change",function(){
+        		var file=document.getElementById("myicon");
+                var url=window.URL.createObjectURL(file.files[0]);
+                $("#icon").attr({src:url});
+            });
         });
-    </script> -->
-    <style type="text/css">
+    </script>
+<style type="text/css">
 body {
 	background-color: #EFEFEF;
 }
@@ -218,12 +219,12 @@ input[type="submit"]:hover {
 </head>
 <body>
     <div class="top">
-        <div class="top_left"><a href="#"><img src="<%=path%>/img/hzp.png"/></a></div>
+        <div class="top_left"><a href="index.jsp"><img src="<%=path%>/img/hzp.png"/></a></div>
         <div class="top_center">&nbsp;&nbsp;会员中心</div>
         <div class="top_right">
             <span style="color:black;">${requestScope.user.name}&nbsp;/</span>
             <a href="<%=path%>/LogoutServlet">退出登录</a>&nbsp;/
-            <a href="#">返回首页</a>
+            <a href="index.jsp">返回首页</a>
         </div>
     </div>
     <div class="middle">
@@ -258,8 +259,6 @@ input[type="submit"]:hover {
             </tr>
         </table>
     </div>
-
-
 
         <div class="middle_main">
             <div class="m">&nbsp;&nbsp;个人信息</div>
