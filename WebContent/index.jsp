@@ -54,7 +54,7 @@
             <!-- 购物车功能 -->
             <div class="shopping_cart" >
                 <!-- 目前不进行下拉菜单的开发  class="dropdown-toggle" data-toggle="dropdown" -->
-                <a href="shop_car.jsp">
+                <a href="shopping_cart.html">
                     <i class="fa fa-shopping-cart"></i>购物车<span class="badge badge-danger">0</span>
                 </a>
                 <!-- 购物车下拉菜单（可选功能，尽力实现） -->
