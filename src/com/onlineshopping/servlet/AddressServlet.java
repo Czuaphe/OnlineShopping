@@ -36,13 +36,10 @@ public class AddressServlet extends HttpServlet {
 		}
 		dao=new UserAddressDao();
 		if("init".equals(flag)){
-			try {
-				List<UserAddress> adds=dao.getUserAddressByUid(user.getUserid());
-				req.setAttribute("adds", adds);
-				req.getRequestDispatcher("address.jsp").forward(req, resp);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			List<UserAddress> adds=dao.getUserAddressByUid(user.getUserid());
+			req.setAttribute("adds", adds);
+			req.getRequestDispatcher("address.jsp").forward(req, resp);
+
 		}else if("del".equals(flag)){
 			int uaid=Integer.parseInt(req.getParameter("uaid"));
 			try {

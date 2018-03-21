@@ -14,10 +14,15 @@ import com.onlineshopping.entity.UserAddress;
 public class UserAddressDao {
     QueryRunner runner = DBUtils.getQueryRunner();
     
-    public List<UserAddress> getUserAddressByUid(int uid) throws SQLException {
+    public List<UserAddress> getUserAddressByUid(int uid) {
     	String sql="select * from t_user_address where userid=?";
-    	return runner.query(sql, new BeanListHandler<>(UserAddress.class), uid);
-    }
+		try {
+			return runner.query(sql, new BeanListHandler<>(UserAddress.class), uid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
     
     public boolean delete(int uaid) throws SQLException{
     	String sql="delete from t_user_address where uaid=?";
