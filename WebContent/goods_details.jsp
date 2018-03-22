@@ -6,7 +6,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    System.out.println(basePath);
+//    System.out.println(basePath);
 %>
 
 <!DOCTYPE html>
@@ -102,7 +102,7 @@
             <!-- 购物车功能 -->
             <div class="shopping_cart" >
                 <!-- 目前不进行下拉菜单的开发  class="dropdown-toggle" data-toggle="dropdown" -->
-                <a href="#">
+                <a href="shopping_cart.html">
                     <i class="fa fa-shopping-cart"></i>购物车<span id="shoppingCartCount" class="badge badge-danger">0</span>
                 </a>
                 <!-- 购物车下拉菜单（可选功能，尽力实现） -->
@@ -215,6 +215,7 @@
         </div>
         <div class="goods_right col-sm-5" style="height: 550px;">
             <input id="gid" type="hidden" value="<%=goods != null ? goods.getGid() : 0 %>">
+
             <input id="basePath" type="hidden" value="<%=basePath %>">
             <input id="isCollect" type="hidden" value="<%=isCollect %>">
             <h1 style="font-size: 28px;font-weight: 300;margin-bottom: 10px">

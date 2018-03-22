@@ -63,9 +63,9 @@ $(document).ready(function(){
         var num = $("#showNum").val();
         $("#showNum").val(parseInt(num) + 1);
     });
-    
+
     var basePath = $("#basePath").val();
-    
+
     // 对收藏事件进行处理
     $("#addCollect").click(function () {
     	// 得到要收藏的商品的gid
@@ -105,6 +105,7 @@ $(document).ready(function(){
     	var gid = $("#gid").val();
     	// 添加到session中
     	$.ajax({
+
             url: basePath + "AddShoppingCartServlet",
             dataType:"html",
             data:{

@@ -359,7 +359,7 @@
         <div class="logo">
             <div class="nav">
                 <ul>
-                    <li class="met-logo"><img src="../images/logos.png"></a></li>
+                    <li class="met-logo"><img src="../images/logos.png"></li>
                     <li><div class="met-ge"></div></li>
                     <li class="met-font">会员登录</li>
                 </ul>

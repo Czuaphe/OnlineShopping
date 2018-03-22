@@ -28,7 +28,6 @@ public class AccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session=req.getSession();
-		System.out.println(session.getAttribute("user").toString());
 		User user= (User) session.getAttribute("user");
 		UserDao userDao=new UserDao();
 		UserLoginLogDao loginDao=new UserLoginLogDao();
