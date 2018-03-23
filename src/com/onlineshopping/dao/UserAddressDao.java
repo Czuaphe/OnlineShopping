@@ -37,10 +37,15 @@ public class UserAddressDao {
     	return runner.update(sql,a.getUaid(),a.getUserid(),a.getName(),a.getPhone(),a.getProvince(),a.getCity(),a.getBlock(),a.getDetails());
     }
     
-    public UserAddress getAddress(int uaid) throws SQLException{
+    public UserAddress getAddress(int uaid){
     	String sql="select * from t_user_address where uaid=?";
-    	return runner.query(sql, new BeanHandler<>(UserAddress.class), uaid);
-    }
+		try {
+			return runner.query(sql, new BeanHandler<>(UserAddress.class), uaid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
     
     public int updateAddress(UserAddress a) throws SQLException{
     	String sql="update t_user_address set userid=?,name=?,phone=?,province=?,city=?,block=?,details=? where uaid=?";

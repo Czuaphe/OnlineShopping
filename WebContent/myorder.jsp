@@ -51,7 +51,7 @@
 						style="font-size: 20px; font-weight: normal; color: black">订单中心</h1>
 				</li>
 				<li><a href="#">个人中心</a></li>
-				<li><a href="#<!-- myorder.html -->">我的订单</a></li>
+				<li><a href="">我的订单</a></li>
 				<li><a href="#">我的收藏</a></li>
 				<li><a href="#">我的优惠券</a></li>
 				<li><a href="#">收货地址</a></li>

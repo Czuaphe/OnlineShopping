@@ -233,7 +233,7 @@ input[type="submit"]:hover {
     <div class="add_left">
         <table width="140" border="0" cellpadding="0" cellspacing="0" align="left">
             <tr align="left">
-                <th>订单中心</th>
+                <th><a href="record_center.jsp">订单中心</a></th>
             </tr>
             <tr>
                 <td><a id="a" href="<%=path%>/AccountServlet">个人中心</a></td>
