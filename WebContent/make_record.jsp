@@ -1,42 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="header.jsp" %>
 
-    <!-- 框架所需CSS文件 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/web-fonts.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
-    <link rel="stylesheet" href="css/layer.css" >
-    <!-- 用户自定义CSS文件 -->
-    <link rel="stylesheet" href=" ./css/shop.css">
+<div style="width: 100%;background-color: #dddddd;padding-top: 30px">
 
-    <!-- 框架所需JS文件 -->
-    <script src="./js/base/jquery-3.2.1.min.js"></script>
-    <script src="./js/base/layer.js"></script>
-    <script src="./js/base/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
-    <script src="./js/alert.js"></script>
-
-    <style>
-        .address {
-            border: 2px solid #dddddd;
-        }
-        .address:hover {
-            border: 2px solid red;
-        }
-        .edit {
-            display: none;
-        }
-
-    </style>
-
-</head>
-<body style="background-color: #dddddd">
-    <h1>Make Record</h1>
-    <div class="container">
+    <div class="container" >
         <div class="row panel" style="background-color: white;padding: 30px;">
             <div>
                 <span style="font-size: 20px">收货地址</span>
@@ -62,30 +29,6 @@
                     <th>单价 × 数量</th>
                     <th>小计</th>
                 </tr>
-                <tr>
-                    <td>
-                        <img class="pull-left" src="./img/groom-1.jpg" alt="" style="width: 60px;height: 60px;">
-                        <div class="pull-left" style="margin-left: 20px">
-                            <div><a href="#">商品名称</a></div>
-                            <div style="margin-top: 5px ">详情</div>
-                        </div>
-
-                    </td>
-                    <td>￥ 200.00 元 × 1</td>
-                    <td>￥ 200.00 元</td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="pull-left" src="./img/groom-1.jpg" alt="" style="width: 60px;height: 60px;">
-                        <div class="pull-left" style="margin-left: 20px">
-                            <div><a href="#">商品名称</a></div>
-                            <div style="margin-top: 5px ">详情</div>
-                        </div>
-
-                    </td>
-                    <td>￥ 200.00 元 × 1</td>
-                    <td>￥ 200.00 元</td>
-                </tr>
             </table>
         </div>
 
@@ -104,11 +47,11 @@
 
         </div>
     </div>
+</div>
+
 
     <script>
         $(document).ready(function () {
-
-
 
             $(".address").click(function () {
                 $(".address").css("border", "2px solid red");
@@ -171,7 +114,7 @@
 
                 // 返回购物车按钮添加链接
                 $("#return_shopping_cart").click(function () {
-                    window.location.href = "shopping_cart.html";
+                    window.location.href = "shopping_cart.jsp";
                 });
 
                 $("#make_record").click(function () {
@@ -265,7 +208,7 @@
                     '                    <td>\n' +
                     '                        <img class="pull-left" src="./img/groom-1.jpg" alt="" style="width: 60px;height: 60px;">\n' +
                     '                        <div class="pull-left" style="margin-left: 20px">\n' +
-                    '                            <div><a href="#">' + goods.goods.name + '</a></div>\n' +
+                    '                            <div><a href="goods_details.jsp?gid=' + goods.goods.gid + '">' + goods.goods.name + '</a></div>\n' +
                     '                            <div style="margin-top: 5px ">' + goods.goods.details + '</div>\n' +
                     '                        </div>\n' +
                     '                    </td>\n' +
@@ -277,5 +220,4 @@
         });
     </script>
 
-</body>
-</html>
+<%@include file="footer.jsp"%>

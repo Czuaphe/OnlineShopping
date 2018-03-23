@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlineshopping.dao.GoodsDao;
 import com.onlineshopping.dao.MyorderRecordDao;
+import com.onlineshopping.dao.RecordDao;
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
 import com.onlineshopping.entity.RecordDetails;
+import com.onlineshopping.entity.User;
 
 public class MyorderServlet extends HttpServlet {
 
@@ -34,8 +36,11 @@ public class MyorderServlet extends HttpServlet {
 		try {
 
 			MyorderRecordDao myorderRecordDao = new MyorderRecordDao();
+
+			User user = (User) req.getSession().getAttribute("user");
+
 			// 从订单记录表中查询，得到所有订单号
-			List<Record> recordslist = myorderRecordDao.recodeAll();
+			List<Record> recordslist = new RecordDao().queryByUserid(user.getUserid());
 			/*// 第一条订单
 			System.out.println(recordslist.get(0).toString());*/
 			// req.setAttribute("record", recordslist.get(0));

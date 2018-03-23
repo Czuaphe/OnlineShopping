@@ -1,9 +1,11 @@
 package com.onlineshopping.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.onlineshopping.db.DBUtils;
@@ -47,6 +49,19 @@ public class RecordDao {
 
 		try {
 			return runner.query(sql, new BeanHandler<>(Record.class), recnum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public List<Record> queryByUserid(int userid) {
+
+		String sql = "select * from t_record where userid = ?";
+
+		try {
+			return runner.query(sql, new BeanListHandler<>(Record.class), userid);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
