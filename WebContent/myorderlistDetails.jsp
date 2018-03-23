@@ -145,7 +145,7 @@ Record record = (Record)request.getAttribute("records");
                     style="margin-top: 10px"><%=recordDetails.get(i).getNumbers() %>
                     
                     <%
-                   
+                   break;
                     } %>
                     </td>
 						
