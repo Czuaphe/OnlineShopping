@@ -1,0 +1,44 @@
+.height-high {
+    height: 50px;
+}
+.height-common {
+    height: 80px;
+
+}
+.line-common {
+    line-height: 80px;
+}
+.red {
+    background-color: red;
+}
+.white{
+    background-color: white;
+}
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+.web-link {
+    text-decoration: none;
+    color: blue;
+}
+.web-link:hover {
+    text-decoration: none;
+    color: blue;
+}
+.icon-link {
+    text-decoration: none;
+    color: black;
+}
+.icon-link:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+.address {
+    border: 2px solid #dddddd;
+}
+.address:hover {
+    border: 2px solid red;
+}

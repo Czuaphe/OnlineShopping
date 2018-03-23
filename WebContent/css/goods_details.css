@@ -1,0 +1,25 @@
+.shop_goods_details {
+    height: 650px;
+    padding: 50px 0 50px;
+}
+
+.goods_left {
+    height: 550px;
+}
+
+.small_img {
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 2px solid #dddddd;
+}
+
+.small_img_active {
+    border-color: #f32196;
+}
+
+.small_img img {
+    width: 60px;
+    height: 60px;
+
+}
