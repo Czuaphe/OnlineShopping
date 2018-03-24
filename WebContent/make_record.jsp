@@ -206,7 +206,7 @@
             function createGoodsComponent(goods) {
                 return '<tr>\n' +
                     '                    <td>\n' +
-                    '                        <img class="pull-left" src="./img/groom-1.jpg" alt="" style="width: 60px;height: 60px;">\n' +
+                    '                        <img class="pull-left" src="./img/400_400/' + goods.goods.picpath.split(',')[0] + '" alt="" style="width: 60px;height: 60px;">\n' +
                     '                        <div class="pull-left" style="margin-left: 20px">\n' +
                     '                            <div><a href="goods_details.jsp?gid=' + goods.goods.gid + '">' + goods.goods.name + '</a></div>\n' +
                     '                            <div style="margin-top: 5px ">' + goods.goods.details + '</div>\n' +

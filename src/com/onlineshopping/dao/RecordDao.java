@@ -69,4 +69,43 @@ public class RecordDao {
 		return null;
 	}
 
+    public Record queryByRid(int rid) {
+
+        String sql = "select * from t_record where rid = ?";
+
+        try {
+            return runner.query(sql, new BeanHandler<>(Record.class), rid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean cancelRecord(int rid) {
+
+	    String sql = "update t_record set status = 0 where rid = ?";
+
+        try {
+            return runner.update(sql, rid) > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean payRecord(int rid) {
+
+	    String sql = "update t_record set status = 2 where rid = ?";
+
+        try {
+            return runner.update(sql, rid) > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }
