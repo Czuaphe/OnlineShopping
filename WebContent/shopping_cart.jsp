@@ -118,7 +118,7 @@
                     '                        <input id="goods-' + goods.gid + '" type="checkbox" checked="' + visible + '">\n' +
                     '                    </td>\n' +
                     '                    <td class="text-center line-common">\n' +
-                    '                        <img class="pull-left" src="/img/400_400/' + picpath[0] + '" alt="" style="width: 60px;height: 60px;">\n' +
+                    '                        <img class="pull-left" src="/OnlineShopping/img/400_400/' + picpath[0] + '" alt="" style="width: 60px;height: 60px;">\n' +
                     '                        <div class="pull-left" style="margin-left: 10px">\n' +
                     '                            <div class="text-left" style="line-height: 32px;">\n' +
                     '                                <a class="web-link" href="#" style="display: block; width: 200px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">' + goods.name + '</a>\n' +
