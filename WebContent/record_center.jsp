@@ -44,7 +44,7 @@
                     %>
                     <div style="border: 1px solid red;padding: 30px;margin-bottom: 30px">
                         <div style="font-size: 24px;height: 40px;">
-                            <span  style="color: red;" class="pull-left">待支付</span>
+                            <span id="status-<%=record.getRid() %>" style="color: <%=record.getStatus() == 0 ? "gray": record.getStatus() == 1 ? "red" : record.getStatus() == 2 ? "green" : "black" %>;" class="pull-left"><%=record.getStatus() == 0 ? "已取消" : record.getStatus() == 1 ? "待支付" : record.getStatus() == 2 ? "已支付" : "已完成" %></span>
                             <span  style="font-size: 20px" class="pull-right">订单金额：<b style="font-size: 24px;color: red;">￥<%= String.format("%.2f", record.getTotal()) %>元</b></span>
                         </div>
                         <div style="margin-bottom: 20px">
@@ -56,7 +56,7 @@
                         <!-- 商品 -->
                         <div style="padding-top: 20px;border-top: 1px solid red">
                             <%-- TODO 支付更改订单的status状态 --%>
-                            <a href="#" class="btn btn-danger pull-right">立即支付</a>
+                            <button id="pay-<%=record.getRid() %>" class="btn btn-danger pull-right">立即支付</button>
                             <a href="record_details.jsp?rid=<%=record.getRid() %>" class="btn btn-default pull-right" style="margin-right: 30px">查看详情</a>
                                 <%
                                     List<RecordDetails> recordDetailses = recordDetailsAllList.get(i);
@@ -88,5 +88,28 @@
 
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#pay-*").click(function (ev) {
+            var id = ev.target.id;
+            var rid = id.substr(id.indexOf('-') + 1);
+            $.getJSON("/RecordPayServlet", {rid: rid}, function (data) {
+                if (data.status == true) {
+
+                    $("#status-" + rid).css("color", "green");
+                    alert("支付成功！");
+                } else {
+                    alert("支付失败！");
+                }
+                window.location.href = "record_center.jsp";
+            })
+        });
+
+    });
+
+</script>
 
 <%@include file="footer.jsp"%>

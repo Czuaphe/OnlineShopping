@@ -37,7 +37,7 @@
                         <div class="font-sizeAndheight">
                             <i class="wb-payment pull-left" style="margin-right: 20px;font-size: 30px;color: orange"></i>
                             <div class="pull-left" style="margin-top: 5px;">
-                                <span><%=record.getStatus() == 1 ? "待支付" : record.getStatus() == 2 ? "已支付" : "已完成" %></span>
+                                <span><%=record.getStatus() == 0 ? "已取消" : record.getStatus() == 1 ? "待支付" : record.getStatus() == 2 ? "已支付" : "已完成" %></span>
                             </div>
                             <button class="btn btn-danger pull-right" style="margin-left: 20px">立即付款</button>
                             <button class="btn btn-default pull-right">取消订单</button>
