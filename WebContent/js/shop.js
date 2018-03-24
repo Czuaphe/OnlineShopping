@@ -64,7 +64,6 @@ $(document).ready(function(){
         $("#showNum").val(parseInt(num) + 1);
     });
 
-    var basePath = $("#basePath").val();
 
     // 对收藏事件进行处理
     $("#addCollect").click(function () {
@@ -72,7 +71,7 @@ $(document).ready(function(){
         var gid = $("#gid").val();
 //        alert(gid);
         $.ajax({
-            url:basePath + "CollectGoodsServlet",
+            url:"CollectGoodsServlet",
             dataType:"html",
             data:{
                 "gid": gid
@@ -103,13 +102,15 @@ $(document).ready(function(){
     $("#addShoppingCart").click(function () {
     	// 异步向服务发送数据，返回添加结果，并对页面进行更改
     	var gid = $("#gid").val();
+    	var number = $("#showNum").val();
     	// 添加到session中
     	$.ajax({
 
-            url: basePath + "AddShoppingCartServlet",
+            url: "AddShoppingCartServlet",
             dataType:"html",
             data:{
-                "gid": gid
+                "gid": gid,
+                "number": number
             },
             success: function (data,textStatus,jqXHR) {
             	if(data == "true") {
@@ -130,7 +131,7 @@ $(document).ready(function(){
     function changeShoppingCartCount() {
     	// 修改网页中的数据
     	$.ajax({
-    		url: basePath + "GetShoppingCartCount",
+    		url: "GetShoppingCartCount",
             dataType:"html",
             success: function (data,textStatus,jqXHR) {
             	console.log('data' + data);

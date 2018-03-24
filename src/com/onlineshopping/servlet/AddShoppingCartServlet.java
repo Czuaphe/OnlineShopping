@@ -23,7 +23,6 @@ public class AddShoppingCartServlet extends HttpServlet {
      */
     public AddShoppingCartServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -33,7 +32,7 @@ public class AddShoppingCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int gid = Integer.parseInt(request.getParameter("gid"));
-		
+		int number = Integer.parseInt(request.getParameter("number"));
 		// 将商品放入session中的购物车中
 		System.out.println("后台已经得到商品ID为：" + gid);
 		
@@ -50,9 +49,9 @@ public class AddShoppingCartServlet extends HttpServlet {
 		
 		// 将得到的商品ID放入购物车中
 		if (shoppingCart.containsKey(gid)) {
-			shoppingCart.put(gid, shoppingCart.get(gid) + 1);
+			shoppingCart.put(gid, shoppingCart.get(gid) + number);
 		} else {
-			shoppingCart.put(gid, 1);
+			shoppingCart.put(gid, number);
 		}
 		
 		// 将购物车放回session中

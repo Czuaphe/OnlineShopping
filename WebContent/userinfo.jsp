@@ -240,7 +240,7 @@ input[type="submit"]:hover {
                 <td><a id="a" href="<%=path%>/AccountServlet">个人中心</a></td>
             </tr>
             <tr>
-                <td><a href="#">我的订单</a></td>
+                <td><a href="MyorderServlet">我的订单</a></td>
             </tr>
             <tr>
                 <td><a href="<%=path%>/CollectionServlet">我的收藏</a></td>

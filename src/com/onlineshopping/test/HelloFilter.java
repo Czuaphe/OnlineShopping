@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Servlet Filter implementation class HelloFilter
  */
-@WebFilter("/")
+@WebFilter(filterName = "Filer0_HelloFilter", value = "/*")
 public class HelloFilter implements Filter {
 
     /**
@@ -36,9 +36,8 @@ public class HelloFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("你访问了URL:" + ((HttpServletRequest)request).getServletPath());
+		System.out.println("你访问了URL:" + ((HttpServletRequest)request).getServletPath() + ((HttpServletRequest)request).getPathInfo());
 		System.out.println("你必须已经这个过滤器才可以继续下去！");
-		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
 
@@ -46,7 +45,7 @@ public class HelloFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -27,7 +27,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 <%
 List<RecordDetails> recordDetails = (List<RecordDetails>)request.getAttribute("recordDetails");
-Goods goods = (Goods)request.getAttribute("good");
+List<Goods> goodlist = (List<Goods>)request.getAttribute("good");
 UserAddress addresses = (UserAddress)request.getAttribute("useaddress");
 Record record = (Record)request.getAttribute("records");
 %>
@@ -75,7 +75,7 @@ Record record = (Record)request.getAttribute("records");
 
 				<table style="text-align: center; margin-top: 20px" width="760"
 					cellpadding="10" align="center">
-
+					
 					<tr>
 						<th style="text-align: center; border-bottom: 1px solid #cecece;"
 							width="120">商品名称</th>
@@ -88,28 +88,73 @@ Record record = (Record)request.getAttribute("records");
 						<th style="text-align: center; border-bottom: 1px solid #cecece;"
 							width="150">小计</th>
 					</tr>
-
+					
+				<%
+				int flag = 0;
+				for(int i=0;i<recordDetails.size();i++){
+					flag=i;
+				%>
 					<tr>
+					
+					
 						<td style="margin-top: 10px">
-							<%String[] pics = goods.getPicpath().split(","); %> <img
+						<%
+					for(Goods goods:goodlist){
+					%>
+							<%String[] pics = goodlist.get(i).getPicpath().split(","); %> <img
 							src="img/400_400/<%=pics[0] %>"
 							style="width: 60px; height: 60px; margin-top: 15px;" />
+							
+							<%
+					break;		
+					} %>
 						</td>
-						<td style="margin-top: 10px"><%=goods.getName() %></td>
+						
+					
+						<td 
+							<%
+					for(Goods goods:goodlist){
+					%>
+						style="margin-top: 10px"><%=goodlist.get(i).getName() %>
 						<%
-                    double price = goods.getDiscount()*goods.getDiscount();
+						break;	
+					} %>
+						</td>
+						
+						
+						<%
+						double price = 0;
+						for(Goods goods:goodlist){
+							price = goodlist.get(i).getDiscount()*goodlist.get(i).getDiscount();
+						}
                     %>
 						<td style="margin-top: 10px"><%=price%></td>
-						<%
-                    for(RecordDetails re:recordDetails){
-                    	double total = price*re.getNumbers()+record.getFreight();
+						
+						
+					<%
+                   double total = 0;
+					for(RecordDetails rd:recordDetails){
+                    	total = price*recordDetails.get(i).getNumbers()+record.getFreight();
+					}
                     %>
-						<td style="margin-top: 10px"><%=re.getNumbers() %></td>
+                   
+						<td 
+						 <%
+                    for(RecordDetails rd:recordDetails){
+                   		 %>
+                    style="margin-top: 10px"><%=recordDetails.get(i).getNumbers() %>
+                    
+                    <%
+                   break;
+                    } %>
+                    </td>
+						
 						<td style="margin-top: 10px"><%=record.getFreight() %></td>
+						
 						<td style="margin-top: 10px"><%=total %></td>
-						<%} %>
+						
 					</tr>
-
+<%} %>
 
 
 
@@ -191,11 +236,18 @@ Record record = (Record)request.getAttribute("records");
 						<td><span>￥<%=record.getFreight() %></span></td>
 						<td>+</td>
 						<%
+						double byprice = 0;
+						double godprice = 0;
 						for(RecordDetails recordDetails2: recordDetails){
-							double price1 = goods.getPrice()-recordDetails2.getBuyprice();
+							byprice = recordDetails.get(flag).getBuyprice();
+						}
+						for(Goods goods:goodlist){
+							godprice = goodlist.get(flag).getPrice();
+						}
+						double disprice = godprice-byprice;
 						%>
-						<td><span>￥<%= price1%></span></td>
-						<%} %>
+						<td><span>￥<%= disprice%></span></td>
+						
 						<td>+</td>
 						<td><span>￥0</span></td>
 						<td>=</td>

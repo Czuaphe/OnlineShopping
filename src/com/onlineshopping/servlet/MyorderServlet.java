@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlineshopping.dao.GoodsDao;
 import com.onlineshopping.dao.MyorderRecordDao;
+import com.onlineshopping.dao.RecordDao;
 import com.onlineshopping.entity.Goods;
 import com.onlineshopping.entity.Record;
 import com.onlineshopping.entity.RecordDetails;
+import com.onlineshopping.entity.User;
 
 public class MyorderServlet extends HttpServlet {
 
@@ -34,14 +36,14 @@ public class MyorderServlet extends HttpServlet {
 		try {
 
 			MyorderRecordDao myorderRecordDao = new MyorderRecordDao();
+
+			User user = (User) req.getSession().getAttribute("user");
+
 			// 从订单记录表中查询，得到所有订单号
-			List<Record> recordslist = myorderRecordDao.recodeAll();
+			List<Record> recordslist = new RecordDao().queryByUserid(user.getUserid());
 			/*// 第一条订单
 			System.out.println(recordslist.get(0).toString());*/
 			// req.setAttribute("record", recordslist.get(0));
-			for (Record record : recordslist) {
-				System.out.println(recordslist.toString());
-			}
 			req.setAttribute("record", recordslist);
 			// 提取所有的订单号
 			List<Integer> ridList = new ArrayList<>();
@@ -51,7 +53,7 @@ public class MyorderServlet extends HttpServlet {
 
 			// 得到第一条订单
 			// int rid = ridList.get(0);
-			// 所有订单 rid
+			// 所有订单 rids
 			for (Integer integerrids : ridList) {
 				int rids = integerrids.intValue();
 				System.out.println(rids);
@@ -68,13 +70,14 @@ public class MyorderServlet extends HttpServlet {
 					// 通过订单号保存保存商品号
 					// req.setAttribute("recorddetails", list1.get(0));
 					req.setAttribute("recorddetails", list1);
-					// 提取所有订单号
+					// 提取所有商品号
 					List<Integer> gidlist = new ArrayList<>();
 					for (RecordDetails recordDetails : list1) {
 						gidlist.add(recordDetails.getGid());
 					}
 
 					// 一个订单中的所有商品号
+					List<Goods> goodlist = new ArrayList<Goods>();
 					for (Integer integer : gidlist) {
 						int gid = integer.intValue();
 						System.out.println(gid);
@@ -82,17 +85,20 @@ public class MyorderServlet extends HttpServlet {
 							// 通过商品号得到订单中商品的详细信息
 							GoodsDao goodsDao = new GoodsDao();
 							Goods goods = goodsDao.getGoodsByGid(gid);
-							req.setAttribute("good", goods);
 							System.out.println(goods.toString());
-							req.getRequestDispatcher("myorder.jsp").forward(req, resp);
-							return;
+							goodlist.add(goods);
 							
+							//return;
 						}
 					}
-
+					req.setAttribute("good", goodlist);
+				
 				}
 			}
 
+			req.getRequestDispatcher("myorder.jsp").forward(req, resp);
+			return;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
