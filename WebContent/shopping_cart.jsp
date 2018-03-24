@@ -41,7 +41,7 @@
 
             function initData() {
                 // console.log("hello 1");
-                $.getJSON('/ShoppingCartServlet', function (json) {
+                $.getJSON('/OnlineShopping/ShoppingCartServlet', function (json) {
                     console.log(json.data);
                     data = json.data;
                     for(var i = 0; i < data.length; i ++) {
@@ -186,7 +186,7 @@
 
                     console.log(info);
                     // 通过异步将更改的数据传到服务器上
-                    $.getJSON('/CountShoppingCartServlet',
+                    $.getJSON('/OnlineShopping/CountShoppingCartServlet',
                         { 'info': info}, function (callback) {
                             console.log(callback.status);
                             if (callback.status == true) {

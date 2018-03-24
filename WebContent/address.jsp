@@ -29,7 +29,7 @@ String uid= String.valueOf(user.getUserid());
                     <td><a href="<%=path%>/AccountServlet">个人中心</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#">我的订单</a></td>
+                    <td><a href="<%=path%>/record_center.jsp">我的订单</a></td>
                 </tr>
                 <tr>
                     <td><a href="<%=path%>/CollectionServlet">我的收藏</a></td>

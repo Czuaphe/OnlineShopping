@@ -65,7 +65,7 @@
             var addresses = {};
 
             // 以一个异步开始
-            $.getJSON("/RecordDataServlet", function (data) {
+            $.getJSON("/OnlineShopping/RecordDataServlet", function (data) {
                 // 得到数据
                 info = data;
                 // console.log(data.addressList[0].uaid);
@@ -128,7 +128,7 @@
 
                     if (uaid != -1) {
                         // 得到一个地址，发送服务器
-                        $.getJSON("/RecordMakeServlet", {"uaid": uaid}, function (data) {
+                        $.getJSON("/OnlineShopping/RecordMakeServlet", {"uaid": uaid}, function (data) {
                             // 生成订单成功，跳转到订单中心页
                             if (data.status == true) {
                                 alert("生成订单成功");
