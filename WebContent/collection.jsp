@@ -260,9 +260,61 @@ table a:hover {
 	font-size: 14px;
 	padding-left: 24px;
 }
+
+.top {
+	width: 100%;
+	height: 100px;
+	background-color: white;
+}
+
+.top_left {
+	margin-left: 100px;
+	padding-top: 27px;
+	float: left;
+}
+
+.top_center {
+	height: 24px;
+	margin-left: 15px;
+	margin-top: 40px;
+	border-left: 2px solid #DDDFE6;
+	float: left;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	color: black;
+}
+
+.top_right {
+	width: 225px;
+	padding-right: 110px;
+	height: 100px;
+	line-height: 110px;
+	float: right;
+	font-size: 13px;
+	font-family: "微软雅黑";
+}
+
+.top_right a {
+	color: #337AB7;
+	text-decoration: none;
+}
+
+.top_right a:hover {
+	text-decoration: underline;
+}
+
 </style>
 </head>
 <body>
+<div class="top">
+        <div class="top_left"><a href="index.jsp"><img src="<%=path%>/img/hzp.png"/></a></div>
+        <div class="top_center">&nbsp;&nbsp;会员中心</div>
+        <div class="top_right">
+            <span style="color:black;">${sessionScope.user.name}&nbsp;/</span>
+            <a href="<%=path%>/LogoutServlet">退出登录</a>&nbsp;/
+            <a href="index.jsp">返回首页</a>
+        </div>
+    </div>
 <div class="fa">
     <div style="height:1px;"></div>
     <div class="add_left">
