@@ -57,7 +57,15 @@ String uid= String.valueOf(user.getUserid());
 .top_right a:hover {
 	text-decoration: underline;
 }
-        
+    .bottom {
+	width: 100%;
+	height: 91px;
+	background-color: white;
+	line-height: 91px;
+	text-align: center;
+	font-size: 14px;
+	color: #777777;
+}    
     </style>
 </head>
 <body>
@@ -159,5 +167,8 @@ String uid= String.valueOf(user.getUserid());
         </div>
     </div>
     <input id="hi" type="hidden" value="<%=uid%>"/>
+    <div class="bottom">
+        化妆品商城 版权所有 © 2018-2020 湘ICP备8888888 （本网站内容为演示数据）
+    </div>
 </body>
 </html>
